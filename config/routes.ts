@@ -12,38 +12,38 @@
  */
 export default [
   {
-    path: '/dashboard',
+    path: '/application',
     name: '应用分析',
     icon: 'dashboard',
     routes: [
       {
-        path: '/dashboard',
-        redirect: '/dashboard/analysis',
+        path: '/application',
+        redirect: '/application/analysis',
       },
       {
         name: '代码分析',
         icon: 'smile',
-        path: '/dashboard/analysis',
-        component: './dashboard/analysis',
+        path: '/application/analysis',
+        component: './application/analysis',
       },
       {
         name: '工程分析',
         icon: 'smile',
-        path: '/dashboard/monitor',
-        component: './dashboard/monitor',
+        path: '/application/monitor',
+        component: './application/monitor',
       },
       {
         name: '依赖分析',
         icon: 'smile',
-        path: '/dashboard/workplace',
-        component: './dashboard/workplace',
+        path: '/application/workplace',
+        component: './application/workplace',
       },
     ],
   },
   {
     path: '/global',
     name: '全局分析',
-    icon: 'dashboard',
+    icon: 'profile',
     routes: [
       {
         path: '/global',
@@ -55,54 +55,54 @@ export default [
         path: '/global/analysis',
         component: './global/analysis',
       },
-      {
-        name: '指标排行',
-        icon: 'smile',
-        path: '/global/workplace',
-        component: './global/workplace',
-      },
+      // {
+      //   name: '指标排行',
+      //   icon: 'smile',
+      //   path: '/global/workplace',
+      //   component: './global/workplace',
+      // },
     ],
   },
   {
-    path: '/list',
-    icon: 'table',
+    path: '/task',
+    icon: 'CheckCircleOutlined',
     name: '巡检任务',
     routes: [
       {
-        path: '/list',
-        redirect: '/list/task',
+        path: '/task',
+        redirect: '/task/list',
       },
       {
         name: '任务列表',
         icon: 'smile',
-        path: '/list/task',
-        component: './list/task',
+        path: '/task/list',
+        component: './task/list',
       },
     ],
   },
-  {
-    name: '研发规范',
-    icon: 'CheckCircleOutlined',
-    path: '/dev',
-    routes: [
-      {
-        path: '/dev',
-        redirect: '/dev/doc',
-      },
-      {
-        name: '规范文档',
-        icon: 'smile',
-        path: '/dev/doc',
-        component: './dev/doc',
-      },
-      {
-        name: '审查工具',
-        icon: 'smile',
-        path: '/dev/tool',
-        component: './dev/tool',
-      },
-    ],
-  },
+  // {
+  //   name: '研发规范',
+  //   icon: 'form',
+  //   path: '/dev',
+  //   routes: [
+  //     {
+  //       path: '/dev',
+  //       redirect: '/dev/doc',
+  //     },
+  //     {
+  //       name: '规范文档',
+  //       icon: 'smile',
+  //       path: '/dev/doc',
+  //       component: './dev/doc',
+  //     },
+  //     {
+  //       name: '审查工具',
+  //       icon: 'smile',
+  //       path: '/dev/tool',
+  //       component: './dev/tool',
+  //     },
+  //   ],
+  // },
   {
     path: '/system',
     icon: 'table',
@@ -134,7 +134,7 @@ export default [
   },
   {
     path: '/',
-    redirect: '/dashboard/analysis',
+    redirect: '/application/analysis',
   },
   {
     component: '404',

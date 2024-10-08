@@ -93,7 +93,7 @@ const useStyles = createStyles(({ token }) => {
     },
     listContentItem: {
       display: 'inline-block',
-      marginLeft: '40px',
+      marginLeft: '100px',
       color: token.colorTextSecondary,
       fontSize: token.fontSize,
       verticalAlign: 'middle',

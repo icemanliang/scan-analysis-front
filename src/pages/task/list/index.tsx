@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import OperationModal from './components/OperationModal';
-import type { BasicListItemDataType } from './data.d';
+import type { BasicListItemDataType } from './data';
 import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
 import useStyles from './style.style';
 const RadioButton = Radio.Button;
@@ -46,10 +46,10 @@ const ListContent = ({
   const { styles } = useStyles();
   return (
     <div>
-      <div className={styles.listContentItem}>
+      {/* <div className={styles.listContentItem}>
         <span>Owner</span>
         <p>{owner}</p>
-      </div>
+      </div> */}
       <div className={styles.listContentItem}>
         <span>开始时间</span>
         <p>{dayjs(createdAt).format('YYYY-MM-DD HH:mm')}</p>
@@ -128,12 +128,9 @@ export const BasicList: FC = () => {
   };
   const extraContent = (
     <div>
-      <RadioGroup defaultValue="all">
-        <RadioButton value="all">全部</RadioButton>
-        <RadioButton value="progress">进行中</RadioButton>
-        <RadioButton value="waiting">等待中</RadioButton>
-      </RadioGroup>
-      <Search className={styles.extraContentSearch} placeholder="请输入" onSearch={() => ({})} />
+      <Button type="primary" onClick={() => {
+          setVisible(true);
+        }}>新建</Button>
     </div>
   );
   const MoreBtn: React.FC<{
@@ -171,26 +168,12 @@ export const BasicList: FC = () => {
   };
   return (
     <div>
-      <PageContainer>
+      <PageContainer title={false}>
         <div className={styles.standardList}>
-          <Card bordered={false}>
-            <Row>
-              <Col sm={8} xs={24}>
-                <Info title="我的待办" value="8个任务" bordered />
-              </Col>
-              <Col sm={8} xs={24}>
-                <Info title="本周任务平均处理时间" value="32分钟" bordered />
-              </Col>
-              <Col sm={8} xs={24}>
-                <Info title="本周完成任务数" value="24个任务" />
-              </Col>
-            </Row>
-          </Card>
-
           <Card
             className={styles.listCard}
             bordered={false}
-            title="基本列表"
+            title={false}
             style={{
               marginTop: 24,
             }}
@@ -212,16 +195,16 @@ export const BasicList: FC = () => {
                       key="edit"
                       onClick={(e) => {
                         e.preventDefault();
-                        showEditModal(item);
+                        // showEditModal(item);
                       }}
                     >
-                      编辑
+                      详情
                     </a>,
-                    <MoreBtn key="more" item={item} />,
+                    // <MoreBtn key="more" item={item} />,
                   ]}
                 >
                   <List.Item.Meta
-                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                    // avatar={<Avatar src={item.logo} shape="square" size="large" />}
                     title={<a href={item.href}>{item.title}</a>}
                     description={item.subDescription}
                   />
@@ -232,7 +215,7 @@ export const BasicList: FC = () => {
           </Card>
         </div>
       </PageContainer>
-      <Button
+      {/* <Button
         type="dashed"
         onClick={() => {
           setVisible(true);
@@ -244,7 +227,7 @@ export const BasicList: FC = () => {
       >
         <PlusOutlined />
         添加
-      </Button>
+      </Button> */}
       <OperationModal
         done={done}
         open={open}

@@ -2,14 +2,14 @@ import type { Request, Response } from 'express';
 import type { CardListItemDataType } from './data.d';
 
 const titles = [
-  'Alipay',
-  'Angular',
-  'Ant Design',
-  'Ant Design Pro',
-  'Bootstrap',
-  'React',
-  'Vue',
-  'Webpack',
+  'baseinfo-collect-plugin.js',
+  'config-check-plugin.js',
+  'ejs-check-plugin.js',
+  'eslint-check-plugin.js',
+  'css-check-plugin.js',
+  'denpendency-check-plugin.js',
+  'redundancy-check-plugin.js',
+  'highcall-collect-plugin.js',
 ];
 const avatars = [
   'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png', // Alipay
@@ -29,7 +29,7 @@ const covers = [
   'https://gw.alipayobjects.com/zos/rmsportal/gLaIAoVWTtLbBWZNYEMg.png',
 ];
 const desc = [
-  '那是一种内在的东西， 他们到达不了，也无法触及的',
+  '一种内在的东西， 他们到达不了，也无法触及的',
   '希望是一个好东西，也许是最好的，好东西是不会消亡的',
   '生命就像一盒巧克力，结果往往出人意料',
   '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',

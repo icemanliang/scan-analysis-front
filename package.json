@@ -125,5 +125,6 @@
       "CNAME",
       "create-umi"
     ]
-  }
+  },
+  "packageManager": "pnpm@9.6.0"
 }

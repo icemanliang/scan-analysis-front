@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
-import { Button, Card, List, Typography } from 'antd';
+import { Button, Card, List, Typography, Modal } from 'antd';
 import type { CardListItemDataType } from './data.d';
 import { queryFakeList } from './service';
 import useStyles from './style.style';
@@ -15,6 +15,18 @@ const CardList = () => {
   });
   const list = data?.list || [];
   const nullData: Partial<CardListItemDataType> = {};
+  const DeleteClick = ()=>{
+    Modal.confirm({
+      title: '删除任务',
+      content: '确定删除该任务吗？',
+      okText: '确认',
+      cancelText: '取消',
+      onOk: () => {
+        console.log('DEL')
+      },
+    });
+  }
+
   return (
     <PageContainer title={false}>
       <div className={styles.cardList}>
@@ -38,10 +50,13 @@ const CardList = () => {
                   <Card
                     hoverable
                     className={styles.card}
-                    actions={[<a key="option1">配置</a>,<a key="option1">删除</a>]}
+                    actions={[<a key="option1">配置</a>,<a key="option2" onClick={
+                      () => {
+                        DeleteClick();
+                      }
+                    }>删除</a>]}
                   >
                     <Card.Meta
-                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
                       title={<a>{item.title}</a>}
                       description={
                         <Paragraph

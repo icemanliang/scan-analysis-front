@@ -1,3 +1,4 @@
+import { Flex } from 'antd';
 import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token }) => {
@@ -16,9 +17,13 @@ const useStyles = createStyles(({ token }) => {
           color: token.colorPrimary,
         },
       },
+      '.title' : {
+        display: 'flex',
+        justifyContent: 'space-between'
+      }
     },
     item: {
-      height: '64px',
+      height: '18px',
     },
     cardList: {
       '.ant-list .ant-list-item-content-single': { maxWidth: '100%' },
@@ -34,7 +39,7 @@ const useStyles = createStyles(({ token }) => {
     },
     newButton: {
       width: '100%',
-      height: '201px',
+      height: '154px',
       color: token.colorTextSecondary,
       backgroundColor: token.colorBgContainer,
       borderColor: token.colorBorder,

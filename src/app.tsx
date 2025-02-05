@@ -8,7 +8,7 @@ import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 const isDev = process.env.NODE_ENV === 'development';
-const loginPath = '/user/login';
+const loginPath = '/application/analysis';
 
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
@@ -20,14 +20,14 @@ export async function getInitialState(): Promise<{
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
-    try {
-      const msg = await queryCurrentUser({
-        skipErrorHandler: true,
-      });
-      return msg.data;
-    } catch (error) {
-      history.push(loginPath);
-    }
+    // try {
+    //   const msg = await queryCurrentUser({
+    //     skipErrorHandler: true,
+    //   });
+    //   return msg.data;
+    // } catch (error) {
+    //   history.push(loginPath);
+    // }
     return undefined;
   };
   // 如果不是登录页面，执行
@@ -42,7 +42,7 @@ export async function getInitialState(): Promise<{
   }
   return {
     fetchUserInfo,
-    settings: defaultSettings as Partial<LayoutSettings>,
+    // settings: defaultSettings as Partial<LayoutSettings>,
   };
 }
 
@@ -53,21 +53,21 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     avatarProps: {
       src: initialState?.currentUser?.avatar,
       title: <AvatarName />,
-      render: (_, avatarChildren) => {
-        return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
-      },
+      // render: (_, avatarChildren) => {
+      //   return <AvatarDropdown>{avatarChildren}</AvatarDropdown>;
+      // },
     },
     waterMarkProps: {
       content: initialState?.currentUser?.name,
     },
     footerRender: () => <Footer />,
-    onPageChange: () => {
-      const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
-      }
-    },
+    // onPageChange: () => {
+    //   const { location } = history;
+    //   // 如果没有登录，重定向到 login
+    //   if (!initialState?.currentUser && location.pathname !== loginPath) {
+    //     history.push(loginPath);
+    //   }
+    // },
     bgLayoutImgList: [
       {
         src: 'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/D2LWSqNny4sAAAAAAAAAAAAAFl94AQBr',
@@ -88,15 +88,9 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         width: '331px',
       },
     ],
-    links: isDev
-      ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
-            <LinkOutlined />
-            <span>OpenAPI 文档</span>
-          </Link>,
-        ]
-      : [],
-    menuHeaderRender: undefined,
+    links: [],
+    menuHeaderRender: false,
+    logout: undefined, // 禁用 logout 按钮
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
     // 增加一个 loading 的状态
@@ -105,7 +99,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       return (
         <>
           {children}
-          {isDev && (
+          {/* {isDev && (
             <SettingDrawer
               disableUrlParams
               enableDarkTheme
@@ -117,7 +111,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
                 }));
               }}
             />
-          )}
+          )} */}
         </>
       );
     },
@@ -131,6 +125,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request: RequestConfig = {
-  baseURL: 'https://proapi.azurewebsites.net',
+  // baseURL: 'https://proapi.azurewebsites.net',
   ...errorConfig,
 };

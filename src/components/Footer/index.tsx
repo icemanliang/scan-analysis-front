@@ -8,26 +8,20 @@ const Footer: React.FC = () => {
       style={{
         background: 'none',
       }}
-      copyright="Powered by Ant Desgin"
+      copyright={false}
       links={[
         {
           key: 'Ant Design Pro',
-          title: 'Ant Design Pro',
+          title: '《前端架构课：研发治理平台化实战》',
           href: 'https://pro.ant.design',
           blankTarget: true,
         },
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://github.com/ant-design/ant-design-pro',
+          href: 'https://github.com/icemanliang',
           blankTarget: true,
-        },
-        {
-          key: 'Ant Design',
-          title: 'Ant Design',
-          href: 'https://ant.design',
-          blankTarget: true,
-        },
+        }
       ]}
     />
   );

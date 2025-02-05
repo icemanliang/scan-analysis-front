@@ -5,25 +5,9 @@ export type Member = {
 };
 
 export type CardListItemDataType = {
-  id: string;
-  owner: string;
+  id: number;
   title: string;
-  avatar: string;
-  cover: string;
-  status: 'normal' | 'exception' | 'active' | 'success';
-  percent: number;
-  logo: string;
+  status: boolean;
   href: string;
-  body?: any;
-  updatedAt: number;
-  createdAt: number;
-  subDescription: string;
   description: string;
-  activeUser: number;
-  newUser: number;
-  star: number;
-  like: number;
-  message: number;
-  content: string;
-  members: Member[];
 };

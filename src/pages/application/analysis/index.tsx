@@ -1,7 +1,7 @@
 import { EllipsisOutlined } from '@ant-design/icons';
-import { GridContent } from '@ant-design/pro-components';
+import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
-import { Col, Dropdown, Row } from 'antd';
+import { Col, Dropdown, Row, Statistic, Skeleton, Select } from 'antd';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import type dayjs from 'dayjs';
@@ -14,7 +14,7 @@ import ProportionSales from './components/ProportionSales';
 import type { TimeType } from './components/SalesCard';
 import SalesCard from './components/SalesCard';
 import TopSearch from './components/TopSearch';
-import type { AnalysisData } from './data.d';
+import type { AnalysisData, CurrentUser } from './data.d';
 import { fakeChartData } from './service';
 import useStyles from './style.style';
 import { getTimeDistance } from './utils/utils';
@@ -24,6 +24,67 @@ type AnalysisProps = {
   loading: boolean;
 };
 type SalesType = 'all' | 'online' | 'stores';
+
+const handleChange = (value: string) => {
+  console.log(`selected ${value}`);
+};
+
+const PageHeaderContent: FC<{
+  currentUser: Partial<CurrentUser>;
+}> = ({ currentUser }) => {
+  const { styles } = useStyles();
+  const loading = currentUser && Object.keys(currentUser).length;
+  if (!loading) {
+    return (
+      <Skeleton
+        avatar
+        paragraph={{
+          rows: 1,
+        }}
+        active
+      />
+    );
+  }
+  return (
+    <div className={styles.pageHeaderContent}>
+      <div className={styles.content}>
+        <div className={styles.contentTitle}>
+          <Select
+            defaultValue="创新运维管理平台"
+            style={{ width: 200 }}
+            onChange={handleChange}
+            options={[
+              { value: 'iceman', label: '信息开放平台' },
+              { value: 'james', label: '创新运维管理平台' },
+              { value: 'Yiminghe', label: '配置管理平台' },
+              { value: 'disabled', label: '云原生部署平台' },
+            ]}
+          />
+        </div>
+        <div>
+          {currentUser.title}
+        </div>
+      </div>
+    </div>
+  );
+};
+const ExtraContent: FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
+  return (
+    <div className={styles.extraContent}>
+      <div className={styles.statItem}>
+        <Statistic title="项目数" value={56} />
+      </div>
+      <div className={styles.statItem}>
+        <Statistic title="团队内排名" value={8} suffix="/ 24" />
+      </div>
+      <div className={styles.statItem}>
+        <Statistic title="项目访问" value={2223} />
+      </div>
+    </div>
+  );
+};
+
 const Analysis: FC<AnalysisProps> = () => {
   const { styles } = useStyles();
   const [salesType, setSalesType] = useState<SalesType>('all');
@@ -95,6 +156,23 @@ const Analysis: FC<AnalysisProps> = () => {
   };
   const activeKey = currentTabKey || (data?.offlineData[0] && data?.offlineData[0].name) || '';
   return (
+    <PageContainer
+      title={false}
+      breadcrumbRender={false}
+      content={
+        <PageHeaderContent
+          currentUser={{
+            avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+            name: '创新运维管理平台',
+            userid: '00000001',
+            email: 'antdesign@alipay.com',
+            signature: '海纳百川，有容乃大',
+            title: '应用负责人 : Icemanliang',
+          }}
+        />
+      }
+      extraContent={<ExtraContent />}
+    >
     <GridContent>
       <>
         <Suspense fallback={<PageLoading />}>
@@ -152,6 +230,7 @@ const Analysis: FC<AnalysisProps> = () => {
         </Suspense>
       </>
     </GridContent>
+    </PageContainer>
   );
 };
 export default Analysis;

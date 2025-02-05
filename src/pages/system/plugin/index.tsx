@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
-import { Button, Card, List, Typography, Modal } from 'antd';
+import { Button, Card, List, Typography, Modal, Switch } from 'antd';
 import type { CardListItemDataType } from './data.d';
 import { queryFakeList } from './service';
 import useStyles from './style.style';
@@ -10,15 +10,15 @@ const CardList = () => {
   const { styles } = useStyles();
   const { data, loading } = useRequest(() => {
     return queryFakeList({
-      count: 8,
+      count: 10,
     });
   });
   const list = data?.list || [];
   const nullData: Partial<CardListItemDataType> = {};
   const DeleteClick = ()=>{
     Modal.confirm({
-      title: '删除任务',
-      content: '确定删除该任务吗？',
+      title: '删除插件',
+      content: '确定删除该插件吗？',
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
@@ -39,7 +39,7 @@ const CardList = () => {
             sm: 2,
             md: 3,
             lg: 3,
-            xl: 4,
+            xl: 3,
             xxl: 4,
           }}
           dataSource={[nullData, ...list]}
@@ -57,7 +57,7 @@ const CardList = () => {
                     }>删除</a>]}
                   >
                     <Card.Meta
-                      title={<a>{item.title}</a>}
+                      title={<div className='title'><span>{item.title}</span><Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked /></div>}
                       description={
                         <Paragraph
                           className={styles.item}

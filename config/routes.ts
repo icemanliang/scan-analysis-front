@@ -39,7 +39,25 @@ export default [
         component: './application/main',
       },
       {
+        name: '冗余分析',
+        icon: 'smile',
+        path: '/application/workplace',
+        component: './application/workplace',
+      },
+      {
+        name: '调用分析',
+        icon: 'smile',
+        path: '/application/workplace',
+        component: './application/workplace',
+      },
+      {
         name: '依赖分析',
+        icon: 'smile',
+        path: '/application/workplace',
+        component: './application/workplace',
+      },
+      {
+        name: '引用分析',
         icon: 'smile',
         path: '/application/workplace',
         component: './application/workplace',

@@ -186,6 +186,61 @@ radarOriginData.forEach((item) => {
   });
 });
 
+
+const esRuleData = [
+  {
+    x: 'require-any-comment',
+    y: 99,
+  },
+  {
+    x: 'unicorn/filename-case',
+    y: 188,
+  },
+  {
+    x: 'no-unused-vars',
+    y: 344,
+  },
+  {
+    x: 'max-lines-per-function',
+    y: 255,
+  },
+  {
+    x: '@typescript-eslint/no-explicit-any',
+    y: 65,
+  },
+  {
+    x: 'other',
+    y: 30,
+  },
+];
+
+const cssRuleData = [
+  {
+    x: '家用电器',
+    y: 244,
+  },
+  {
+    x: '食用酒水',
+    y: 321,
+  },
+  {
+    x: '个护健康',
+    y: 311,
+  },
+  {
+    x: '服饰箱包',
+    y: 41,
+  },
+  {
+    x: '母婴产品',
+    y: 121,
+  },
+  {
+    x: '其他',
+    y: 111,
+  },
+];
+
 const getFakeChartData: AnalysisData = {
   visitData,
   visitData2,
@@ -197,6 +252,8 @@ const getFakeChartData: AnalysisData = {
   salesTypeDataOnline,
   salesTypeDataOffline,
   radarData,
+  esRuleData,
+  cssRuleData
 };
 
 const fakeChartData = (_: Request, res: Response) => {

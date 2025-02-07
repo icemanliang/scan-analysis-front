@@ -2,7 +2,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Area, Column, Gauge } from '@ant-design/plots';
 import { Col, Progress, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
-import type { DataItem } from '../data.d';
+import type { DataItem } from '../data';
 import useStyles from '../style.style';
 // import Yuan from '../utils/Yuan';
 import { ChartCard } from './Charts';
@@ -46,13 +46,13 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         <ChartCard
           bordered={false}
           loading={loading}
-          title="ES单文件平均缺陷数"
+          title="CSS单文件平均缺陷数"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />
             </Tooltip>
           }
-          total={2.14}
+          total={4.21}
           footer={<Trend
             flag="up"
             style={{
@@ -84,7 +84,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         <ChartCard
           bordered={false}
           loading={loading}
-          title="ES规范缺陷总数"
+          title="CSS规范缺陷总数"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />
@@ -117,7 +117,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         <ChartCard
           loading={loading}
           bordered={false}
-          title="ES规范全文件合规进度"
+          title="CSS规范全文件合规进度"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />
@@ -145,7 +145,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
       <Col {...topColResponsiveProps}>
         <ChartCard
           bordered={false}
-          title="ES复杂模块数"
+          title="CSS类名异常数"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />

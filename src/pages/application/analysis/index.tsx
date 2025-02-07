@@ -73,13 +73,10 @@ const ExtraContent: FC<Record<string, any>> = () => {
   return (
     <div className={styles.extraContent}>
       <div className={styles.statItem}>
-        <Statistic title="项目数" value={56} />
+        <Statistic title="巡检日期" value={'2025.1.18'} />
       </div>
       <div className={styles.statItem}>
-        <Statistic title="团队内排名" value={8} suffix="/ 24" />
-      </div>
-      <div className={styles.statItem}>
-        <Statistic title="项目访问" value={2223} />
+        <Statistic title="质量排名" value={8} suffix="/ 24" />
       </div>
     </div>
   );

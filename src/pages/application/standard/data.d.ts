@@ -51,14 +51,16 @@ export type RadarData = {
 };
 
 export interface AnalysisData {
-  visitData: DataItem[];
-  visitData2: DataItem[];
   salesData: DataItem[];
   searchData: DataItem[];
   offlineData: OfflineDataType[];
   offlineChartData: DataItem[];
   salesTypeData: DataItem[];
-  salesTypeDataOnline: DataItem[];
-  salesTypeDataOffline: DataItem[];
   radarData: RadarData[];
+  esRuleData: DataItem[];
+  cssRuleData: DataItem[];
+  esErrorsData: DataItem[];
+  cssErrorsData: DataItem[];
+  esIntroduceData: DataItem[];
+  cssIntroduceData: DataItem[];
 }

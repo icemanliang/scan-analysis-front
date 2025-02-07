@@ -1,29 +1,25 @@
 import { EllipsisOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
-import { Col, Dropdown, Row, Statistic, Skeleton, Select } from 'antd';
-import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import { Col, Dropdown, Row, Skeleton, Select, Divider, DatePicker } from 'antd';
 import type { RadioChangeEvent } from 'antd/es/radio';
-import type dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import type { FC } from 'react';
 import { Suspense, useState } from 'react';
 import IntroduceRow from './components/IntroduceRow';
-import OfflineData from './components/OfflineData';
+import IntroduceCssRow from './components/IntroduceCssRow';
 import PageLoading from './components/PageLoading';
 import ProportionSales from './components/ProportionSales';
-import type { TimeType } from './components/SalesCard';
-import SalesCard from './components/SalesCard';
 import TopSearch from './components/TopSearch';
 import type { AnalysisData, CurrentUser } from './data.d';
 import { fakeChartData } from './service';
 import useStyles from './style.style';
-import { getTimeDistance } from './utils/utils';
-type RangePickerValue = RangePickerProps<dayjs.Dayjs>['value'];
 type AnalysisProps = {
   dashboardAndanalysis: AnalysisData;
   loading: boolean;
 };
 type SalesType = 'all' | 'online' | 'stores';
+const { RangePicker } = DatePicker;
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
@@ -34,6 +30,8 @@ const PageHeaderContent: FC<{
 }> = ({ currentUser }) => {
   const { styles } = useStyles();
   const loading = currentUser && Object.keys(currentUser).length;
+  const defaultValue = [dayjs('2025-01-05', 'YYYY/M/DD'), dayjs('2000-03-25', 'YYYY/M/DD')];
+
   if (!loading) {
     return (
       <Skeleton
@@ -51,7 +49,7 @@ const PageHeaderContent: FC<{
         <div className={styles.contentTitle}>
           <Select
             defaultValue="创新运维管理平台"
-            style={{ width: 200 }}
+            style={{ width: 260 }}
             onChange={handleChange}
             options={[
               { value: 'iceman', label: '信息开放平台' },
@@ -60,26 +58,33 @@ const PageHeaderContent: FC<{
               { value: 'disabled', label: '云原生部署平台' },
             ]}
           />
+          <div className={styles.contentDateSelect}>
+            <RangePicker defaultValue={defaultValue}/>
+          </div>
         </div>
-        <div>
+        <div style={{color: 'rgba(0,0,0,0.45)'}}>
           {currentUser.title}
         </div>
       </div>
     </div>
   );
 };
+
 const ExtraContent: FC<Record<string, any>> = () => {
   const { styles } = useStyles();
   return (
     <div className={styles.extraContent}>
       <div className={styles.statItem}>
-        <Statistic title="巡检扫描日期" value={'2025.1.18'} />
+        <div className="title">巡检日期</div>
+        <div className="value">2025.3.25</div>
       </div>
       <div className={styles.statItem}>
-        <Statistic title="团队内排名" value={8} suffix="/ 24" />
+        <div className="title">代码版本</div>
+        <div className="value">dfemd3hw</div>
       </div>
       <div className={styles.statItem}>
-        <Statistic title="应用负责人" value={'James'} />
+        <div className="title">质量排名</div>
+        <div className="value">8 / 24</div>
       </div>
     </div>
   );
@@ -88,44 +93,7 @@ const ExtraContent: FC<Record<string, any>> = () => {
 const Analysis: FC<AnalysisProps> = () => {
   const { styles } = useStyles();
   const [salesType, setSalesType] = useState<SalesType>('all');
-  const [currentTabKey, setCurrentTabKey] = useState<string>('');
-  const [rangePickerValue, setRangePickerValue] = useState<RangePickerValue>(
-    getTimeDistance('year'),
-  );
   const { loading, data } = useRequest(fakeChartData);
-  const selectDate = (type: TimeType) => {
-    setRangePickerValue(getTimeDistance(type));
-  };
-  const handleRangePickerChange = (value: RangePickerValue) => {
-    setRangePickerValue(value);
-  };
-  const isActive = (type: TimeType) => {
-    if (!rangePickerValue) {
-      return '';
-    }
-    const value = getTimeDistance(type);
-    if (!value) {
-      return '';
-    }
-    if (!rangePickerValue[0] || !rangePickerValue[1]) {
-      return '';
-    }
-    if (
-      rangePickerValue[0].isSame(value[0] as dayjs.Dayjs, 'day') &&
-      rangePickerValue[1].isSame(value[1] as dayjs.Dayjs, 'day')
-    ) {
-      return styles.currentDate;
-    }
-    return '';
-  };
-
-  let salesPieData;
-
-  if (salesType === 'all') {
-    salesPieData = data?.salesTypeData;
-  } else {
-    salesPieData = salesType === 'online' ? data?.salesTypeDataOnline : data?.salesTypeDataOffline;
-  }
 
   const dropdownGroup = (
     <span className={styles.iconGroup}>
@@ -144,13 +112,11 @@ const Analysis: FC<AnalysisProps> = () => {
       </Dropdown>
     </span>
   );
+
   const handleChangeSalesType = (e: RadioChangeEvent) => {
     setSalesType(e.target.value);
   };
-  const handleTabChange = (key: string) => {
-    setCurrentTabKey(key);
-  };
-  const activeKey = currentTabKey || (data?.offlineData[0] && data?.offlineData[0].name) || '';
+
   return (
     <PageContainer
       title={false}
@@ -163,7 +129,7 @@ const Analysis: FC<AnalysisProps> = () => {
             userid: '00000001',
             email: 'antdesign@alipay.com',
             signature: '海纳百川，有容乃大',
-            // title: '扫描日期 : 2025.2.15',
+            title: '应用负责人 : Icemanliang',
           }}
         />
       }
@@ -172,32 +138,21 @@ const Analysis: FC<AnalysisProps> = () => {
     <GridContent>
       <>
         <Suspense fallback={<PageLoading />}>
-          <IntroduceRow loading={loading} visitData={data?.visitData || []} />
+          <IntroduceRow loading={loading} visitData={data?.esIntroduceData || []} />
         </Suspense>
-
-        {/* <Suspense fallback={null}>
-          <SalesCard
-            rangePickerValue={rangePickerValue}
-            salesData={data?.salesData || []}
-            isActive={isActive}
-            handleRangePickerChange={handleRangePickerChange}
-            loading={loading}
-            selectDate={selectDate}
-          />
-        </Suspense> */}
-
         <Row
           gutter={24}
           style={{
             marginTop: 0,
+            marginBottom: 24
           }}
         >
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
             <Suspense fallback={null}>
               <TopSearch
                 loading={loading}
-                visitData2={data?.visitData2 || []}
-                searchData={data?.searchData || []}
+                visitData={data?.esErrorsData || []}
+                searchData={[]}
                 dropdownGroup={dropdownGroup}
               />
             </Suspense>
@@ -208,22 +163,44 @@ const Analysis: FC<AnalysisProps> = () => {
                 dropdownGroup={dropdownGroup}
                 salesType={salesType}
                 loading={loading}
-                salesPieData={salesPieData || []}
+                salesPieData={data?.esRuleData || []}
                 handleChangeSalesType={handleChangeSalesType}
               />
             </Suspense>
           </Col>
         </Row>
-
-        {/* <Suspense fallback={null}>
-          <OfflineData
-            activeKey={activeKey}
-            loading={loading}
-            offlineData={data?.offlineData || []}
-            offlineChartData={data?.offlineChartData || []}
-            handleTabChange={handleTabChange}
-          />
-        </Suspense> */}
+        <Divider orientation="center">CSS规范检查</Divider>
+        <Suspense fallback={<PageLoading />}>
+          <IntroduceCssRow loading={loading} visitData={data?.cssIntroduceData || []} />
+        </Suspense>
+        <Row
+          gutter={24}
+          style={{
+            marginTop: 0,
+          }}
+        >
+          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            <Suspense fallback={null}>
+              <TopSearch
+                loading={loading}
+                visitData={data?.cssErrorsData || []}
+                searchData={[]}
+                dropdownGroup={dropdownGroup}
+              />
+            </Suspense>
+          </Col>
+          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            <Suspense fallback={null}>
+              <ProportionSales
+                dropdownGroup={dropdownGroup}
+                salesType={salesType}
+                loading={loading}
+                salesPieData={data?.cssRuleData || []}
+                handleChangeSalesType={handleChangeSalesType}
+              />
+            </Suspense>
+          </Col>
+        </Row>
       </>
     </GridContent>
     </PageContainer>

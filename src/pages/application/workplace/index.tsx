@@ -1,47 +1,27 @@
-import { Radar } from '@ant-design/plots';
+import { Liquid, RadialBar, Tiny} from '@ant-design/plots';
 import { PageContainer } from '@ant-design/pro-components';
-import { Link, useRequest } from '@umijs/max';
-import { Avatar, Card, Col, List, Row, Skeleton, Statistic } from 'antd';
+import { Card, Col, Row, Skeleton, Select, DatePicker, Divider } from 'antd';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import type { FC } from 'react';
-import EditableLinkGroup from './components/EditableLinkGroup';
-import type { ActivitiesType, CurrentUser } from './data.d';
-import { fakeChartData, queryActivities, queryProjectNotice } from './service';
+import type { CurrentUser } from './data.d';
 import useStyles from './style.style';
-dayjs.extend(relativeTime);
+import Detail from './components/Detail';
 
-const links = [
-  {
-    title: '操作一',
-    href: '',
-  },
-  {
-    title: '操作二',
-    href: '',
-  },
-  {
-    title: '操作三',
-    href: '',
-  },
-  {
-    title: '操作四',
-    href: '',
-  },
-  {
-    title: '操作五',
-    href: '',
-  },
-  {
-    title: '操作六',
-    href: '',
-  },
-];
+dayjs.extend(relativeTime);
+const { RangePicker } = DatePicker;
+
+const handleChange = (value: string) => {
+  console.log(`selected ${value}`);
+};
+
 const PageHeaderContent: FC<{
   currentUser: Partial<CurrentUser>;
 }> = ({ currentUser }) => {
   const { styles } = useStyles();
   const loading = currentUser && Object.keys(currentUser).length;
+  const defaultValue = [dayjs('2025-01-05', 'YYYY/M/DD'), dayjs('2000-03-25', 'YYYY/M/DD')];
+
   if (!loading) {
     return (
       <Skeleton
@@ -55,78 +35,143 @@ const PageHeaderContent: FC<{
   }
   return (
     <div className={styles.pageHeaderContent}>
-      <div className={styles.avatar}>
-        <Avatar size="large" src={currentUser.avatar} />
-      </div>
       <div className={styles.content}>
         <div className={styles.contentTitle}>
-          早安，
-          {currentUser.name}
-          ，祝你开心每一天！
+          <Select
+            defaultValue="创新运维管理平台"
+            style={{ width: 260 }}
+            onChange={handleChange}
+            options={[
+              { value: 'iceman', label: '信息开放平台' },
+              { value: 'james', label: '创新运维管理平台' },
+              { value: 'Yiminghe', label: '配置管理平台' },
+              { value: 'disabled', label: '云原生部署平台' },
+            ]}
+          />
+          <div className={styles.contentDateSelect}>
+            <RangePicker defaultValue={defaultValue}/>
+          </div>
         </div>
-        <div>
-          {currentUser.title} |{currentUser.group}
+        <div style={{color: 'rgba(0,0,0,0.45)'}}>
+          {currentUser.title}
         </div>
       </div>
     </div>
   );
 };
+
 const ExtraContent: FC<Record<string, any>> = () => {
   const { styles } = useStyles();
   return (
     <div className={styles.extraContent}>
       <div className={styles.statItem}>
-        <Statistic title="项目数" value={56} />
+        <div className="title">巡检日期</div>
+        <div className="value">2025.3.25</div>
       </div>
       <div className={styles.statItem}>
-        <Statistic title="团队内排名" value={8} suffix="/ 24" />
+        <div className="title">代码版本</div>
+        <div className="value">dfemd3hw</div>
       </div>
       <div className={styles.statItem}>
-        <Statistic title="项目访问" value={2223} />
+        <div className="title">质量排名</div>
+        <div className="value">8 / 24</div>
       </div>
     </div>
   );
 };
+
+const config = {
+  data: [
+    {
+      year: '依赖治理',
+      value: 4.9,
+      type: 'Lon',
+    },
+    {
+      year: '冗余优化',
+      value: 6,
+      type: 'Lon',
+    },
+    {
+      year: '工程规范',
+      value: 7,
+      type: 'Lon',
+    },
+    {
+      year: '调用优化',
+      value: 9,
+      type: 'Lon',
+    },
+    {
+      year: '代码规范',
+      value: 13,
+      type: 'Lon',
+    },
+    {
+      year: '依赖治理',
+      value: 4.9,
+      type: 'Bor',
+    },
+    {
+      year: '冗余优化',
+      value: 6,
+      type: 'Bor',
+    },
+    {
+      year: '工程规范',
+      value: 7,
+      type: 'Bor',
+    },
+    {
+      year: '调用优化',
+      value: 9,
+      type: 'Bor',
+    },
+    {
+      year: '代码规范',
+      value: 13,
+      type: 'Bor',
+    },
+  ],
+  xField: 'year',
+  yField: 'value',
+  stack: true,
+  maxAngle: 270,
+  colorField: 'type',
+  legend: false,
+};
+
+const tinyConfig = {
+  data: [
+    38, 41, 34, 47, 48, 47, 49, 57, 50, 56, 62, 59, 68, 72, 83, 87, 92, 0
+  ].map((value, index) => ({ value, index })),
+  width: 480,
+  height: 80,
+  padding: 12,
+  xField: 'index',
+  yField: 'value',
+  annotations: [
+    {
+      type: 'lineY',
+      data: [70],
+      style: { arrow: true, stroke: 'red', lineDash: [2, 2] },
+      label: {
+        text: '目标分 = 70',
+        position: 'left',
+        dx: 0,
+        style: { textBaseline: 'bottom' },
+      },
+    },
+  ],
+};
+
 const Workplace: FC = () => {
   const { styles } = useStyles();
-  const { loading: projectLoading, data: projectNotice = [] } = useRequest(queryProjectNotice);
-  const { loading: activitiesLoading, data: activities = [] } = useRequest(queryActivities);
-  const { data } = useRequest(fakeChartData);
-  const renderActivities = (item: ActivitiesType) => {
-    const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
-      if (item[key as keyof ActivitiesType]) {
-        const value = item[key as 'user'];
-        return (
-          <a href={value?.link} key={value?.name}>
-            {value.name}
-          </a>
-        );
-      }
-      return key;
-    });
-    return (
-      <List.Item key={item.id}>
-        <List.Item.Meta
-          avatar={<Avatar src={item.user.avatar} />}
-          title={
-            <span>
-              <a className={styles.username}>{item.user.name}</a>
-              &nbsp;
-              <span className={styles.event}>{events}</span>
-            </span>
-          }
-          description={
-            <span className={styles.datetime} title={item.updatedAt}>
-              {dayjs(item.updatedAt).fromNow()}
-            </span>
-          }
-        />
-      </List.Item>
-    );
-  };
 
   return (
     <PageContainer
+      title={false}
+      breadcrumbRender={false}
       content={
         <PageHeaderContent
           currentUser={{
@@ -135,146 +180,38 @@ const Workplace: FC = () => {
             userid: '00000001',
             email: 'antdesign@alipay.com',
             signature: '海纳百川，有容乃大',
-            title: '交互专家',
-            group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+            title: '应用负责人 : Icemanliang',
           }}
         />
       }
       extraContent={<ExtraContent />}
     >
       <Row gutter={24}>
-        <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-          <Card
-            className={styles.projectList}
-            style={{
-              marginBottom: 24,
-            }}
-            title="进行中的项目"
-            bordered={false}
-            extra={<Link to="/">全部项目</Link>}
-            loading={projectLoading}
+        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            <Card
+              title="质量分"
             bodyStyle={{
-              padding: 0,
-            }}
-          >
-            {projectNotice.map((item) => (
-              <Card.Grid className={styles.projectGrid} key={item.id}>
-                <Card
-                  bodyStyle={{
-                    padding: 0,
-                  }}
-                  bordered={false}
-                >
-                  <Card.Meta
-                    title={
-                      <div className={styles.cardTitle}>
-                        <Avatar size="small" src={item.logo} />
-                        <Link to={item.href || '/'}>{item.title}</Link>
-                      </div>
-                    }
-                    description={item.description}
-                  />
-                  <div className={styles.projectItemContent}>
-                    <Link to={item.memberLink || '/'}>{item.member || ''}</Link>
-                    {item.updatedAt && (
-                      <span className={styles.datetime} title={item.updatedAt}>
-                        {dayjs(item.updatedAt).fromNow()}
-                      </span>
-                    )}
-                  </div>
-                </Card>
-              </Card.Grid>
-            ))}
-          </Card>
-          <Card
-            bodyStyle={{
-              padding: 0,
+              textAlign: 'center',
+              fontSize: 0,
             }}
             bordered={false}
-            className={styles.activeCard}
-            title="动态"
-            loading={activitiesLoading}
           >
-            <List<ActivitiesType>
-              loading={activitiesLoading}
-              renderItem={(item) => renderActivities(item)}
-              dataSource={activities}
-              className={styles.activitiesList}
-              size="large"
-            />
+            <div style={{fontSize: '28px', fontWeight: 'bold'}}>47.7</div>
+            {/* <Liquid height={360} percent={0.42} /> */}
+            <RadialBar {...config} />
+            <div style={{fontSize: '14px', color: 'rgba(0,0,0,0.45)', textAlign: 'center'}}>
+              <a href="#">代码规范</a>
+              <Divider type="vertical" />
+              <a href="#">工程规范</a>
+            </div>
           </Card>
         </Col>
-        <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-          <Card
-            style={{
-              marginBottom: 24,
-            }}
-            title="快速开始 / 便捷导航"
-            bordered={false}
-            bodyStyle={{
-              padding: 0,
-            }}
-          >
-            <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
+        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+          <Card title="分值走势" bordered={false}>
+            <Tiny.Column {...tinyConfig} />
           </Card>
-          <Card
-            style={{
-              marginBottom: 24,
-            }}
-            bordered={false}
-            title="XX 指数"
-            loading={data?.radarData?.length === 0}
-          >
-            <div>
-              <Radar
-                height={343}
-                data={data?.radarData || []}
-                xField="label"
-                colorField="name"
-                yField="value"
-                shapeField="smooth"
-                area={{
-                  style: {
-                    fillOpacity: 0.4,
-                  },
-                }}
-                axis={{
-                  y: {
-                    gridStrokeOpacity: 0.5,
-                  },
-                }}
-                legend={{
-                  color: {
-                    position: 'bottom',
-                    layout: { justifyContent: 'center' },
-                  },
-                }}
-              />
-            </div>
-          </Card>
-          <Card
-            bodyStyle={{
-              paddingTop: 12,
-              paddingBottom: 12,
-            }}
-            bordered={false}
-            title="团队"
-            loading={projectLoading}
-          >
-            <div className={styles.members}>
-              <Row gutter={48}>
-                {projectNotice.map((item) => {
-                  return (
-                    <Col span={12} key={`members-item-${item.id}`}>
-                      <a>
-                        <Avatar src={item.logo} size="small" />
-                        <span className={styles.member}>{item.member.substring(0, 3)}</span>
-                      </a>
-                    </Col>
-                  );
-                })}
-              </Row>
-            </div>
+          <Card title="指标明细" bordered={false} style={{marginTop: '16px', padding: '0px'}}>
+            <Detail />
           </Card>
         </Col>
       </Row>

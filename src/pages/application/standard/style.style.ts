@@ -26,11 +26,25 @@ const useStyles = createStyles(({ token }) => {
       fontWeight: '500',
       fontSize: '20px',
       lineHeight: '28px',
+      display: 'flex'
+    },
+    contentDateSelect: {
+      marginLeft: '25px'
     },
     statItem: {
       position: 'relative',
       display: 'inline-block',
       padding: '0 32px',
+      '.title': {
+        fontSize: '18px',
+        marginTop: '7px',
+      },
+      '.value': {
+        fontSize: '16px',
+        marginTop: '10px',
+        textAlign: 'center',
+        color: 'rgba(0,0,0,0.45)'
+      },
       '> p:first-child': {
         marginBottom: '4px',
         color: token.colorTextSecondary,

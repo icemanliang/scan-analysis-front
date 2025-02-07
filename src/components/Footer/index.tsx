@@ -7,13 +7,14 @@ const Footer: React.FC = () => {
     <DefaultFooter
       style={{
         background: 'none',
+        marginTop: '-50px'
       }}
       copyright={false}
       links={[
         {
           key: 'Ant Design Pro',
           title: '《前端架构课：研发治理平台化实战》',
-          href: 'https://pro.ant.design',
+          href: 'https://github.com/icemanliang',
           blankTarget: true,
         },
         {

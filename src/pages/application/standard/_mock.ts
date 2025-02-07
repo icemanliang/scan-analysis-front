@@ -3,26 +3,6 @@ import type { Request, Response } from 'express';
 import type { AnalysisData, DataItem, RadarData } from './data.d';
 
 // mock data
-const visitData: DataItem[] = [];
-const beginDay = new Date().getTime();
-
-const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
-for (let i = 0; i < fakeY.length; i += 1) {
-  visitData.push({
-    x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
-    y: fakeY[i],
-  });
-}
-
-const visitData2 = [];
-const fakeY2 = [1, 6, 4, 8, 3, 7, 2];
-for (let i = 0; i < fakeY2.length; i += 1) {
-  visitData2.push({
-    x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
-    y: fakeY2[i],
-  });
-}
-
 const salesData = [];
 for (let i = 0; i < 12; i += 1) {
   salesData.push({
@@ -64,56 +44,6 @@ const salesTypeData = [
   {
     x: '其他',
     y: 1231,
-  },
-];
-
-const salesTypeDataOnline = [
-  {
-    x: '家用电器',
-    y: 244,
-  },
-  {
-    x: '食用酒水',
-    y: 321,
-  },
-  {
-    x: '个护健康',
-    y: 311,
-  },
-  {
-    x: '服饰箱包',
-    y: 41,
-  },
-  {
-    x: '母婴产品',
-    y: 121,
-  },
-  {
-    x: '其他',
-    y: 111,
-  },
-];
-
-const salesTypeDataOffline = [
-  {
-    x: '家用电器',
-    y: 99,
-  },
-  {
-    x: '食用酒水',
-    y: 188,
-  },
-  {
-    x: '个护健康',
-    y: 344,
-  },
-  {
-    x: '服饰箱包',
-    y: 255,
-  },
-  {
-    x: '其他',
-    y: 65,
   },
 ];
 
@@ -186,17 +116,253 @@ radarOriginData.forEach((item) => {
   });
 });
 
+const esIntroduceData: DataItem[] = [];
+const beginDay = new Date().getTime();
+
+const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
+for (let i = 0; i < fakeY.length; i += 1) {
+  esIntroduceData.push({
+    x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
+    y: fakeY[i],
+  });
+}
+
+const cssIntroduceData = [];
+const fakeY2 = [1, 6, 4, 8, 3, 7, 2];
+for (let i = 0; i < fakeY2.length; i += 1) {
+  cssIntroduceData.push({
+    x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
+    y: fakeY2[i],
+  });
+}
+
+const esRuleData = [
+  {
+    x: '函数缺少注释',
+    y: 344,
+  },
+  {
+    x: '文件命名违规',
+    y: 188,
+  },
+  {
+    x: '变量声明未用',
+    y: 99,
+  },
+  {
+    x: '函数行超阈值',
+    y: 255,
+  },
+  {
+    x: '使用Any类型',
+    y: 65,
+  },
+  {
+    x: '其它违规聚合',
+    y: 90,
+  },
+];
+
+const cssRuleData = [
+  {
+    x: '颜色属性值违规',
+    y: 24,
+  },
+  {
+    x: '类名命名违规',
+    y: 32,
+  },
+  {
+    x: '属性区域空块',
+    y: 31,
+  },
+  {
+    x: '属性书写重复',
+    y: 41,
+  },
+  {
+    x: '属性嵌套超阈值',
+    y: 12,
+  },
+  {
+    x: '其他违规汇总',
+    y: 31,
+  },
+];
+
+const esErrorsData = [
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/manage-user/edit/data.js',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+];
+
+const cssErrorsData = [
+  {
+    filePath: 'src/component/los/handle-board/style.css',
+    errorsCount: 65,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/los/handle-board/style.css',
+    errorsCount: 34,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/los/handle-board/style.css',
+    errorsCount: 24,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/los/handle-board/style.css',
+    errorsCount: 20,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/los/handle-board/style.css',
+    errorsCount: 15,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/component/los/handle-board/style.css',
+    errorsCount: 12,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  }
+];
+
 const getFakeChartData: AnalysisData = {
-  visitData,
-  visitData2,
   salesData,
   searchData,
   offlineData,
   offlineChartData,
   salesTypeData,
-  salesTypeDataOnline,
-  salesTypeDataOffline,
   radarData,
+  esRuleData,
+  esErrorsData,
+  cssRuleData,
+  cssErrorsData,
+  esIntroduceData,
+  cssIntroduceData
 };
 
 const fakeChartData = (_: Request, res: Response) => {
@@ -206,5 +372,5 @@ const fakeChartData = (_: Request, res: Response) => {
 };
 
 export default {
-  'GET  /api/fake_analysis_chart_data': fakeChartData,
+  'GET  /api/fake_analysis_standard_data': fakeChartData,
 };

@@ -30,7 +30,7 @@ const useStyles = createStyles(({ token }) => {
       position: 'relative',
       top: '4px',
       flex: '1 1 auto',
-      marginLeft: '24px',
+      marginLeft: '0px',
       color: token.colorTextSecondary,
       lineHeight: '22px',
       [`@media screen and (max-width: ${token.screenSM}px)`]: {
@@ -43,6 +43,10 @@ const useStyles = createStyles(({ token }) => {
       fontWeight: '500',
       fontSize: '20px',
       lineHeight: '28px',
+      display: 'flex'
+    },
+    contentDateSelect: {
+      marginLeft: '25px'
     },
     extraContent: {
       zoom: '1',
@@ -70,6 +74,16 @@ const useStyles = createStyles(({ token }) => {
       position: 'relative',
       display: 'inline-block',
       padding: '0 32px',
+      '.title': {
+        fontSize: '18px',
+        marginTop: '7px',
+      },
+      '.value': {
+        fontSize: '16px',
+        marginTop: '10px',
+        textAlign: 'center',
+        color: 'rgba(0,0,0,0.45)'
+      },
       '> p:first-child': {
         marginBottom: '4px',
         color: token.colorTextSecondary,

@@ -18,13 +18,13 @@ export default [
     routes: [
       {
         path: '/application',
-        redirect: '/application/analysis',
+        redirect: '/application/workplace',
       },
       {
         name: '指标概览',
         icon: 'smile',
-        path: '/application/analysis',
-        component: './application/analysis',
+        path: '/application/workplace',
+        component: './application/workplace',
       },
       {
         name: '规范检查',
@@ -35,32 +35,26 @@ export default [
       {
         name: '工程检查',
         icon: 'smile',
-        path: '/application/main',
-        component: './application/main',
+        path: '/application/project',
+        component: './application/project',
       },
       {
         name: '冗余分析',
         icon: 'smile',
-        path: '/application/workplace',
-        component: './application/workplace',
+        path: '/application/redundancy',
+        component: './application/redundancy',
       },
       {
         name: '调用分析',
         icon: 'smile',
-        path: '/application/workplace',
-        component: './application/workplace',
+        path: '/application/count',
+        component: './application/count',
       },
       {
         name: '依赖分析',
         icon: 'smile',
-        path: '/application/workplace',
-        component: './application/workplace',
-      },
-      {
-        name: '引用分析',
-        icon: 'smile',
-        path: '/application/workplace',
-        component: './application/workplace',
+        path: '/application/dependency',
+        component: './application/dependency',
       },
     ],
   },

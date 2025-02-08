@@ -18,13 +18,13 @@ export default [
     routes: [
       {
         path: '/application',
-        redirect: '/application/workplace',
+        redirect: '/application/main',
       },
       {
         name: '指标概览',
         icon: 'smile',
-        path: '/application/workplace',
-        component: './application/workplace',
+        path: '/application/main',
+        component: './application/main',
       },
       {
         name: '规范检查',
@@ -76,8 +76,8 @@ export default [
       {
         name: '工程收敛',
         icon: 'smile',
-        path: '/department/workplace',
-        component: './department/workplace',
+        path: '/department/monitor',
+        component: './department/monitor',
       },
     ],
   },

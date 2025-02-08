@@ -1,9 +1,14 @@
-// import cls from 'classnames';
-import { Card, Radio } from 'antd';
+import { Card, Radio, List, Typography } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
 // import useStyles from './style.style';
 
-export default function CallList() {
+const data = [
+  { filePath: 'src/pages/exception-sql/list/components/content.jsx', count: 1 },
+  { filePath: 'src/pages/board/comprehensive/components/system-data/index.jsx', count: 2 },
+  { filePath: 'src/pages/board/comprehensive/components/system-data/index.jsx', count: 3 },
+];
 
+export default function CallList() {
   // const { styles } = useStyles();
 
   return (
@@ -20,7 +25,17 @@ export default function CallList() {
         </div>
       }
     >
-      <div>提交信息违规</div>
+      <div style={{ height: 370, overflow: 'auto' }}>
+        <List
+          dataSource={data}
+          renderItem={
+            (item) => <List.Item>
+              <Typography.Text><CopyOutlined />{item.filePath}</Typography.Text>
+              <Typography.Text>{item.count}</Typography.Text>
+            </List.Item>
+          }
+        />
+      </div>
     </Card>
   );
 }

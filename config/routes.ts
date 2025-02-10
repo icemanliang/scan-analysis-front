@@ -21,7 +21,7 @@ export default [
         redirect: '/application/main',
       },
       {
-        name: '指标概览',
+        name: '基础概览',
         icon: 'smile',
         path: '/application/main',
         component: './application/main',
@@ -60,24 +60,30 @@ export default [
   },
   {
     path: '/department',
-    name: '部门总览',
+    name: '全局分析',
     icon: 'profile',
     routes: [
       {
         path: '/department',
-        redirect: '/department/analysis',
+        redirect: '/department/main',
       },
       {
-        name: '全局指标',
+        name: '应用总览',
+        icon: 'smile',
+        path: '/department/main',
+        component: './department/main',
+      },
+      {
+        name: '指标收敛',
         icon: 'smile',
         path: '/department/analysis',
         component: './department/analysis',
       },
       {
-        name: '工程收敛',
+        name: '依赖治理',
         icon: 'smile',
-        path: '/department/monitor',
-        component: './department/monitor',
+        path: '/department/dependency',
+        component: './department/dependency',
       },
     ],
   },
@@ -113,7 +119,7 @@ export default [
   {
     path: '/system',
     icon: 'table',
-    name: '扫描配置',
+    name: '巡检配置',
     routes: [
       {
         path: '/system',
@@ -138,7 +144,7 @@ export default [
         component: './system/plugin',
       },
       {
-        name: '巡检任务',
+        name: '扫描任务',
         icon: 'smile',
         path: '/system/task',
         component: './system/task',

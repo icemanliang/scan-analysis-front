@@ -1,10 +1,9 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Col, Row, Progress, List, Typography } from 'antd';
-import { Column } from '@ant-design/plots';
+import { Card, Col, Row, List, Typography, Tag, Progress } from 'antd';
+import { Column, Pie } from '@ant-design/plots';
 import type { FC } from 'react';
-import { CodepenOutlined, HeartFilled } from '@ant-design/icons';
+import { CodepenOutlined } from '@ant-design/icons';
 import useStyles from './style.style';
-import RiskPackageList from './components/RiskPackageList';
 
 const pkgData = [
   { pkgName: 'antd', count: 102 },
@@ -204,6 +203,47 @@ const Columnconfig = {
   }
 };
 
+const Pieconfig = {
+  data: [
+    { type: '18.3.1', value: 27 },
+    { type: '18.2.0', value: 25 },
+    { type: '17.0.2', value: 18 },
+    { type: '17.0.1', value: 15 },
+    { type: '16.8.6', value: 10 },
+    { type: '16.8.4', value: 10 }
+  ],
+  height: 320,
+  angleField: 'value',
+  colorField: 'type',
+  innerRadius: 0.6,
+  label: {
+    text: 'value',
+    style: {
+      fontWeight: 'bold',
+    },
+  },
+  legend: {
+    color: {
+      title: false,
+      position: 'right',
+      rowPadding: 5,
+    },
+  },
+  annotations: [
+    {
+      type: 'text',
+      style: {
+        text: 'Antd5 版本分布',
+        x: '50%',
+        y: '50%',
+        textAlign: 'center',
+        fontSize: 14,
+        fontStyle: 'bold',
+      },
+    },
+  ],
+};
+
 const Workplace: FC = () => {
   const { styles } = useStyles();
 
@@ -213,38 +253,56 @@ const Workplace: FC = () => {
       breadcrumbRender={false}
     >
       <Row gutter={24}>
-        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-          <Row gutter={24}>
-            <Col md={8} sm={12} xs={24}>
-              <Card>
-                <div className={styles.analysisDesc}>依赖包总数</div>
-                <div className={styles.analysisNumber}>53</div>
-              </Card>
-            </Col>
-            <Col md={8} sm={12} xs={24}>
-              <Card>
-                <div className={styles.analysisDesc}>相似包数目</div>
-                <div className={styles.analysisNumber}>3</div>
-              </Card>
-            </Col>
-            <Col md={8} sm={12} xs={24}>
-              <Card>
-                <div className={styles.analysisDesc}>可升级包数目</div>
-                <div className={styles.analysisNumber}>6</div>
-              </Card>
-            </Col>
-          </Row>
-          <Row gutter={24}>
-            <Col md={24} sm={12} xs={24}>
-              <Card size="small" style={{ textAlign: 'center', marginTop: '24px', paddingBottom: '10px' }}>
-                <div style={{ textAlign: 'center', color: 'rgba(0, 0, 0, 0.65)', marginTop: '5px' }}>Antd5 升级进度</div>
-                <Progress type="circle" percent={30} size={60} style={{ marginTop: '20px' }} />
-              </Card>
-            </Col>
-          </Row>
+        <Col md={6} sm={12} xs={24}>
+          <Card>
+            <div className={styles.analysisDesc}>依赖包总数</div>
+            <div className={styles.analysisNumber}>53</div>
+          </Card>
         </Col>
-        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-          <RiskPackageList data={[]} />
+        <Col md={6} sm={12} xs={24}>
+          <Card>
+            <div className={styles.analysisDesc}>内部包总数</div>
+            <div className={styles.analysisNumber}>13</div>
+          </Card>
+        </Col>
+        <Col md={6} sm={12} xs={24}>
+          <Card style={{ textAlign: 'center' }}>
+            <div className={styles.analysisDesc}>长尾依赖包收敛进度</div>
+            <Progress type="circle" percent={65} size={60} style={{ marginTop: '20px' }} />
+          </Card>
+        </Col>
+        <Col md={6} sm={12} xs={24}>
+          <Card style={{ textAlign: 'center' }}>
+            <div className={styles.analysisDesc}>Antd5 全局升级进度</div>
+            <Progress type="circle" percent={32} size={60} style={{ marginTop: '20px' }} />
+          </Card>
+        </Col>
+      </Row>
+      <Row gutter={24}>
+        <Col xl={24} lg={24} md={24} sm={24} xs={24}>
+          <Card title={'依赖包引用分析'} style={{ marginTop: '24px' }}>
+            <Row>
+              <Col md={7} sm={24} xs={24}>
+                <div style={{ height: 280, overflow: 'auto', border: '1px solid #e8e8e8', padding: '0px 10px', borderRadius: '4px' }}>
+                  <List
+                    dataSource={pkgData}
+                    renderItem={
+                      (item, index) => <List.Item>
+                        <Typography.Text><span style={{ color: '#000', marginRight: '10px' }}>{index + 1}</span> {item.pkgName}<Tag color="blue" style={{ marginLeft: '10px' }}>{'外部包'}</Tag></Typography.Text>
+                        <Typography.Text>{item.count}</Typography.Text>
+                      </List.Item>
+                    }
+                  />
+                </div>
+              </Col>
+              <Col md={17} sm={24} xs={24}>
+                <div style={{ paddingLeft: '20px' }}>
+                  <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'center', marginBottom: '10px' }}>antd5 导出 api 被引用次数及分布</div>
+                  <Column {...Columnconfig} />
+                </div>
+              </Col>
+            </Row>
+          </Card>
         </Col>
       </Row>
       <Row>
@@ -257,7 +315,7 @@ const Workplace: FC = () => {
                     dataSource={pkgData}
                     renderItem={
                       (item, index) => <List.Item>
-                        <Typography.Text><span style={{ color: '#000', marginRight: '10px' }}>{index + 1}</span> {item.pkgName}</Typography.Text>
+                        <Typography.Text><span style={{ color: '#000', marginRight: '10px' }}>{index + 1}</span> {item.pkgName}<Tag color="red" style={{ marginLeft: '10px' }}>{'内部包'}</Tag></Typography.Text>
                         <Typography.Text>{item.count}</Typography.Text>
                       </List.Item>
                     }
@@ -266,7 +324,7 @@ const Workplace: FC = () => {
               </Col>
               <Col md={17} sm={24} xs={24}>
                 <div style={{ paddingLeft: '20px' }}>
-                  <Column {...Columnconfig} />
+                  <Pie {...Pieconfig} />
                 </div>
               </Col>
             </Row>

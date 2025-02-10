@@ -30,7 +30,7 @@ export default function CallList() {
           dataSource={data}
           renderItem={
             (item) => <List.Item>
-              <Typography.Text><CopyOutlined />{item.filePath}</Typography.Text>
+              <Typography.Text><CopyOutlined /> {item.filePath}</Typography.Text>
               <Typography.Text>{item.count}</Typography.Text>
             </List.Item>
           }

@@ -12,11 +12,9 @@ const TopSearch = ({
   loading,
   visitData2,
   searchData,
-  dropdownGroup,
 }: {
   loading: boolean;
   visitData2: DataItem[];
-  dropdownGroup: React.ReactNode;
   searchData: DataItem[];
 }) => {
   const { styles } = useStyles();
@@ -80,7 +78,6 @@ const TopSearch = ({
       loading={loading}
       bordered={false}
       title="线上热门搜索"
-      extra={dropdownGroup}
       bodyStyle={{
         height: '100%',
       }}
@@ -159,18 +156,6 @@ const TopSearch = ({
           />
         </Col>
       </Row>
-      <Table<any>
-        rowKey={(record) => record.index}
-        size="small"
-        columns={columns}
-        dataSource={searchData}
-        pagination={{
-          style: {
-            marginBottom: 0,
-          },
-          pageSize: 5,
-        }}
-      />
     </Card>
   );
 };

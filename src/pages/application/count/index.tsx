@@ -3,6 +3,7 @@ import { Card, Col, Row, List, Typography } from 'antd';
 import CallList from './components/CallList';
 import React from 'react';
 import useStyles from './style.style';
+import ApplicationHeader from '@/components/ApplicationHeader';
 
 const BrowserApiData = {
   "history.push": [
@@ -131,7 +132,10 @@ const ConfigAnalysis: React.FC = () => {
     <PageContainer
       title={false}
       breadcrumbRender={false}
-      >
+      content={
+        <ApplicationHeader/>
+      }
+    >
       <Row gutter={24}>
         <Col xl={24} lg={24} md={24} sm={24} xs={24}>
           <Row gutter={[24, 24]}>

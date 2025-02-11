@@ -2,9 +2,9 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Card, Col, Row, Progress, List, Typography } from 'antd';
 import { Column } from '@ant-design/plots';
 import type { FC } from 'react';
-import { CodepenOutlined, HeartFilled } from '@ant-design/icons';
 import useStyles from './style.style';
 import RiskPackageList from './components/RiskPackageList';
+import ApplicationHeader from '@/components/ApplicationHeader';
 
 const pkgData = [
   { pkgName: 'antd', count: 102 },
@@ -211,6 +211,9 @@ const Workplace: FC = () => {
     <PageContainer
       title={false}
       breadcrumbRender={false}
+      content={
+        <ApplicationHeader/>
+      }
     >
       <Row gutter={24}>
         <Col xl={12} lg={24} md={24} sm={24} xs={24}>

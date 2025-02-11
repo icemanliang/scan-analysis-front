@@ -152,8 +152,14 @@ export default [
     ],
   },
   {
+    name: '作者介绍',
+    icon: 'form',
+    path: '/about',
+    component: './about',
+  },
+  {
     path: '/',
-    redirect: '/application/analysis',
+    redirect: '/application/main',
   },
   {
     component: '404',

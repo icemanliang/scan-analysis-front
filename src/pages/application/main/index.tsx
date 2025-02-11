@@ -1,84 +1,10 @@
-import { Liquid, RadialBar, Tiny} from '@ant-design/plots';
+import { RadialBar, Tiny} from '@ant-design/plots';
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Col, Row, Skeleton, Select, DatePicker, Divider } from 'antd';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import { Card, Col, Row, Divider } from 'antd';
 import type { FC } from 'react';
-import type { CurrentUser } from './data.d';
 import useStyles from './style.style';
 import Detail from './components/Detail';
-
-dayjs.extend(relativeTime);
-const { RangePicker } = DatePicker;
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-
-const PageHeaderContent: FC<{
-  currentUser: Partial<CurrentUser>;
-}> = ({ currentUser }) => {
-  const { styles } = useStyles();
-  const loading = currentUser && Object.keys(currentUser).length;
-  const defaultValue = [dayjs('2025-01-05', 'YYYY/M/DD'), dayjs('2000-03-25', 'YYYY/M/DD')];
-
-  if (!loading) {
-    return (
-      <Skeleton
-        avatar
-        paragraph={{
-          rows: 1,
-        }}
-        active
-      />
-    );
-  }
-  return (
-    <div className={styles.pageHeaderContent}>
-      <div className={styles.content}>
-        <div className={styles.contentTitle}>
-          <Select
-            defaultValue="创新运维管理平台"
-            style={{ width: 260 }}
-            onChange={handleChange}
-            options={[
-              { value: 'iceman', label: '信息开放平台' },
-              { value: 'james', label: '创新运维管理平台' },
-              { value: 'Yiminghe', label: '配置管理平台' },
-              { value: 'disabled', label: '云原生部署平台' },
-            ]}
-          />
-          <div className={styles.contentDateSelect}>
-            <RangePicker defaultValue={defaultValue}/>
-          </div>
-        </div>
-        <div style={{color: 'rgba(0,0,0,0.45)'}}>
-          {currentUser.title}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ExtraContent: FC<Record<string, any>> = () => {
-  const { styles } = useStyles();
-  return (
-    <div className={styles.extraContent}>
-      <div className={styles.statItem}>
-        <div className="title">巡检日期</div>
-        <div className="value">2025.3.25</div>
-      </div>
-      <div className={styles.statItem}>
-        <div className="title">代码版本</div>
-        <div className="value">dfemd3hw</div>
-      </div>
-      <div className={styles.statItem}>
-        <div className="title">质量排名</div>
-        <div className="value">8 / 24</div>
-      </div>
-    </div>
-  );
-};
+import ApplicationHeader from '@/components/ApplicationHeader';
 
 const config = {
   data: [
@@ -173,18 +99,8 @@ const Workplace: FC = () => {
       title={false}
       breadcrumbRender={false}
       content={
-        <PageHeaderContent
-          currentUser={{
-            avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-            name: '吴彦祖',
-            userid: '00000001',
-            email: 'antdesign@alipay.com',
-            signature: '海纳百川，有容乃大',
-            title: '应用负责人 : Icemanliang',
-          }}
-        />
+        <ApplicationHeader/>
       }
-      extraContent={<ExtraContent />}
     >
       <Row gutter={24}>
         <Col xl={12} lg={24} md={24} sm={24} xs={24}>

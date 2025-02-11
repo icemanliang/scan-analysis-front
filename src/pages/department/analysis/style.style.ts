@@ -97,7 +97,7 @@ const useStyles = createStyles(({ token }) => {
       },
     },
     salesRank: {
-      padding: '0 32px 32px 72px',
+      padding: '0 32px 32px 32px',
     },
     salesCard: {
       '.ant-tabs-bar, .ant-tabs-nav-wrap': {
@@ -142,11 +142,6 @@ const useStyles = createStyles(({ token }) => {
     trendText: {
       marginLeft: '8px',
       color: token.colorTextHeading,
-    },
-    rankingTitle: {
-      [`@media screen and (max-width: ${token.screenMD}px)`]: {
-        marginTop: '16px',
-      },
     },
     salesExtraWrap: {
       [`@media screen and (max-width: ${token.screenSM}px)`]: {

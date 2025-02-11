@@ -1,13 +1,11 @@
-import { EllipsisOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
-import { Col, Dropdown, Row } from 'antd';
+import { Col, Row } from 'antd';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import type dayjs from 'dayjs';
 import type { FC } from 'react';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import IntroduceRow from './components/IntroduceRow';
-import PageLoading from './components/PageLoading';
 import type { TimeType } from './components/SalesCard';
 import SalesCard from './components/SalesCard';
 import TopSearch from './components/TopSearch';
@@ -15,12 +13,14 @@ import type { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
 import useStyles from './style.style';
 import { getTimeDistance } from './utils/utils';
+import DepartmentHeader from '@/components/DepartmentHeader';
 type RangePickerValue = RangePickerProps<dayjs.Dayjs>['value'];
 type AnalysisProps = {
   dashboardAndanalysis: AnalysisData;
   loading: boolean;
 };
 type SalesType = 'all' | 'online' | 'stores';
+
 const Analysis: FC<AnalysisProps> = () => {
   const { styles } = useStyles();
   const [salesType, setSalesType] = useState<SalesType>('all');
@@ -71,32 +71,33 @@ const Analysis: FC<AnalysisProps> = () => {
     <PageContainer
       title={false}
       breadcrumbRender={false}
+      content={<DepartmentHeader/>}
     >
         <Row gutter={24}>
-          <Col md={15} >
+          <Col md={16} >
             <IntroduceRow loading={loading} visitData={data?.visitData || []} />
           </Col>
-          <Col md={9} >
-            <Suspense fallback={null}>
-              <TopSearch
-                loading={loading}
-                visitData2={data?.visitData2 || []}
-                searchData={data?.searchData || []}
-              />
-            </Suspense>
+          <Col md={8} >
+            <TopSearch
+              loading={loading}
+              visitData2={data?.visitData2 || []}
+              searchData={data?.searchData || []}
+            />
           </Col>
         </Row>
 
         <Row gutter={24} style={{ marginTop: 24 }}>
-          <SalesCard
-            rangePickerValue={rangePickerValue}
-            salesData={data?.salesData || []}
-            isActive={isActive}
-            handleRangePickerChange={handleRangePickerChange}
-            loading={loading}
+          <Col md={24}>
+            <SalesCard
+              rangePickerValue={rangePickerValue}
+              salesData={data?.salesData || []}
+              isActive={isActive}
+              handleRangePickerChange={handleRangePickerChange}
+              loading={loading}
             selectDate={selectDate}
           />
-        </Row>
+        </Col>
+      </Row>
     </PageContainer>
   );
 };

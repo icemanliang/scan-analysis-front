@@ -1,99 +1,48 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Area } from '@ant-design/plots';
-import { Card, Col, Row, Table, Tooltip } from 'antd';
+import { Card, Col, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
 import React from 'react';
 import type { DataItem } from '../data.d';
 import useStyles from '../style.style';
 import NumberInfo from './NumberInfo';
-import Trend from './Trend';
+// import Trend from './Trend';
+
+const rankingListData: {
+  title: string;
+  value: string;
+}[] = [];
+
+for (let i = 0; i < 7; i += 1) {
+  rankingListData.push({
+    title: `管理系统 ${i} 号`,
+    value: '21.2%',
+  });
+}
 
 const TopSearch = ({
   loading,
   visitData2,
-  searchData,
 }: {
   loading: boolean;
   visitData2: DataItem[];
-  searchData: DataItem[];
 }) => {
   const { styles } = useStyles();
-  const columns = [
-    {
-      title: '排名',
-      dataIndex: 'index',
-      key: 'index',
-    },
-    {
-      title: '搜索关键词',
-      dataIndex: 'keyword',
-      key: 'keyword',
-      render: (text: React.ReactNode) => <a href="/">{text}</a>,
-    },
-    {
-      title: '用户数',
-      dataIndex: 'count',
-      key: 'count',
-      sorter: (
-        a: {
-          count: number;
-        },
-        b: {
-          count: number;
-        },
-      ) => a.count - b.count,
-    },
-    {
-      title: '周涨幅',
-      dataIndex: 'range',
-      key: 'range',
-      sorter: (
-        a: {
-          range: number;
-        },
-        b: {
-          range: number;
-        },
-      ) => a.range - b.range,
-      render: (
-        text: React.ReactNode,
-        record: {
-          status: number;
-        },
-      ) => (
-        <Trend flag={record.status === 1 ? 'down' : 'up'}>
-          <span
-            style={{
-              marginRight: 4,
-            }}
-          >
-            {text}%
-          </span>
-        </Trend>
-      ),
-    },
-  ];
+
   return (
     <Card
       loading={loading}
       bordered={false}
-      title="线上热门搜索"
       bodyStyle={{
         height: '100%',
       }}
     >
-      <Row gutter={68}>
-        <Col
-          sm={12}
-          xs={24}
-          style={{
-            marginBottom: 24,
-          }}
-        >
+      <Row gutter={24}>
+        <Col md={24}>
           <NumberInfo
             subTitle={
               <span>
-                搜索用户数
+                重复代码文件波及率
                 <Tooltip title="指标说明">
                   <InfoCircleOutlined
                     style={{
@@ -119,41 +68,29 @@ const TopSearch = ({
             data={visitData2}
           />
         </Col>
-        <Col
-          sm={12}
-          xs={24}
-          style={{
-            marginBottom: 24,
-          }}
-        >
-          <NumberInfo
-            subTitle={
-              <span>
-                人均搜索次数
-                <Tooltip title="指标说明">
-                  <InfoCircleOutlined
-                    style={{
-                      marginLeft: 8,
-                    }}
-                  />
-                </Tooltip>
-              </span>
-            }
-            total={2.7}
-            status="down"
-            subTotal={26.2}
-            gap={8}
-          />
-          <Area
-            xField="x"
-            yField="y"
-            shapeField="smooth"
-            height={45}
-            padding={-12}
-            style={{ fill: 'linear-gradient(-90deg, white 0%, #6294FA 100%)', fillOpacity: 0.4 }}
-            data={visitData2}
-            axis={false}
-          />
+      </Row>
+      <Row>
+        <Col md={24}>
+          <div style={{ padding: '8px 6px 8px 0px' }}>
+            <div style={{ fontWeight: 'bold', margin: '4px 0px 6px 0px' }}>波及率排名</div>
+            <ul className={styles.rankingList} style={{ height: '154px', overflow: 'auto', margin: '0px' }}>
+              {rankingListData.map((item, i) => (
+                <li key={item.title}>
+                  <span
+                    className={`${
+                      i < 3 ? styles.rankingItemNumberActive : styles.rankingItemNumber
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
+                  <span className={styles.rankingItemTitle} title={item.title}>
+                    {item.title}
+                  </span>
+                  <span>{item.value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Col>
       </Row>
     </Card>

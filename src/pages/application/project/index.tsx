@@ -3,7 +3,7 @@ import { Card, Col, Row, Tag } from 'antd';
 import { Radar } from '@ant-design/plots';
 import React from 'react';
 import useStyles from './style.style';
-
+import ApplicationHeader from '@/components/ApplicationHeader';
  /**
    * git文件总览数据
    */
@@ -180,6 +180,9 @@ const ConfigAnalysis: React.FC = () => {
     <PageContainer
       title={false}
       breadcrumbRender={false}
+      content={
+        <ApplicationHeader/>
+      }
       >
       <Row gutter={24}>
         <Col xl={24} lg={24} md={24} sm={24} xs={24}>

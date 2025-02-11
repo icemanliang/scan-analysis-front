@@ -2,8 +2,8 @@ import { PageContainer } from '@ant-design/pro-components';
 import { Card, Col, Row, List, Typography, Tag, Progress } from 'antd';
 import { Column, Pie } from '@ant-design/plots';
 import type { FC } from 'react';
-import { CodepenOutlined } from '@ant-design/icons';
 import useStyles from './style.style';
+import DepartmentHeader from '@/components/DepartmentHeader';
 
 const pkgData = [
   { pkgName: 'antd', count: 102 },
@@ -251,6 +251,7 @@ const Workplace: FC = () => {
     <PageContainer
       title={false}
       breadcrumbRender={false}
+      content={<DepartmentHeader/>}
     >
       <Row gutter={24}>
         <Col md={6} sm={12} xs={24}>

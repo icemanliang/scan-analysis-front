@@ -1,5 +1,5 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Area, Column, Gauge } from '@ant-design/plots';
+import { Area, Column } from '@ant-design/plots';
 import { Col, Progress, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
 import type { DataItem } from '../data';
@@ -164,7 +164,15 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           </Trend>}
           contentHeight={46}
         >
-          <div style={{position: 'absolute', top: '-93px', left: '40px'}}><Gauge {...config} /></div>
+          <Column
+            xField="x"
+            yField="y"
+            padding={-20}
+            axis={false}
+            height={46}
+            data={visitData}
+            scale={{ x: { paddingInner: 0.4 } }}
+          />
         </ChartCard>
       </Col>
     </Row>

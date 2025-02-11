@@ -1,10 +1,8 @@
-import { EllipsisOutlined } from '@ant-design/icons';
 import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
-import { Col, Dropdown, Row, Divider } from 'antd';
-import type { RadioChangeEvent } from 'antd/es/radio';
+import { Col, Row, Divider } from 'antd';
 import type { FC } from 'react';
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import IntroduceRow from './components/IntroduceRow';
 import IntroduceCssRow from './components/IntroduceCssRow';
 import PageLoading from './components/PageLoading';
@@ -13,39 +11,15 @@ import TopSearch from './components/TopSearch';
 import type { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
 import ApplicationHeader from '@/components/ApplicationHeader';
-import useStyles from './style.style';
+// import useStyles from './style.style';
 type AnalysisProps = {
   dashboardAndanalysis: AnalysisData;
   loading: boolean;
 };
-type SalesType = 'all' | 'online' | 'stores';
 
 const Analysis: FC<AnalysisProps> = () => {
-  const { styles } = useStyles();
-  const [salesType, setSalesType] = useState<SalesType>('all');
+  // const { styles } = useStyles();
   const { loading, data } = useRequest(fakeChartData);
-
-  const dropdownGroup = (
-    <span className={styles.iconGroup}>
-      <Dropdown
-        menu={{
-          items: [
-            {
-              key: '1',
-              label: '导出数据',
-            }
-          ],
-        }}
-        placement="bottomRight"
-      >
-        <EllipsisOutlined />
-      </Dropdown>
-    </span>
-  );
-
-  const handleChangeSalesType = (e: RadioChangeEvent) => {
-    setSalesType(e.target.value);
-  };
 
   return (
     <PageContainer
@@ -72,19 +46,14 @@ const Analysis: FC<AnalysisProps> = () => {
               <TopSearch
                 loading={loading}
                 visitData={data?.esErrorsData || []}
-                searchData={[]}
-                dropdownGroup={dropdownGroup}
               />
             </Suspense>
           </Col>
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
             <Suspense fallback={null}>
               <ProportionSales
-                dropdownGroup={dropdownGroup}
-                salesType={salesType}
                 loading={loading}
                 salesPieData={data?.esRuleData || []}
-                handleChangeSalesType={handleChangeSalesType}
               />
             </Suspense>
           </Col>
@@ -104,19 +73,14 @@ const Analysis: FC<AnalysisProps> = () => {
               <TopSearch
                 loading={loading}
                 visitData={data?.cssErrorsData || []}
-                searchData={[]}
-                dropdownGroup={dropdownGroup}
               />
             </Suspense>
           </Col>
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
             <Suspense fallback={null}>
               <ProportionSales
-                dropdownGroup={dropdownGroup}
-                salesType={salesType}
                 loading={loading}
                 salesPieData={data?.cssRuleData || []}
-                handleChangeSalesType={handleChangeSalesType}
               />
             </Suspense>
           </Col>

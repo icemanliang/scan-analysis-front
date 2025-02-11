@@ -71,7 +71,7 @@ const tinyConfig = {
   data: [
     38, 41, 34, 47, 48, 47, 49, 57, 50, 56, 62, 59, 68, 72, 83, 87, 92, 0
   ].map((value, index) => ({ value, index })),
-  width: 480,
+  width: 380,
   height: 80,
   padding: 12,
   xField: 'index',
@@ -82,7 +82,7 @@ const tinyConfig = {
       data: [70],
       style: { arrow: true, stroke: 'red', lineDash: [2, 2] },
       label: {
-        text: '目标分 = 70',
+        text: '目标分值 = 70',
         position: 'left',
         dx: 0,
         style: { textBaseline: 'bottom' },
@@ -103,26 +103,28 @@ const Workplace: FC = () => {
       }
     >
       <Row gutter={24}>
-        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+        <Col xl={15} lg={24} md={24} sm={24} xs={24}>
             <Card
               title="质量分"
-            bodyStyle={{
-              textAlign: 'center',
-              fontSize: 0,
-            }}
-            bordered={false}
-          >
-            <div style={{fontSize: '28px', fontWeight: 'bold'}}>47.7</div>
+              bodyStyle={{
+                textAlign: 'center',
+                fontSize: 0,
+              }}
+              bordered={false}
+            >
+            <div style={{fontSize: '32px', fontWeight: 'bold', marginTop: '20px'}}>47.7</div>
             {/* <Liquid height={360} percent={0.42} /> */}
             <RadialBar {...config} />
-            <div style={{fontSize: '14px', color: 'rgba(0,0,0,0.45)', textAlign: 'center'}}>
+            <div style={{fontSize: '14px', color: 'rgba(0,0,0,0.45)', textAlign: 'center', margin: '20px 0px'}}>
               <a href="#">代码规范</a>
               <Divider type="vertical" />
               <a href="#">工程规范</a>
+              <Divider type="vertical" />
+              <a href="#">指标详解</a>
             </div>
           </Card>
         </Col>
-        <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+        <Col xl={9} lg={24} md={24} sm={24} xs={24}>
           <Card title="分值走势" bordered={false}>
             <Tiny.Column {...tinyConfig} />
           </Card>

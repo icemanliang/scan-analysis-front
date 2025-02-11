@@ -13,21 +13,20 @@ export default function CallList() {
 
   return (
     <Card
-      title="调用分布详情"
+      // title="调用分布详情"
       style={{ marginTop: 24 }}
-      extra={
-        <div>
-          <Radio.Group defaultValue="all">
-            <Radio.Button value="all">缺失类型函数分布</Radio.Button>
-            <Radio.Button value="progress">Class类组件分布</Radio.Button>
-            <Radio.Button value="waiting">Generator函数分布</Radio.Button>
-          </Radio.Group>
-        </div>
-      }
     >
+      <div style={{ marginBottom: '24px', textAlign: 'center' }}>
+        <Radio.Group defaultValue="all" style={{ width: '100%' }}>
+          <Radio.Button value="all">缺失类型函数分布</Radio.Button>
+          <Radio.Button value="progress">Class类组件分布</Radio.Button>
+          <Radio.Button value="waiting">Generator函数分布</Radio.Button>
+        </Radio.Group>
+      </div>
       <div style={{ height: 370, overflow: 'auto' }}>
         <List
           dataSource={data}
+          bordered
           renderItem={
             (item) => <List.Item>
               <Typography.Text><CopyOutlined /> {item.filePath}</Typography.Text>

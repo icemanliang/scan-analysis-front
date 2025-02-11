@@ -1,5 +1,5 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Area, Column, Gauge } from '@ant-design/plots';
+import { Area, Column } from '@ant-design/plots';
 import { Col, Progress, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
 import type { DataItem } from '../data.d';
@@ -145,14 +145,14 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
       <Col {...topColResponsiveProps}>
         <ChartCard
           bordered={false}
-          title="ES复杂模块数"
+          title="ES复杂模块占比"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />
             </Tooltip>
           }
           loading={loading}
-          total={() => 23 }
+          total={() => '12%' }
           footer={<Trend
             flag="up"
             style={{
@@ -164,7 +164,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           </Trend>}
           contentHeight={46}
         >
-          <div style={{position: 'absolute', top: '-93px', left: '40px'}}><Gauge {...config} /></div>
+          <Area
+            xField="x"
+            yField="y"
+            shapeField="smooth"
+            height={46}
+            axis={false}
+            style={{
+              fill: 'linear-gradient(-90deg, white 0%, #975FE4 100%)',
+              fillOpacity: 0.6,
+              width: '100%',
+            }}
+            padding={-20}
+            data={visitData}
+          />
         </ChartCard>
       </Col>
     </Row>

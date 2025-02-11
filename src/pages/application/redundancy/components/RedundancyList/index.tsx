@@ -62,7 +62,71 @@ const fakeData = [
         ],
         "tokens": 2,
         "lines": 182
-    }
+    },
+    {
+      "files": [
+          {
+              "endLine": 183,
+              "startLine": 1,
+              "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+          },
+          {
+              "endLine": 183,
+              "startLine": 1,
+              "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+          }
+      ],
+      "tokens": 2,
+      "lines": 182
+  },
+  {
+    "files": [
+        {
+            "endLine": 183,
+            "startLine": 1,
+            "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+        },
+        {
+            "endLine": 183,
+            "startLine": 1,
+            "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+        }
+    ],
+    "tokens": 2,
+    "lines": 182
+},
+{
+  "files": [
+      {
+          "endLine": 183,
+          "startLine": 1,
+          "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+      },
+      {
+          "endLine": 183,
+          "startLine": 1,
+          "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+      }
+  ],
+  "tokens": 2,
+  "lines": 182
+},
+{
+  "files": [
+      {
+          "endLine": 183,
+          "startLine": 1,
+          "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+      },
+      {
+          "endLine": 183,
+          "startLine": 1,
+          "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+      }
+  ],
+  "tokens": 2,
+  "lines": 182
+}
 ];
 
 interface IProps {

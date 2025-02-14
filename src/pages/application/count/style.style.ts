@@ -78,6 +78,7 @@ const useStyles = createStyles(({ token }) => ({
     color: token.colorText,
     marginTop: '8px',
     fontWeight: 'bold',
+    color: '#1890ff',
   },
   analysisDesc: {
     fontSize: '14px',

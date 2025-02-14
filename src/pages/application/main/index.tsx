@@ -10,42 +10,42 @@ const config = {
   data: [
     {
       year: '依赖治理',
-      value: 4.9,
+      value: 1.5,
       type: 'Lon',
     },
     {
       year: '冗余优化',
-      value: 6,
+      value: 5.76,
       type: 'Lon',
     },
     {
       year: '工程规范',
-      value: 7,
+      value: 9.8,
       type: 'Lon',
     },
     {
       year: '调用优化',
-      value: 9,
+      value: 13.48,
       type: 'Lon',
     },
     {
       year: '代码规范',
-      value: 13,
+      value: 17.13,
       type: 'Lon',
     },
     {
       year: '依赖治理',
-      value: 4.9,
+      value: 4.5,
       type: 'Bor',
     },
     {
       year: '冗余优化',
-      value: 6,
+      value: 4.34,
       type: 'Bor',
     },
     {
       year: '工程规范',
-      value: 7,
+      value: 12.2,
       type: 'Bor',
     },
     {
@@ -55,7 +55,7 @@ const config = {
     },
     {
       year: '代码规范',
-      value: 13,
+      value: 13.87,
       type: 'Bor',
     },
   ],

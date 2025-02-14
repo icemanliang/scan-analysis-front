@@ -13,7 +13,7 @@
 export default [
   {
     path: '/application',
-    name: '应用分析',
+    name: '应用治理',
     icon: 'dashboard',
     routes: [
       {
@@ -21,19 +21,19 @@ export default [
         redirect: '/application/main',
       },
       {
-        name: '基础概览',
+        name: '应用概览',
         icon: 'smile',
         path: '/application/main',
         component: './application/main',
       },
       {
-        name: '规范检查',
+        name: '代码规范',
         icon: 'smile',
         path: '/application/standard',
         component: './application/standard',
       },
       {
-        name: '工程检查',
+        name: '工程规范',
         icon: 'smile',
         path: '/application/project',
         component: './application/project',
@@ -59,31 +59,37 @@ export default [
     ],
   },
   {
-    path: '/department',
-    name: '全局分析',
+    path: '/global',
+    name: '全局治理',
     icon: 'profile',
     routes: [
       {
-        path: '/department',
-        redirect: '/department/main',
+        path: '/global',
+        redirect: '/global/main',
       },
       {
         name: '应用总览',
         icon: 'smile',
-        path: '/department/main',
-        component: './department/main',
+        path: '/global/main',
+        component: './global/main',
       },
       {
-        name: '指标收敛',
+        name: '规范治理',
         icon: 'smile',
-        path: '/department/analysis',
-        component: './department/analysis',
+        path: '/global/analysis',
+        component: './global/analysis',
+      },
+      {
+        name: '可读治理',
+        icon: 'smile',
+        path: '/global/readability',
+        component: './global/readability',
       },
       {
         name: '依赖治理',
         icon: 'smile',
-        path: '/department/dependency',
-        component: './department/dependency',
+        path: '/global/dependency',
+        component: './global/dependency',
       },
     ],
   },
@@ -153,7 +159,7 @@ export default [
   },
   {
     name: '作者介绍',
-    icon: 'form',
+    icon: 'user',
     path: '/about',
     component: './about',
   },

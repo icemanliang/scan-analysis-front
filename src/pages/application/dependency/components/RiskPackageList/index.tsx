@@ -1,6 +1,6 @@
 import cls from 'classnames';
 import { CloudDownloadOutlined, PaperClipOutlined } from '@ant-design/icons';
-import { Card, List } from 'antd';
+import { Card, List, Tag } from 'antd';
 import Text from '@/components/Text';
 import { COLORS } from '@/constants';
 import useStyles from './style.style';
@@ -168,7 +168,7 @@ export default function RiskPackageList(props: IProps) {
                   )}
                   {!!license && (
                     <div className={styles.riskPkgInfo}>
-                      <span className={cls(styles.riskPkgInfoTag, 'tipsBox')}>{license}</span>
+                      <span className={cls(styles.riskPkgInfoTag, 'tipsBox')}><Tag color="#1890ff">{license}</Tag></span>
                     </div>
                   )}
                 </div>

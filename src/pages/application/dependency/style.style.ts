@@ -4,7 +4,7 @@ const useStyles = createStyles(({ token }) => {
   return {
     analysisNumber: {
       fontSize: '24px',
-      color: token.colorText,
+      color: '#1890ff',
       marginTop: '8px',
       fontWeight: 'bold',
       textAlign: 'center',

@@ -18,7 +18,7 @@ const useStyles = createStyles(({ token }) => ({
     width: '100%',
     height: '22px',
     textAlign: 'center',
-    color: 'blue',
+    color: '#1890ff',
   },
   gitFileGroupContent: {
     flex: 1,
@@ -35,7 +35,7 @@ const useStyles = createStyles(({ token }) => ({
     width: '100%',
     height: '22px',
     textAlign: 'center',
-    color: 'blue',
+    color: '#1890ff',
   },
   gitFileCount: {
     flex: 1,

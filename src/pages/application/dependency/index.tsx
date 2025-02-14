@@ -260,8 +260,11 @@ const Workplace: FC = () => {
                     dataSource={pkgData}
                     renderItem={
                       (item, index) => <List.Item>
-                        <Typography.Text><span style={{ color: '#000', marginRight: '10px' }}>{index + 1}</span> {item.pkgName}</Typography.Text>
-                        <Typography.Text>{item.count}</Typography.Text>
+                        <Typography.Text>
+                          <span style={{ marginRight: '10px', fontWeight: 'bold' }}>{index + 1}</span>
+                          <span style={{ color: index === 0 ? 'red' : '#000', marginLeft: '10px' }}>{item.pkgName}</span>
+                        </Typography.Text>
+                        <Typography.Text><span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span></Typography.Text>
                       </List.Item>
                     }
                   />

@@ -16,13 +16,14 @@ export async function getInitialState(): Promise<{
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
+export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   return {
     actionsRender: () => [],
     footerRender: () => <Footer />,
     links: [],
     menuHeaderRender: false,
     logout: undefined,                      // 禁用 logout 按钮
+    // siderWidth: 220,
     childrenRender: (children) => {
 
       return (

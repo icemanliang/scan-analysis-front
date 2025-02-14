@@ -26,6 +26,64 @@ const useStyles = createStyles(({ token }) => {
       fontSize: '20px',
       lineHeight: '28px',
       display: 'flex'
+    },
+    statItem: {
+      position: 'relative',
+      display: 'inline-block',
+      padding: '0 32px',
+      '.title': {
+        color: 'rgba(0,0,0,0.45)',
+        marginBottom: '6px',
+        textAlign: 'center'
+      },
+      '.value': {
+        fontSize: '16px',
+        marginTop: '10px',
+        textAlign: 'center',
+        color: '#000'
+      },
+      '> p:first-child': {
+        marginBottom: '4px',
+        color: token.colorTextSecondary,
+        fontSize: token.fontSize,
+        lineHeight: '22px',
+      },
+      '> p': {
+        margin: '0',
+        color: token.colorTextHeading,
+        fontSize: '30px',
+        lineHeight: '38px',
+        '> span': {
+          color: token.colorTextSecondary,
+          fontSize: '20px',
+        },
+      },
+      '&::after': {
+        position: 'absolute',
+        top: '8px',
+        right: '0',
+        width: '1px',
+        height: '40px',
+        backgroundColor: token.colorSplit,
+        content: "''",
+      },
+      '&:last-child': {
+        paddingRight: '0',
+        '&::after': {
+          display: 'none',
+        },
+      },
+      [`@media screen and (max-width: ${token.screenXL}px) and (min-width: @screen-lg)`]: {
+        padding: '0 16px',
+      },
+      [`@media screen and (max-width: ${token.screenLG}px)`]: {
+        padding: '0 16px',
+        textAlign: 'left',
+        '&::after': {
+          display: 'none',
+        },
+      },
+      [`@media screen and (max-width: ${token.screenSM}px)`]: { float: 'none' },
     }
   };
 });

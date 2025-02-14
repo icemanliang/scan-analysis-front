@@ -66,14 +66,6 @@ export function jumpGitlab({
 }
 
 /**
- * 跳转到eslint规则介绍
- */
-export function jumpEslintDoc(rule: string) {
-  if (!rule) return;
-  window.open(`https://eslint.org/docs/latest/${rule}`, '_blank');
-}
-
-/**
  * 复制文本到剪贴板
  * @param text
  * @returns

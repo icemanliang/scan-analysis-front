@@ -8,6 +8,8 @@ import OperationModal from './components/OperationModal';
 interface DataType {
   number: string;
   token: string;
+  application: number;
+  plugin: number;
   when: string;
   time: string;
   status: number;
@@ -47,6 +49,16 @@ export default () => {
       title: '执行密钥',
       dataIndex: 'token',
       key: 'token',
+    },
+    {
+      title: '应用数',
+      dataIndex: 'application',
+      key: 'application',
+    },
+    {
+      title: '插件数',
+      dataIndex: 'plugin',
+      key: 'plugin',
     },
     {
       title: '执行时间',
@@ -92,6 +104,8 @@ export default () => {
     {
       number: '1',
       token: 'djjdda-dadad-dad',
+      application: 45,
+      plugin: 9,
       when: '2025-1-20',
       time: '20分30秒',
       status: 1,
@@ -99,6 +113,8 @@ export default () => {
     {
       number: '2',
       token: 'jdda-dadad-dad',
+      application: 45,
+      plugin: 9,
       when: '2025-1-24',
       time: '12分53秒',
       status: 1,
@@ -106,6 +122,8 @@ export default () => {
     {
       number: '3',
       token: 'dda-dadad-dad',
+      application: 45,
+      plugin: 9,
       when: '2025-1-27',
       time: '15分23秒',
       status: 1,

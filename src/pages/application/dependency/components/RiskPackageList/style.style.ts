@@ -13,6 +13,7 @@ const useStyles = createStyles(() => ({
   LITips: {
     width: '100%',
     fontSize: 12,
+    color: 'rgba(0, 0, 0, 0.45)',
   },
   riskPkgMainContent: {
     flexGrow: 1,
@@ -64,6 +65,7 @@ const useStyles = createStyles(() => ({
 
   riskPkgInfoIcon: {
     marginRight: 6,
+    color: '#1890ff',
   }
 }));
 

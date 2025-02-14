@@ -233,15 +233,15 @@ const ConfigAnalysis: React.FC = () => {
               <Card style={{ marginTop: 24 }}>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>提交信息违规</div>
-                  <div className={styles.analysisNumber}>5</div>
+                  <div className={styles.analysisNumber} style={{color: 5>0 ? 'red' : 'green'}}>5</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>文件命名违规</div>
-                  <div className={styles.analysisNumber}>2</div>
+                  <div className={styles.analysisNumber}style={{color: 5>0 ? 'red' : 'green'}}>2</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>应用目录深度</div>
-                  <div className={styles.analysisNumber}>6</div>
+                  <div className={styles.analysisNumber} style={{color: 6>5 ? 'red' : 'green'}}>6</div>
                 </Card.Grid>
               </Card>
             </Col>

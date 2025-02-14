@@ -76,6 +76,15 @@ const useStyles = createStyles(() => {
       fontWeight: 'bold',
       minWidth: '30px',
       whiteSpace: 'nowrap',
+      color: 'red',
+    },
+    infoValueLine: {
+      fontSize: 12,
+      display: 'inline-block',
+      fontWeight: 'bold',
+      minWidth: '30px',
+      whiteSpace: 'nowrap',
+      color: '#1890ff',
     }
   };
 });

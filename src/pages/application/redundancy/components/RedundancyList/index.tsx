@@ -189,11 +189,11 @@ export default function RedundancyFileList(props: IProps) {
                       <div className={styles.redundancyLineInfo}>
                         <div className={styles.redundancyLineItem}>
                           <span className={styles.infoTitle}>{'起始行：'}</span>
-                          <span className={cls(styles.infoValue, 'tips')}>{startLine}</span>
+                          <span className={cls(styles.infoValueLine, 'tips')}>{startLine}</span>
                         </div>
                         <div className={styles.redundancyLineItem}>
                           <span className={styles.infoTitle}>{'结束行：'}</span>
-                          <span className={cls(styles.infoValue, 'tips')}>{endLine}</span>
+                          <span className={cls(styles.infoValueLine, 'tips')}>{endLine}</span>
                         </div>
                       </div>
                     </div>

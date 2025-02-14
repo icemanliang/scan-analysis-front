@@ -27,11 +27,11 @@ const ConfigAnalysis: React.FC = () => {
             <Col span={24}>
               <Card>
                 <Card.Grid style={gridStyle}>
-                  <div className={styles.analysisDesc}>重复扫描文件总数</div>
+                  <div className={styles.analysisDesc}>代码扫描文件总数</div>
                   <div className={styles.analysisNumber}>476</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
-                  <div className={styles.analysisDesc}>重复代码片段数目</div>
+                  <div className={styles.analysisDesc}>代码重复片段数目</div>
                   <div className={styles.analysisNumber}>67</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
@@ -39,7 +39,7 @@ const ConfigAnalysis: React.FC = () => {
                   <div className={styles.analysisNumber}>5</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
-                  <div className={styles.analysisDesc}>重复代码文件波及率</div>
+                  <div className={styles.analysisDesc}>代码重复文件波及率</div>
                   <div className={styles.analysisNumber}>21%</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>

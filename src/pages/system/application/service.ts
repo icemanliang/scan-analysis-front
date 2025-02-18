@@ -1,50 +1,33 @@
 import { request } from '@umijs/max';
-import type { BasicListItemDataType } from './data.d';
+import type { ApplicationItem, CommonResult } from './data.d';
 
-type ParamsType = {
-  count?: number;
-} & Partial<BasicListItemDataType>;
-
-export async function queryFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/get_list', {
-    params,
+// 获取应用列表
+export async function queryList(): Promise<{ data: { count: number, data: ApplicationItem[] } }> {
+  return request('/api/application/list', {
+    method: 'POST',
   });
 }
 
-export async function removeFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/post_fake_list', {
+// 删除应用
+export async function deleteApplication(id: string): Promise<CommonResult> {
+  return request('/api/application/remove', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'delete',
-    },
+    data: { id },
   });
 }
 
-export async function addFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/post_fake_list', {
+// 新增应用
+export async function addApplication(data: any): Promise<CommonResult> {
+  return request('/api/application/add', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'post',
-    },
+    data,
   });
 }
 
-export async function updateFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/post_fake_list', {
+// 更新应用
+export async function updateApplication(data: any): Promise<CommonResult> {
+  return request('/api/application/update', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'update',
-    },
+    data,
   });
 }

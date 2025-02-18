@@ -1,84 +1,80 @@
 import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { Card, Space, Table, Tag, Button, Modal } from 'antd';
 import type { TableProps } from 'antd';
-import React, { useState } from 'react';
-import OperationModal from './components/OperationModal';
-// import useStyles from './style.style';
-
-interface DataType {
-  number: string;
-  token: string;
-  application: number;
-  plugin: number;
-  when: string;
-  time: string;
-  status: number;
-}
+import { queryList } from './service';
+import { useRequest } from '@umijs/max';
+import type { TaskItem } from './data.d';
 
 export default () => {
-  const [done, setDone] = useState<boolean>(false);
-  const [open, setVisible] = useState<boolean>(false);
+  const { data, loading } = useRequest(() => {
+    return queryList();
+  });
+  const taskList = data?.data || [];
 
-  const showEditModal = () => {
-    setVisible(true);
-  };
-  const deleteItem = () => {
-    console.log('del')
-  };
-  const editAndDelete = (key: string | number) => {
-    if (key === 'edit') showEditModal();
-    else if (key === 'delete') {
+  // 废弃任务
+  const deleteTask = (id: number) => {
       Modal.confirm({
         title: '废弃任务',
         content: '确定废弃该任务吗？',
         okText: '确认',
         cancelText: '取消',
-        onOk: () => deleteItem(),
+        onOk: () => {
+          console.log('DEL TASK' , id)
+        },
       });
-    }
   };
 
-  const columns: TableProps<DataType>['columns'] = [
+  const columns: TableProps<TaskItem>['columns'] = [
     {
       title: '任务序号',
-      dataIndex: 'number',
-      key: 'number',
-      // render: (text) => <a>{text}</a>,
+      dataIndex: 'id',
+      key: 'id',
     },
     {
       title: '执行密钥',
-      dataIndex: 'token',
-      key: 'token',
+      dataIndex: 'task_code',
+      key: 'task_code',
     },
     {
       title: '应用数',
-      dataIndex: 'application',
-      key: 'application',
+      dataIndex: 'apps',
+      key: 'apps',
+      render: (_, { apps }) => apps.length,
     },
     {
       title: '插件数',
-      dataIndex: 'plugin',
-      key: 'plugin',
+      dataIndex: 'plugins',
+      key: 'plugins',
+      render: (_, { plugins }) => plugins.length,
     },
     {
       title: '执行时间',
-      dataIndex: 'when',
-      key: 'when',
+      dataIndex: 'task_date',
+      key: 'task_date',
+      render: (_, { task_date }) => {
+        return task_date.split('T')[0]; // 只取T前面的日期部分
+      },
     },
     {
       title: ' 任务耗时',
-      dataIndex: 'time',
-      key: 'time',
+      dataIndex: 'cost_time',
+      key: 'cost_time',
+      render: (_, { cost_time }) => {
+        const totalSeconds = Math.floor(cost_time / 1000); // 先将毫秒转为秒
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        return minutes > 0 ? `${minutes}分${seconds}秒` : `${seconds}秒`;
+      },
     },
     {
       title: '任务状态',
-      key: 'status',
-      dataIndex: 'status',
-      render: (_, { status }) => (
+      key: 'task_status',
+      dataIndex: 'task_status',
+      render: (_, { task_status }) => (
         <>
-          <Tag color={status ===1 ? 'green' : 'red'}>
-              {'成功'}
-            </Tag>
+          <Tag color={task_status ===2 ? 'green' : task_status === 1 ? 'blue' : 'red'}>
+            {task_status === 2 ? '成功' : task_status === 1 ? '执行中' : '失败'}
+          </Tag>
         </>
       ),
     },
@@ -88,55 +84,30 @@ export default () => {
       render: (_, record) => (
         <Space size="middle">
           <a>详情</a>
-          <a>日志</a>
-          <a onClick={
-            () => {
-              editAndDelete('delete');
-            }}>作废</a>
+          <a
+            onClick={() => {
+              Modal.info({
+                title: '任务日志',
+                width: 800,
+                content: record.task_log.split('\n').map((line, index) => (
+                  <div key={index}>{line}</div>
+                )),
+              });
+            }}
+          >
+            日志
+          </a>
+          <a
+            onClick={() => {
+              deleteTask(record.id);
+            }}
+          >
+            作废
+          </a>
         </Space>
       ),
     },
   ];
-
-
-
-  const data: DataType[] = [
-    {
-      number: '1',
-      token: 'djjdda-dadad-dad',
-      application: 45,
-      plugin: 9,
-      when: '2025-1-20',
-      time: '20分30秒',
-      status: 1,
-    },
-    {
-      number: '2',
-      token: 'jdda-dadad-dad',
-      application: 45,
-      plugin: 9,
-      when: '2025-1-24',
-      time: '12分53秒',
-      status: 1,
-    },
-    {
-      number: '3',
-      token: 'dda-dadad-dad',
-      application: 45,
-      plugin: 9,
-      when: '2025-1-27',
-      time: '15分23秒',
-      status: 1,
-    },
-  ];
-
-  const handleDone = () => {
-    setDone(false);
-    setVisible(false);
-  };
-  const handleSubmit = () => {
-    setDone(true);
-  };
 
   return (
     <PageContainer
@@ -145,16 +116,9 @@ export default () => {
     >
       <GridContent>
         <Card bordered={false}>
-          <Table<DataType> columns={columns} dataSource={data} />
+          <Table<TaskItem> columns={columns} dataSource={taskList} loading={loading} />
         </Card>
       </GridContent>
-      <OperationModal
-        done={done}
-        open={open}
-        current={null}
-        onDone={handleDone}
-        onSubmit={handleSubmit}
-      />
     </PageContainer>
   );
 };

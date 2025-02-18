@@ -1,4 +1,3 @@
-import { Flex } from 'antd';
 import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token }) => {

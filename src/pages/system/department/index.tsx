@@ -1,52 +1,51 @@
 import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { Card, Space, Table, Tag, Button, Modal } from 'antd';
 import type { TableProps } from 'antd';
-// import useStyles from './style.style';
-
-interface DataType {
-  key: string;
-  name: string;
-  owner: string;
-  address: string;
-  tags: string[];
-}
+import { useRequest } from '@umijs/max';
+import type { DepartmentItem } from './data.d';
+import { queryList } from './service';
 
 export default () => {
+  const { data, loading } = useRequest(() => {
+    return queryList();
+  });
+  const departmentList = data?.data || [];
 
-  const DeleteClick = ()=>{
+  // 删除部门
+  const DeleteClick = (id: number)=>{
     Modal.confirm({
-      title: '删除任务',
-      content: '确定删除该任务吗？',
+      title: '删除部门',
+      content: '确定删除该部门吗？',
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
-        console.log('DEL')
+        console.log('DELETE', id)
       },
     });
   }
 
-  const columns: TableProps<DataType>['columns'] = [
+  const columns: TableProps<DepartmentItem>['columns'] = [
     {
       title: '部门名称',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'dept_name',
+      key: 'dept_name',
     },
     {
-      title: '部门负责人',
-      dataIndex: 'owner',
-      key: 'owner',
+      title: '部门编码',
+      dataIndex: 'dept_code',
+      key: 'dept_code',
     },
     {
       title: '应用列表',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
+      key: 'apps',
+      dataIndex: 'apps',
+      render: (_, { apps }) => (
         <>
-          {tags.map((tag) => {
+          {apps.map((app: { name: string; value: number }) => {
             let color = 'blue';
             return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
+              <Tag color={color} key={app.name}>
+                {app.name}
               </Tag>
             );
           })}
@@ -56,40 +55,16 @@ export default () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record) => (
+      render: (_, record: DepartmentItem) => (
         <Space size="middle">
           <a>编辑</a>
           <a onClick={
             () => {
-              DeleteClick();
+              DeleteClick(record.id);
             }
           }>删除</a>
         </Space>
       ),
-    },
-  ];
-
-  const data: DataType[] = [
-    {
-      key: '1',
-      name: '市场研究部',
-      owner: '章三',
-      address: 'New York No. 1 Lake Park',
-      tags: ['配置管理平台', '数据分析平台'],
-    },
-    {
-      key: '2',
-      name: '财务精算部',
-      owner: '李四',
-      address: 'London No. 1 Lake Park',
-      tags: ['内容运营系统'],
-    },
-    {
-      key: '3',
-      name: '游戏运营部',
-      owner: '王五',
-      address: 'Sydney No. 1 Lake Park',
-      tags: ['开放平台系统', '官网系统'],
     },
   ];
 
@@ -100,7 +75,7 @@ export default () => {
     >
       <GridContent>
         <Card bordered={false}>
-          <Table<DataType> columns={columns} dataSource={data} />
+          <Table<DepartmentItem> columns={columns} dataSource={departmentList} loading={loading} />
         </Card>
       </GridContent>
     </PageContainer>

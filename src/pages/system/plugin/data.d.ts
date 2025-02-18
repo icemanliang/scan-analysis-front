@@ -1,13 +1,13 @@
-export type Member = {
-  avatar: string;
-  name: string;
-  id: string;
+export type CommonResult = {
+  code: number;
+  msg: string;
+  data: any;
 };
 
-export type CardListItemDataType = {
+export type PluginItem = {
   id: number;
-  title: string;
-  status: boolean;
-  href: string;
-  description: string;
+  plugin_config: string;
+  plugin_desc: string;
+  plugin_name: string;
+  plugin_status: number;
 };

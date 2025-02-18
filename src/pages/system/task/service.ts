@@ -1,50 +1,26 @@
 import { request } from '@umijs/max';
-import type { BasicListItemDataType } from './data.d';
+import type { TaskItem, CommonResult } from './data.d';
 
-type ParamsType = {
-  count?: number;
-} & Partial<BasicListItemDataType>;
-
-export async function queryFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/get_list', {
-    params,
-  });
-}
-
-export async function removeFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/post_fake_list', {
+// 获取任务列表
+export async function queryList(): Promise<{ data: { count: number, data: TaskItem[] } }> {
+  return request('/api/task/list', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'delete',
-    },
   });
 }
 
-export async function addFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/post_fake_list', {
+// 废弃任务
+export async function deleteTask(id: string): Promise<CommonResult> {
+  return request('/api/task/remove', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'post',
-    },
+    data: { id },
   });
 }
 
-export async function updateFakeList(
-  params: ParamsType,
-): Promise<{ data: { list: BasicListItemDataType[] } }> {
-  return request('/api/post_fake_list', {
+// 新增任务
+export async function addTask(data: any): Promise<CommonResult> {
+  return request('/api/task/add', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'update',
-    },
+    data,
   });
 }
+

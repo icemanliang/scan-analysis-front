@@ -2,27 +2,28 @@ import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useRequest } from '@umijs/max';
 import { Button, Card, List, Typography, Modal, Switch } from 'antd';
-import type { CardListItemDataType } from './data.d';
-import { queryFakeList } from './service';
+import type { PluginItem } from './data.d';
+import { queryList } from './service';
 import useStyles from './style.style';
 const { Paragraph } = Typography;
-const CardList = () => {
+
+// 插件管理页面
+export default () => {
   const { styles } = useStyles();
   const { data, loading } = useRequest(() => {
-    return queryFakeList({
-      count: 10,
-    });
+    return queryList();
   });
-  const list = data?.list || [];
-  const nullData: Partial<CardListItemDataType> = {};
-  const DeleteClick = ()=>{
+  const pluginList = data?.data || [];
+
+  // 删除插件
+  const DeleteClick = (id: number)=>{
     Modal.confirm({
       title: '删除插件',
       content: '确定删除该插件吗？',
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
-        console.log('DEL')
+        console.log('DEL PLUGIN' , id)
       },
     });
   }
@@ -30,7 +31,7 @@ const CardList = () => {
   return (
     <PageContainer title={false}>
       <div className={styles.cardList}>
-        <List<Partial<CardListItemDataType>>
+        <List<Partial<PluginItem>>
           rowKey="id"
           loading={loading}
           grid={{
@@ -42,7 +43,7 @@ const CardList = () => {
             xl: 3,
             xxl: 4,
           }}
-          dataSource={[nullData, ...list]}
+          dataSource={[{}, ...pluginList]}
           renderItem={(item) => {
             if (item && item.id) {
               return (
@@ -52,12 +53,12 @@ const CardList = () => {
                     className={styles.card}
                     actions={[<a key="option1">配置</a>,<a key="option2" onClick={
                       () => {
-                        DeleteClick();
+                        DeleteClick(item.id);
                       }
                     }>删除</a>]}
                   >
                     <Card.Meta
-                      title={<div className='title'><span>{item.title}</span><Switch checkedChildren="开启" unCheckedChildren="关闭" defaultChecked /></div>}
+                      title={<div className='title'><span>{item.plugin_name}</span><Switch checkedChildren="开启" unCheckedChildren="关闭" checked={item.plugin_status === 1} /></div>}
                       description={
                         <Paragraph
                           className={styles.item}
@@ -65,7 +66,7 @@ const CardList = () => {
                             rows: 3,
                           }}
                         >
-                          {item.description}
+                          {item.plugin_desc}
                         </Paragraph>
                       }
                     />
@@ -86,4 +87,3 @@ const CardList = () => {
     </PageContainer>
   );
 };
-export default CardList;

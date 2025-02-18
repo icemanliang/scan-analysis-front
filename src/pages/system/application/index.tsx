@@ -1,62 +1,54 @@
 import { GridContent, PageContainer } from '@ant-design/pro-components';
 import { Card, Space, Table, Tag, Button, Modal } from 'antd';
 import type { TableProps } from 'antd';
-// import useStyles from './style.style';
-
-interface DataType {
-  key: string;
-  name: string;
-  owner: string;
-  desc: string;
-  tags: string[];
-}
+import { useRequest } from '@umijs/max';
+import { ApplicationItem } from './data.d';
+import { queryList } from './service';
 
 export default () => {
+  const { data, loading } = useRequest(() => {
+    return queryList();
+  });
+  const appList = data?.data || [];
 
-  const DeleteClick = ()=>{
+  // 删除应用
+  const DeleteClick = (id: string)=>{
     Modal.confirm({
-      title: '删除任务',
-      content: '确定删除该任务吗？',
+      title: '删除应用',
+      content: '确定删除该应用吗？',
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
-        console.log('DEL')
+        console.log('DEL', id)
       },
     });
   }
 
-  const columns: TableProps<DataType>['columns'] = [
+  const columns: TableProps<ApplicationItem>['columns'] = [
     {
       title: '应用名称',
-      dataIndex: 'name',
-      key: 'name',
-      // render: (text) => <a>{text}</a>,
+      dataIndex: 'app_name',
+      key: 'app_name',
     },
     {
       title: '应用负责人',
-      dataIndex: 'owner',
-      key: 'owner',
+      dataIndex: 'app_owner',
+      key: 'app_owner',
     },
     {
       title: '应用描述',
-      dataIndex: 'desc',
-      key: 'desc',
+      dataIndex: 'app_desc',
+      key: 'app_desc',
     },
     {
       title: '应用类型',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
+      key: 'app_tags',
+      dataIndex: 'app_tags',
+      render: (_, { app_tags }) => (
         <>
-          {tags.map((tag) => {
-            let color = 'red';
-            if (tag === '微前端主应用') {
-              color = 'volcano';
-            } else if (tag === 'Mot移动端') {
-              color = 'blue'
-            }
+          {app_tags.map((tag) => {
             return (
-              <Tag color={color} key={tag}>
+              <Tag color={'red'} key={tag}>
                 {tag.toUpperCase()}
               </Tag>
             );
@@ -72,36 +64,10 @@ export default () => {
           <a>编辑</a>
           <a onClick={
             () => {
-              DeleteClick();
+              DeleteClick(record.id.toString());
             }}>删除</a>
         </Space>
       ),
-    },
-  ];
-
-
-
-  const data: DataType[] = [
-    {
-      key: '1',
-      name: '配置管理平台',
-      owner: '刘五',
-      desc: '管理相关应用配置信息',
-      tags: ['微前端', '移动端'],
-    },
-    {
-      key: '2',
-      name: '内容运营系统',
-      owner: '刘七',
-      desc: '运营配置电商活动信息',
-      tags: ['PC端'],
-    },
-    {
-      key: '3',
-      name: '开放平台系统',
-      owner: '刘九',
-      desc: '对外开放平台相关管理',
-      tags: ['移动端'],
     },
   ];
 
@@ -112,7 +78,7 @@ export default () => {
     >
       <GridContent>
         <Card bordered={false}>
-          <Table<DataType> columns={columns} dataSource={data} />
+          <Table<ApplicationItem> columns={columns} dataSource={appList} loading={loading} />
         </Card>
       </GridContent>
     </PageContainer>

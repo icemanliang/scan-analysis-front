@@ -244,7 +244,7 @@ const Pieconfig = {
   ],
 };
 
-const Workplace: FC = () => {
+const Dependency: FC = () => {
   const { styles } = useStyles();
 
   return (
@@ -337,4 +337,4 @@ const Workplace: FC = () => {
     </PageContainer>
   );
 };
-export default Workplace;
+export default Dependency;

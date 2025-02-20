@@ -1,9 +1,11 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Col, Row, List, Typography, Progress } from 'antd';
+import { Card, Col, DatePicker, Row, List, Typography } from 'antd';
 import { Column, Pie } from '@ant-design/plots';
 import type { FC } from 'react';
 import useStyles from './style.style';
 import DepartmentHeader from '@/components/DepartmentHeader';
+import dayjs from 'dayjs';
+import type { Dayjs } from 'dayjs';
 
 const pkgData = [
   { pkgName: 'Generator函数占比', count: '+1.01' },
@@ -162,8 +164,9 @@ const nodePieconfig = {
   ],
 };
 
-const Workplace: FC = () => {
+const Main: FC = () => {
   const { styles } = useStyles();
+  const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
 
   return (
     <PageContainer
@@ -204,7 +207,14 @@ const Workplace: FC = () => {
 
       <Row gutter={24} style={{ marginTop: '24px' }}>
         <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-          <Card title={'全应用质量分排名'}>
+          <Card
+            title={'全应用质量分排名 & 变化明细'}
+            extra={<DatePicker.RangePicker
+              defaultValue={defaultRangeValue}
+              bordered={false}
+              size="small"
+            />}
+          >
             <Row>
               <Col md={17} sm={24} xs={24}>
                 <div style={{ paddingTop: '10px' }}>
@@ -232,4 +242,4 @@ const Workplace: FC = () => {
     </PageContainer>
   );
 };
-export default Workplace;
+export default Main;

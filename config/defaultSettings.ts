@@ -17,6 +17,7 @@ const Settings: ProLayoutProps & {
   colorWeak: false,
   title: '前端研发治理平台',
   pwa: false,
+  siderWidth: 200,
   logo: 'https://avatars.githubusercontent.com/u/21241289?v=4',
   iconfontUrl: '',
   token: {

@@ -83,7 +83,7 @@ const fileStatsDataDeal = (fileStats: Record<string, any>) => {
   });
 };
 
-const ConfigAnalysis: React.FC = () => {
+const Project: React.FC = () => {
   const { styles } = useStyles();
 
   const gitFileStatsData = {
@@ -271,4 +271,4 @@ const ConfigAnalysis: React.FC = () => {
   );
 };
 
-export default ConfigAnalysis;
+export default Project;

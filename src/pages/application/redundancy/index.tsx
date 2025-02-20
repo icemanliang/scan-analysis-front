@@ -5,7 +5,7 @@ import React from 'react';
 import useStyles from './style.style';
 import ApplicationHeader from '@/components/ApplicationHeader';
 
-const ConfigAnalysis: React.FC = () => {
+const Redundancy: React.FC = () => {
   const { styles } = useStyles();
 
   const gridStyle: React.CSSProperties = {
@@ -67,4 +67,4 @@ const ConfigAnalysis: React.FC = () => {
   );
 };
 
-export default ConfigAnalysis;
+export default Redundancy;

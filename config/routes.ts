@@ -76,8 +76,8 @@ export default [
       {
         name: '规范治理',
         icon: 'smile',
-        path: '/global/analysis',
-        component: './global/analysis',
+        path: '/global/standard',
+        component: './global/standard',
       },
       {
         name: '可读治理',

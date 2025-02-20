@@ -23,9 +23,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     links: [],
     menuHeaderRender: false,
     logout: undefined,                      // 禁用 logout 按钮
-    // siderWidth: 220,
     childrenRender: (children) => {
-
       return (
         <>
           {children}

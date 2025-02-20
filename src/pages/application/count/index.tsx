@@ -120,7 +120,7 @@ const BrowserApiData = {
   ],
 };
 
-const ConfigAnalysis: React.FC = () => {
+const Count: React.FC = () => {
   const { styles } = useStyles();
 
   const gridStyle: React.CSSProperties = {
@@ -192,4 +192,4 @@ const ConfigAnalysis: React.FC = () => {
   );
 };
 
-export default ConfigAnalysis;
+export default Count;

@@ -1,4 +1,4 @@
-import { Card, Tabs } from 'antd';
+import { Card } from 'antd';
 import useStyles from '../style.style';
 import CodeArea from './CodeArea';
 

@@ -1,13 +1,18 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Area } from '@ant-design/plots';
-import { Col, Row, Tooltip } from 'antd';
+import { Col, DatePicker, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
 import type { DataItem } from '../data.d';
 import useStyles from '../style.style';
-import { ChartCard } from './Charts';
+import { ChartCard } from '@/components/Charts';
+import dayjs from 'dayjs';
+import type { Dayjs } from 'dayjs';
+import Trend from '@/components/Trend';
 
 const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: DataItem[] }) => {
   const { styles } = useStyles();
+  const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
+
   return (
     <Row gutter={24}>
       <Col md={12}>
@@ -22,6 +27,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           }
           total={'67.1%'}
           contentHeight={46}
+          footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
+            flag="up"
+            style={{
+              marginRight: 16,
+              minWidth: 100,
+            }}
+          >
+            周同比
+            <span className={styles.trendText}>12%</span>
+          </Trend><DatePicker.RangePicker
+              defaultValue={defaultRangeValue}
+              bordered={false}
+              size="small"
+            /></div>}
         >
           <Area
             xField="x"
@@ -51,6 +70,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           }
           total={numeral(846).format('0,0')}
           contentHeight={46}
+          footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
+            flag="up"
+            style={{
+              marginRight: 16,
+              minWidth: 100,
+            }}
+          >
+            周同比
+            <span className={styles.trendText}>12%</span>
+          </Trend><DatePicker.RangePicker
+              defaultValue={defaultRangeValue}
+              bordered={false}
+              size="small"
+            /></div>}
         >
           <Area
             xField="x"
@@ -80,6 +113,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           }
           total={numeral(146).format('0,0')}
           contentHeight={46}
+          footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
+            flag="up"
+            style={{
+              marginRight: 16,
+              minWidth: 100,
+            }}
+          >
+            周同比
+            <span className={styles.trendText}>12%</span>
+          </Trend><DatePicker.RangePicker
+              defaultValue={defaultRangeValue}
+              bordered={false}
+              size="small"
+            /></div>}
         >
           <Area
             xField="x"
@@ -109,6 +156,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           }
           total={numeral(242).format('0,0')}
           contentHeight={46}
+          footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
+            flag="up"
+            style={{
+              marginRight: 16,
+              minWidth: 100,
+            }}
+          >
+            周同比
+            <span className={styles.trendText}>12%</span>
+          </Trend><DatePicker.RangePicker
+              defaultValue={defaultRangeValue}
+              bordered={false}
+              size="small"
+            /></div>}
         >
           <Area
             xField="x"

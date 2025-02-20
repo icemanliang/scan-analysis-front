@@ -3,7 +3,7 @@ import { Col, Row, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Pie, Area } from '@ant-design/plots';
 import numeral from 'numeral';
-import NumberInfo from '../NumberInfo';
+import NumberInfo from '@/components/NumberInfo';
 import useStyles from './index.style';
 
 const Pieconfig = {

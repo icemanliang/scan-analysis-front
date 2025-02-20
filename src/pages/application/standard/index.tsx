@@ -17,7 +17,7 @@ type AnalysisProps = {
   loading: boolean;
 };
 
-const Analysis: FC<AnalysisProps> = () => {
+const Standard: FC<AnalysisProps> = () => {
   // const { styles } = useStyles();
   const { loading, data } = useRequest(fakeChartData);
 
@@ -31,9 +31,7 @@ const Analysis: FC<AnalysisProps> = () => {
     >
     <GridContent>
       <>
-        <Suspense fallback={<PageLoading />}>
-          <IntroduceRow loading={loading} visitData={data?.esIntroduceData || []} />
-        </Suspense>
+        <IntroduceRow loading={loading} visitData={data?.esIntroduceData || []} />
         <Row
           gutter={24}
           style={{
@@ -59,9 +57,7 @@ const Analysis: FC<AnalysisProps> = () => {
           </Col>
         </Row>
         <Divider orientation="center">CSS规范检查</Divider>
-        <Suspense fallback={<PageLoading />}>
-          <IntroduceCssRow loading={loading} visitData={data?.cssIntroduceData || []} />
-        </Suspense>
+        <IntroduceCssRow loading={loading} visitData={data?.cssIntroduceData || []} />
         <Row
           gutter={24}
           style={{
@@ -90,4 +86,4 @@ const Analysis: FC<AnalysisProps> = () => {
     </PageContainer>
   );
 };
-export default Analysis;
+export default Standard;

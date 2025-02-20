@@ -1,14 +1,16 @@
 import { request } from '@umijs/max';
-import type { ActivitiesType, AnalysisData, NoticeType } from './data';
+import type { AppTrend, AppResult, AppRequest, TrendRequest } from './data';
 
-export async function queryProjectNotice(): Promise<{ data: NoticeType[] }> {
-  return request('/api/project/notice');
+export async function getAppResult(params: AppRequest): Promise<{ data: AppResult }> {
+  return request('/api/result/app', {
+    method: 'POST',
+    data: params,
+  });
 }
 
-export async function queryActivities(): Promise<{ data: ActivitiesType[] }> {
-  return request('/api/activities');
-}
-
-export async function fakeChartData(): Promise<{ data: AnalysisData }> {
-  return request('/api/fake_workplace_chart_data');
+export async function getAppTrend(params: TrendRequest): Promise<{ data: AppTrend[] }> {
+  return request('/api/result/app-trend', {
+    method: 'POST',
+    data: params,
+  });
 }

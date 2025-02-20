@@ -2,6 +2,7 @@ import { Pie } from '@ant-design/plots';
 import { Card } from 'antd';
 import numeral from 'numeral';
 import type { DataItem } from '../data.d';
+
 const ProportionSales = ({
   loading,
   salesPieData,

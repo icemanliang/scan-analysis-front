@@ -1,9 +1,6 @@
 import React from 'react';
-import { Col, Row, Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Pie, Area, Column } from '@ant-design/plots';
-import numeral from 'numeral';
-import NumberInfo from '../NumberInfo';
+import { Col, Row } from 'antd';
+import { Pie, Column } from '@ant-design/plots';
 import useStyles from './index.style';
 
 const Pieconfig = {
@@ -41,22 +38,6 @@ const Pieconfig = {
     },
   ],
 };
-
-const rankingListData = [
-  { title: '工专路 1 号店', total: 120000 },
-  { title: '工专路 2 号店', total: 100000 },
-  { title: '工专路 3 号店', total: 80000 },
-  { title: '工专路 4 号店', total: 60000 },
-  { title: '工专路 5 号店', total: 40000 },
-];
-
-const visitData2 = [
-  { x: '1', y: 1.12 },
-  { x: '2', y: 3.32 },
-  { x: '3', y: 2.42 },
-  { x: '4', y: 1.22 },
-  { x: '5', y: 4.02 },
-];
 
 const columnConfig = {
   data: [

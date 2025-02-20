@@ -1,10 +1,6 @@
-import { Select, DatePicker } from 'antd';
+import { Select } from 'antd';
 import React from 'react';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import useStyles from './style.style';
-import type { Dayjs } from 'dayjs';
-dayjs.extend(relativeTime);
 
 const handleChange = (value: string) => {
   console.log(`selected ${value}`);
@@ -12,7 +8,6 @@ const handleChange = (value: string) => {
 
 const DepartmentHeader: React.FC = () => {
   const { styles } = useStyles();
-  const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
 
   return (
     <div className={styles.pageHeaderContent}>
@@ -58,17 +53,6 @@ const DepartmentHeader: React.FC = () => {
               { value: '2025-01-10', label: '2025-01-10' },
               { value: '2025-01-03', label: '2025-01-03' }
             ]}
-          />
-        </div>
-      </div>
-      <div className={styles.content}>
-        <div style={{color: 'rgba(0,0,0,0.45)', marginBottom: '6px'}}>
-          分析周期
-        </div>
-        <div>
-          <DatePicker.RangePicker
-            defaultValue={defaultRangeValue}
-            style={{width: 250}}
           />
         </div>
       </div>

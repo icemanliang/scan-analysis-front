@@ -2,11 +2,9 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Area } from '@ant-design/plots';
 import { Card, Col, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
-import React from 'react';
 import type { DataItem } from '../data.d';
 import useStyles from '../style.style';
 import NumberInfo from './NumberInfo';
-// import Trend from './Trend';
 
 const rankingListData: {
   title: string;

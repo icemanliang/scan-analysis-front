@@ -2,11 +2,12 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Area } from '@ant-design/plots';
 import { Card, Col, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
-import React from 'react';
 import type { DataItem } from '../data.d';
 import useStyles from '../style.style';
-import NumberInfo from './NumberInfo';
-// import Trend from './Trend';
+import NumberInfo from '@/components/NumberInfo';
+import dayjs from 'dayjs';
+import type { Dayjs } from 'dayjs';
+import { DatePicker } from 'antd';
 
 const rankingListData: {
   title: string;
@@ -28,6 +29,7 @@ const TopSearch = ({
   visitData2: DataItem[];
 }) => {
   const { styles } = useStyles();
+  const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
 
   return (
     <Card
@@ -41,7 +43,8 @@ const TopSearch = ({
         <Col md={24}>
           <NumberInfo
             subTitle={
-              <span>
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                <span>
                 代码重复文件波及率走势
                 <Tooltip title="指标说明">
                   <InfoCircleOutlined
@@ -51,6 +54,12 @@ const TopSearch = ({
                   />
                 </Tooltip>
               </span>
+              <DatePicker.RangePicker
+                defaultValue={defaultRangeValue}
+                bordered={false}
+                size="small"
+              />
+              </div>
             }
             gap={8}
             total={numeral(12321).format('0,0')}
@@ -61,19 +70,23 @@ const TopSearch = ({
             xField="x"
             yField="y"
             shapeField="smooth"
-            height={45}
+            height={65}
             axis={false}
-            padding={-12}
-            style={{ fill: 'linear-gradient(-90deg, white 0%, #6294FA 100%)', fillOpacity: 0.4 }}
+            padding={-16}
+            style={{
+              fill: 'linear-gradient(-90deg, white 0%, #6294FA 100%)',
+              fillOpacity: 0.4,
+              width: '100%',
+            }}
             data={visitData2}
           />
         </Col>
       </Row>
       <Row>
         <Col md={24}>
-          <div style={{ padding: '8px 6px 8px 0px' }}>
+          <div style={{ padding: '8px 6px 8px 0px', marginTop: '10px' }}>
             <div style={{ fontWeight: 'bold', margin: '4px 0px 6px 0px' }}>波及率排名</div>
-            <ul className={styles.rankingList} style={{ height: '154px', overflow: 'auto', margin: '0px' }}>
+            <ul className={styles.rankingList} style={{ height: '186px', overflow: 'auto', margin: '0px' }}>
               {rankingListData.map((item, i) => (
                 <li key={item.title}>
                   <span

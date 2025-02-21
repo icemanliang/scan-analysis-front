@@ -13,6 +13,7 @@ const useStyles = createStyles(({ token }) => {
       fontSize: '14px',
       color: token.colorTextSecondary,
       textAlign: 'center',
+      marginTop: '20px'
     },
   };
 });

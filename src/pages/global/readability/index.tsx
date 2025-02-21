@@ -8,6 +8,7 @@ import TopSearch from './components/TopSearch';
 import type { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
 import DepartmentHeader from '@/components/DepartmentHeader';
+
 type AnalysisProps = {
   dashboardAndanalysis: AnalysisData;
   loading: boolean;
@@ -23,10 +24,17 @@ const Readability: FC<AnalysisProps> = () => {
       content={<DepartmentHeader/>}
     >
         <Row gutter={24}>
-          <Col md={15} >
-            <IntroduceRow loading={loading} visitData={data?.visitData || []} />
+          <Col md={16} >
+            <IntroduceRow
+              loading={loading}
+              visitData={data?.visitData || []}
+              tsFileData={data?.tsFileData || []}
+              tsTypeData={data?.tsTypeData || []}
+              classData={data?.classData || []}
+              GeneratorData={data?.GeneratorData || []}
+            />
           </Col>
-          <Col md={9} >
+          <Col md={8} >
             <TopSearch
               loading={loading}
               visitData2={data?.visitData2 || []}

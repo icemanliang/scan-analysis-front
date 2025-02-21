@@ -140,7 +140,7 @@ const useStyles = createStyles(({ token }) => {
       '.ant-tabs-tab-active h4': { color: token.colorPrimary },
     },
     trendText: {
-      marginLeft: '8px',
+      marginLeft: '5px',
       color: token.colorTextHeading,
     },
     rankingTitle: {

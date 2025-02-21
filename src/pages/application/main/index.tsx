@@ -9,68 +9,7 @@ import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { useRequest } from '@umijs/max';
 import { getAppResult, getAppTrend } from './service';
-
-
-const config = {
-  data: [
-    {
-      year: '依赖治理',
-      value: 1.5,
-      type: 'Lon',
-    },
-    {
-      year: '冗余优化',
-      value: 5.76,
-      type: 'Lon',
-    },
-    {
-      year: '工程规范',
-      value: 9.8,
-      type: 'Lon',
-    },
-    {
-      year: '调用优化',
-      value: 13.48,
-      type: 'Lon',
-    },
-    {
-      year: '代码规范',
-      value: 17.13,
-      type: 'Lon',
-    },
-    {
-      year: '依赖治理',
-      value: 4.5,
-      type: 'Bor',
-    },
-    {
-      year: '冗余优化',
-      value: 4.34,
-      type: 'Bor',
-    },
-    {
-      year: '工程规范',
-      value: 12.2,
-      type: 'Bor',
-    },
-    {
-      year: '调用优化',
-      value: 9,
-      type: 'Bor',
-    },
-    {
-      year: '代码规范',
-      value: 13.87,
-      type: 'Bor',
-    },
-  ],
-  xField: 'year',
-  yField: 'value',
-  stack: true,
-  maxAngle: 270,
-  colorField: 'type',
-  legend: false,
-};
+// import { size } from 'lodash';
 
 const Main: FC = () => {
   // const { styles } = useStyles();
@@ -86,21 +25,84 @@ const Main: FC = () => {
     keys: [{ name: 'qualityInfo', props: ['qualityScore'] }],
   }));
   const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
+  const config = {
+    data: [
+      {
+        year: '依赖治理',
+        value: 3.6,
+        type: 'Lon',
+      },
+      {
+        year: '冗余优化',
+        value: 7.59,
+        type: 'Lon',
+      },
+      {
+        year: '工程规范',
+        value: 11.32,
+        type: 'Lon',
+      },
+      {
+        year: '调用优化',
+        value: 10.97,
+        type: 'Lon',
+      },
+      {
+        year: '代码规范',
+        value: 20.78,
+        type: 'Lon',
+      },
+      {
+        year: '依赖治理',
+        value: 4.4,
+        type: 'Bor',
+      },
+      {
+        year: '冗余优化',
+        value: 2.41,
+        type: 'Bor',
+      },
+      {
+        year: '工程规范',
+        value: 10.68,
+        type: 'Bor',
+      },
+      {
+        year: '调用优化',
+        value: 10.03,
+        type: 'Bor',
+      },
+      {
+        year: '代码规范',
+        value: 8.22,
+        type: 'Bor',
+      },
+    ],
+    xField: 'year',
+    yField: 'value',
+    stack: true,
+    maxAngle: 270,
+    colorField: 'type',
+    legend: false,
+  };
   const tinyConfig = {
     data: [
-      38, 41, 34, 47, 48, 47, 49, 57, 50, 56, 62, 59, 68, 72, 83, 87, 92
+      28.23, 32.41, 36.72, 40.34, 41.12, 42.64, 43.25, 43.62, 45.36, 49.21, 48.42, 49.23, 52.36
     ].map((value, index) => ({ value, index })),
     height: 80,
-    padding: 5,
+    padding: 15,
     xField: 'index',
     yField: 'value',
+    style: {
+      maxWidth: 40,
+    },
     annotations: [
       {
         type: 'lineY',
         data: [70],
-        style: { arrow: true, stroke: 'red', lineDash: [2, 2] },
+        style: { arrow: true, stroke: 'red', lineDash: [4, 2] },
         label: {
-          text: '目标分值 = 70',
+          text: '年度OKR分值 = 70',
           position: 'left',
           dx: 0,
           style: { textBaseline: 'bottom' },
@@ -124,7 +126,7 @@ const Main: FC = () => {
               bordered={false}
             >
               <div style={{fontSize: '32px', fontWeight: 'bold', marginTop: '20px', textAlign: 'center'}}>
-                {appResult?.qualityInfo?.qualityScore?.total}
+                {52.36}
               </div>
               <RadialBar {...config} />
               <div style={{fontSize: '14px', color: 'rgba(0,0,0,0.45)', textAlign: 'center', margin: '20px 0px'}}>

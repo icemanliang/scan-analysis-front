@@ -3,123 +3,10 @@ import type { Request, Response } from 'express';
 import type { AnalysisData, DataItem, RadarData } from './data.d';
 
 // mock data
-const salesData = [];
-for (let i = 0; i < 12; i += 1) {
-  salesData.push({
-    x: `${i + 1}月`,
-    y: Math.floor(Math.random() * 1000) + 200,
-  });
-}
-const searchData = [];
-for (let i = 0; i < 50; i += 1) {
-  searchData.push({
-    index: i + 1,
-    keyword: `搜索关键词-${i}`,
-    count: Math.floor(Math.random() * 1000),
-    range: Math.floor(Math.random() * 100),
-    status: Math.floor((Math.random() * 10) % 2),
-  });
-}
-const salesTypeData = [
-  {
-    x: '家用电器',
-    y: 4544,
-  },
-  {
-    x: '食用酒水',
-    y: 3321,
-  },
-  {
-    x: '个护健康',
-    y: 3113,
-  },
-  {
-    x: '服饰箱包',
-    y: 2341,
-  },
-  {
-    x: '母婴产品',
-    y: 1231,
-  },
-  {
-    x: '其他',
-    y: 1231,
-  },
-];
-
-const offlineData = [];
-for (let i = 0; i < 10; i += 1) {
-  offlineData.push({
-    name: `Stores ${i}`,
-    cvr: Math.ceil(Math.random() * 9) / 10,
-  });
-}
-const offlineChartData = [];
-for (let i = 0; i < 20; i += 1) {
-  const date = dayjs(new Date().getTime() + 1000 * 60 * 30 * i).format('HH:mm');
-  offlineChartData.push({
-    date,
-    type: '客流量',
-    value: Math.floor(Math.random() * 100) + 10,
-  });
-  offlineChartData.push({
-    date,
-    type: '支付笔数',
-    value: Math.floor(Math.random() * 100) + 10,
-  });
-}
-
-const radarOriginData = [
-  {
-    name: '个人',
-    ref: 10,
-    koubei: 8,
-    output: 4,
-    contribute: 5,
-    hot: 7,
-  },
-  {
-    name: '团队',
-    ref: 3,
-    koubei: 9,
-    output: 6,
-    contribute: 3,
-    hot: 1,
-  },
-  {
-    name: '部门',
-    ref: 4,
-    koubei: 1,
-    output: 6,
-    contribute: 5,
-    hot: 7,
-  },
-];
-
-const radarData: RadarData[] = [];
-const radarTitleMap = {
-  ref: '引用',
-  koubei: '口碑',
-  output: '产量',
-  contribute: '贡献',
-  hot: '热度',
-};
-radarOriginData.forEach((item) => {
-  Object.keys(item).forEach((key) => {
-    if (key !== 'name') {
-      radarData.push({
-        name: item.name,
-        label: radarTitleMap[key as 'ref'],
-        value: item[key as 'ref'],
-      });
-    }
-  });
-});
-
 const esIntroduceData: DataItem[] = [];
 const beginDay = new Date().getTime();
 
-const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
+const fakeY = [7.1, 5.6, 4.2, 2.9, 3.8, 4.5, 5.1, 3.7, 3.5, 3.1, 4.2, 2.8, 2.6];
 for (let i = 0; i < fakeY.length; i += 1) {
   esIntroduceData.push({
     x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
@@ -128,11 +15,29 @@ for (let i = 0; i < fakeY.length; i += 1) {
 }
 
 const cssIntroduceData = [];
-const fakeY2 = [1, 6, 4, 8, 3, 7, 2];
+const fakeY2 = [4.2, 3.9, 3.4, 5.1, 3.5, 4.5, 2.9, 3.2, 3.9, 2.4, 1.3, 2.1, 1.9];
 for (let i = 0; i < fakeY2.length; i += 1) {
   cssIntroduceData.push({
     x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
     y: fakeY2[i],
+  });
+}
+
+const cssClassData = [];
+const fakeY3 = [ 80, 60, 78, 76, 68, 75, 64, 46, 53, 43, 27, 30, 32];
+for (let i = 0; i < fakeY2.length; i += 1) {
+  cssClassData.push({
+    x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
+    y: fakeY3[i],
+  });
+}
+
+const jsComplexData = [];
+const fakeY4 = [4.2, 3.9, 3.4, 5.1, 3.5, 4.5, 2.9, 3.2, 3.9, 2.4, 1.3, 2.4, 2.6];
+for (let i = 0; i < fakeY2.length; i += 1) {
+  jsComplexData.push({
+    x: dayjs(new Date(beginDay + 1000 * 60 * 60 * 24 * i)).format('YYYY-MM-DD'),
+    y: fakeY4[i],
   });
 }
 
@@ -192,8 +97,52 @@ const cssRuleData = [
 
 const esErrorsData = [
   {
-    filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
+    filePath: 'src/lib/utils/index.js',
+    errorsCount: 224,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/lib/utils/dealFunc.js',
+    errorsCount: 189,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/components/first/view.jsx',
+    errorsCount: 165,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/components/home/view.jsx',
+    errorsCount: 123,
+    errorsInfo: [
+      {
+        rule:'no-unused-vars',
+        message:'Declare only one React component per file',
+        line: 123
+      }
+    ]
+  },
+  {
+    filePath: 'src/components/main/api/list/view.jsx',
+    errorsCount: 98,
     errorsInfo: [
       {
         rule:'no-unused-vars',
@@ -204,7 +153,7 @@ const esErrorsData = [
   },
   {
     filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
+    errorsCount: 76,
     errorsInfo: [
       {
         rule:'no-unused-vars',
@@ -214,8 +163,8 @@ const esErrorsData = [
     ]
   },
   {
-    filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
+    filePath: 'src/lib/camal-case-convertor.js',
+    errorsCount: 45,
     errorsInfo: [
       {
         rule:'no-unused-vars',
@@ -225,51 +174,7 @@ const esErrorsData = [
     ]
   },
   {
-    filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
-    errorsInfo: [
-      {
-        rule:'no-unused-vars',
-        message:'Declare only one React component per file',
-        line: 123
-      }
-    ]
-  },
-  {
-    filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
-    errorsInfo: [
-      {
-        rule:'no-unused-vars',
-        message:'Declare only one React component per file',
-        line: 123
-      }
-    ]
-  },
-  {
-    filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
-    errorsInfo: [
-      {
-        rule:'no-unused-vars',
-        message:'Declare only one React component per file',
-        line: 123
-      }
-    ]
-  },
-  {
-    filePath: 'src/component/manage-user/edit/data.js',
-    errorsCount: 24,
-    errorsInfo: [
-      {
-        rule:'no-unused-vars',
-        message:'Declare only one React component per file',
-        line: 123
-      }
-    ]
-  },
-  {
-    filePath: 'src/component/manage-user/edit/data.js',
+    filePath: 'src/components/first/reducer.js',
     errorsCount: 24,
     errorsInfo: [
       {
@@ -283,7 +188,7 @@ const esErrorsData = [
 
 const cssErrorsData = [
   {
-    filePath: 'src/component/los/handle-board/style.css',
+    filePath: 'src/pages/log/alarm-list/index.less',
     errorsCount: 65,
     errorsInfo: [
       {
@@ -294,7 +199,7 @@ const cssErrorsData = [
     ]
   },
   {
-    filePath: 'src/component/los/handle-board/style.css',
+    filePath: 'src/components/common/anchor/receive-data/style.less',
     errorsCount: 34,
     errorsInfo: [
       {
@@ -316,7 +221,7 @@ const cssErrorsData = [
     ]
   },
   {
-    filePath: 'src/component/los/handle-board/style.css',
+    filePath: 'src/components/home/detail/style.less',
     errorsCount: 20,
     errorsInfo: [
       {
@@ -327,7 +232,7 @@ const cssErrorsData = [
     ]
   },
   {
-    filePath: 'src/component/los/handle-board/style.css',
+    filePath: 'src/components/main/welcome/list/style.less',
     errorsCount: 15,
     errorsInfo: [
       {
@@ -338,7 +243,7 @@ const cssErrorsData = [
     ]
   },
   {
-    filePath: 'src/component/los/handle-board/style.css',
+    filePath: 'src/component/shift/shift-down/style.css',
     errorsCount: 12,
     errorsInfo: [
       {
@@ -351,18 +256,14 @@ const cssErrorsData = [
 ];
 
 const getFakeChartData: AnalysisData = {
-  salesData,
-  searchData,
-  offlineData,
-  offlineChartData,
-  salesTypeData,
-  radarData,
   esRuleData,
   esErrorsData,
   cssRuleData,
   cssErrorsData,
   esIntroduceData,
-  cssIntroduceData
+  cssIntroduceData,
+  cssClassData,
+  jsComplexData
 };
 
 const fakeChartData = (_: Request, res: Response) => {

@@ -6,6 +6,55 @@ import useStyles from './style.style';
 import ApplicationHeader from '@/components/ApplicationHeader';
 
 const BrowserApiData = {
+  "window.location": [
+    {
+        "line": 9,
+        "file": "src/pages/system-manage/basic/helpers/index.js"
+    },
+    {
+        "line": 9,
+        "file": "src/pages/system-manage/basic/helpers/index.js"
+    },
+    {
+        "line": 10,
+        "file": "src/pages/system-manage/basic/helpers/index.js"
+    },
+    {
+      "line": 9,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  },
+  {
+      "line": 9,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  },
+  {
+      "line": 10,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  },{
+        "line": 9,
+        "file": "src/pages/system-manage/basic/helpers/index.js"
+    },
+    {
+        "line": 9,
+        "file": "src/pages/system-manage/basic/helpers/index.js"
+    },
+    {
+        "line": 10,
+        "file": "src/pages/system-manage/basic/helpers/index.js"
+    },
+    {
+      "line": 9,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  },
+  {
+      "line": 9,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  },
+  {
+      "line": 10,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  }
+  ],
   "history.push": [
     {
         "line": 148,
@@ -22,9 +71,17 @@ const BrowserApiData = {
     {
         "line": 24,
         "file": "src/pages/excepql/list/components/content.jsx"
-    }
+    },
+    {
+      "line": 101,
+      "file": "src/pages/nav/view.jsx"
+  },
+  {
+      "line": 24,
+      "file": "src/pages/excepql/list/components/content.jsx"
+  }
   ],
-  "window.crypto": [
+  "document.querySelector": [
     {
         "line": 9,
         "file": "src/pages/system-manage/basic/helpers/index.js"
@@ -36,7 +93,15 @@ const BrowserApiData = {
     {
         "line": 10,
         "file": "src/pages/system-manage/basic/helpers/index.js"
-    }
+    },
+    {
+      "line": 9,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  },
+  {
+      "line": 10,
+      "file": "src/pages/system-manage/basic/helpers/index.js"
+  }
   ],
   "document.getElementById": [
     {
@@ -108,16 +173,6 @@ const BrowserApiData = {
         "file": "src/public-component/message/count-down.jsx"
     }
   ],
-  "document.querySelector": [
-    {
-        "line": 63,
-        "file": "src/entry.jsx"
-    },
-    {
-        "line": 36,
-        "file": "src/public-component/message/count-down.jsx"
-    }
-  ],
 };
 
 const Count: React.FC = () => {
@@ -142,15 +197,15 @@ const Count: React.FC = () => {
             <Col span={24}>
               <Card>
                 <Card.Grid style={gridStyle}>
-                  <div className={styles.analysisDesc}>缺失类型定义TS函数总数</div>
+                  <div className={styles.analysisDesc}>缺失TS类型定义函数总数</div>
                   <div className={styles.analysisNumber}>5</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
-                  <div className={styles.analysisDesc}>Class类组件声明存量</div>
+                  <div className={styles.analysisDesc}>Class类组件声明总数</div>
                   <div className={styles.analysisNumber}>6</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
-                  <div className={styles.analysisDesc}>GENERATOR函数存量</div>
+                  <div className={styles.analysisDesc}>GENERATOR函数总数</div>
                   <div className={styles.analysisNumber}>6</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
@@ -169,17 +224,19 @@ const Count: React.FC = () => {
               <CallList />
             </Col>
             <Col xl={10} lg={24} md={24} sm={24} xs={24}>
-              <Card title="BrowserApi分析" style={{ marginTop: 24 }}>
+              <Card title="BrowserApi调用分析" style={{ marginTop: 24 }}>
               <List
                 dataSource={Object.keys(BrowserApiData).map((key) => ({
                   filePath: key,
                   count: BrowserApiData[key].length,
                 }))}
                 style={{ height: 370, overflow: 'auto' }}
-                renderItem={(item) => (
-                  <List.Item>
-                    <Typography.Text>{item.filePath}</Typography.Text>
-                    <Typography.Text>{item.count}</Typography.Text>
+                renderItem={(item, index) => (
+                  <List.Item style={{cursor:'pointer'}}>
+                    <Typography.Text style={{color: index<3 ? '#f2580b' : index<1 ? 'red' : '#000'}}>{item.filePath}</Typography.Text>
+                    <Typography.Text style={{color: index<3 ? '#f2580b' : index<1 ? 'red' : '#000', fontWeight:'bold'}}>
+                      {item.count} <span style={{fontSize: '10px'}}>次</span>
+                    </Typography.Text>
                   </List.Item>
                 )}
               />

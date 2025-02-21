@@ -6,21 +6,30 @@ import useStyles from './style.style';
 import DepartmentHeader from '@/components/DepartmentHeader';
 
 const pkgData = [
-  { pkgName: 'antd', count: 102 },
-  { pkgName: 'lodash', count: 90 },
-  { pkgName: 'react', count: 80 },
-  { pkgName: 'vue', count: 70 },
-  { pkgName: 'angular', count: 60 },
-  { pkgName: 'jquery', count: 50 },
-  { pkgName: 'bootstrap', count: 40 },
-  { pkgName: 'nodejs', count: 30 },
-  { pkgName: 'express', count: 20 },
-  { pkgName: 'koa', count: 10 },
+  { pkgName: 'antd', count: 4712, isPrivate: false },
+  { pkgName: 'lodash', count: 1190, isPrivate: false },
+  { pkgName: 'react', count: 880, isPrivate: false },
+  { pkgName: '@iceman/hooks', count: 570, isPrivate: true},
+  { pkgName: 'moment', count: 440, isPrivate: false },
+  { pkgName: '@iceman/store', count: 230, isPrivate: true },
+  { pkgName: 'xlsx', count: 20, isPrivate: false },
+  { pkgName: 'redux', count: 10, isPrivate: false },
+];
+
+const versionData = [
+  { pkgName: 'antd', count: 65, isPrivate: false },
+  { pkgName: 'react', count: 44, isPrivate: false },
+  { pkgName: 'react-dom', count: 44, isPrivate: false },
+  { pkgName: '@iceman/store', count: 35, isPrivate: true},
+  { pkgName: '@iceman/i18n', count: 32, isPrivate: true },
+  { pkgName: 'classnames', count: 26, isPrivate: false },
+  { pkgName: 'typescript', count: 20, isPrivate: false },
+  { pkgName: 'query-string', count: 12, isPrivate: false },
 ];
 
 const RoseData = {
-  "Message": {
-      "count": 125,
+  "Button": {
+      "count": 1235,
       "files": [
           "src/utils/threshold.js",
           "src/pages/nav/store.js",
@@ -29,8 +38,8 @@ const RoseData = {
           "src/public-component/form/form.jsx"
       ]
   },
-  "Spin": {
-      "count": 113,
+  "List": {
+      "count": 893,
       "files": [
           "src/pages/exception-sql/rule/view.jsx",
           "src/pages/board/comprehensive/jsx/content.jsx",
@@ -38,7 +47,7 @@ const RoseData = {
       ]
   },
   "Form": {
-      "count": 104,
+      "count": 404,
       "files": [
           "src/pages/board/quality-detail/jsx/header.jsx",
           "src/pages/board/todo-follow/jsx/list.jsx",
@@ -46,7 +55,7 @@ const RoseData = {
       ]
   },
   "Grid": {
-      "count": 104,
+      "count": 348,
       "files": [
           "src/pages/system-manage/patrol-config/jsx/handle.jsx",
           "src/pages/system-manage/release-detail/jsx/handle.jsx",
@@ -55,7 +64,7 @@ const RoseData = {
       ]
   },
   "Input": {
-      "count": 89,
+      "count": 319,
       "files": [
           "src/public-component/dialog/dialog.jsx",
           "src/public-component/form/form.jsx",
@@ -63,7 +72,7 @@ const RoseData = {
       ]
   },
   "Textarea": {
-      "count": 78,
+      "count": 278,
       "files": [
           "src/public-component/dialog/dialog.jsx",
           "src/pages/system-manage/dept-config/view.jsx",
@@ -72,8 +81,8 @@ const RoseData = {
           "src/pages/config/indicator-data-pool/jsx/handle.jsx"
       ]
   },
-  "Button": {
-      "count": 66,
+  "Message": {
+      "count": 266,
       "files": [
           "src/public-component/dialog/dialog.jsx",
           "src/public-component/form/form.jsx",
@@ -81,7 +90,7 @@ const RoseData = {
       ]
   },
   "Checkbox": {
-      "count": 60,
+      "count": 260,
       "files": [
           "src/pages/board/comprehensive/jsx/content.jsx",
           "src/pages/board/quality/components/accidentTrendECharts.jsx",
@@ -93,7 +102,7 @@ const RoseData = {
       ]
   },
   "Table": {
-      "count": 40,
+      "count": 140,
       "files": [
           "src/public-component/table/table.jsx",
           "src/pages/board/comprehensive/jsx/content.jsx",
@@ -104,13 +113,13 @@ const RoseData = {
       ]
   },
   "Breadcrumb": {
-      "count": 20,
+      "count": 120,
       "files": [
           "src/pages/nav/jsx/header.jsx"
       ]
   },
   "Radio": {
-      "count": 10,
+      "count": 103,
       "files": [
           "src/pages/capacity-data/push-remind-config/components/columns-cmp.jsx",
           "src/pages/system-manage/job-config/jsx/handle.jsx",
@@ -119,13 +128,13 @@ const RoseData = {
       ]
   },
   "CardGroup": {
-      "count": 10,
+      "count": 78,
       "files": [
           "src/pages/architecture-governace/home/view.jsx"
       ]
   },
   "Card": {
-      "count": 9,
+      "count": 49,
       "files": [
           "src/pages/exception-sql/rule/view.jsx",
           "src/pages/exception-sql/overview/components/content.jsx",
@@ -133,7 +142,7 @@ const RoseData = {
       ]
   },
   "Switch": {
-      "count": 7,
+      "count": 57,
       "files": [
           "src/pages/system-manage/json-data-config/page.jsx",
           "src/pages/system-manage/indicator-info-config/jsx/list.jsx",
@@ -143,7 +152,7 @@ const RoseData = {
       ]
   },
   "Select": {
-      "count": 6,
+      "count": 26,
       "files": [
           "src/public-component/dialog/dialog.jsx",
           "src/public-component/form/form.jsx",
@@ -159,7 +168,7 @@ const RoseData = {
       ]
   },
   "Tabs": {
-      "count": 3,
+      "count": 23,
       "files": [
           "src/pages/board/comprehensive/jsx/content.jsx",
           "src/pages/board/cost/jsx/content.jsx",
@@ -168,7 +177,7 @@ const RoseData = {
       ]
   },
   "DatePicker": {
-      "count": 1,
+      "count": 11,
       "files": [
           "src/public-component/dialog/dialog.jsx",
           "src/public-component/form/form.jsx",
@@ -180,7 +189,7 @@ const RoseData = {
 };
 
 const Columnconfig = {
-  height: 280,
+  height: 295,
   data: Object.entries(RoseData).map(([key, value]) => ({
     api: key,
     callNum: value.count
@@ -205,12 +214,12 @@ const Columnconfig = {
 
 const Pieconfig = {
   data: [
-    { type: '18.3.1', value: 27 },
-    { type: '18.2.0', value: 25 },
-    { type: '17.0.2', value: 18 },
+    { type: '18.3.1', value: 6 },
+    { type: '18.2.0', value: 7 },
+    { type: '17.0.2', value: 12 },
     { type: '17.0.1', value: 15 },
     { type: '16.8.6', value: 10 },
-    { type: '16.8.4', value: 10 }
+    { type: '16.8.4', value: 15 }
   ],
   height: 320,
   angleField: 'value',
@@ -233,7 +242,7 @@ const Pieconfig = {
     {
       type: 'text',
       style: {
-        text: 'Antd 版本分布',
+        text: 'antd 版本分布',
         x: '50%',
         y: '50%',
         textAlign: 'center',
@@ -257,13 +266,13 @@ const Dependency: FC = () => {
         <Col md={6} sm={12} xs={24}>
           <Card>
             <div className={styles.analysisDesc}>依赖包总数</div>
-            <div className={styles.analysisNumber}>53</div>
+            <div className={styles.analysisNumber}>123</div>
           </Card>
         </Col>
         <Col md={6} sm={12} xs={24}>
           <Card>
             <div className={styles.analysisDesc}>内部包总数</div>
-            <div className={styles.analysisNumber}>13</div>
+            <div className={styles.analysisNumber}>25</div>
           </Card>
         </Col>
         <Col md={6} sm={12} xs={24}>
@@ -284,14 +293,17 @@ const Dependency: FC = () => {
           <Card title={'依赖包导出被引用分析'} style={{ marginTop: '24px' }}>
             <Row>
               <Col md={7} sm={24} xs={24}>
-                <div style={{ height: 280, overflow: 'auto', border: '1px solid #e8e8e8', padding: '0px 10px', borderRadius: '4px' }}>
+                <div style={{ height: 282, overflow: 'auto', border: '1px solid #e8e8e8', padding: '0px 10px', borderRadius: '4px' }}>
                   <List
                     dataSource={pkgData}
                     renderItem={
-                      (item, index) => <List.Item>
-                        <Typography.Text><span style={{ fontWeight: 'bold' }}>{index + 1}</span>
-                        <span style={{ marginLeft: '20px' }}>{item.pkgName}<Tag color="red" style={{ marginLeft: '10px' }}>{'外部包'}</Tag></span></Typography.Text>
-                        <Typography.Text><span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span></Typography.Text>
+                      (item) => <List.Item>
+                        <Typography.Text>
+                        <Tag color={item.isPrivate ? "red" : "blue"} style={{ marginLeft: '5px' }}>{item.isPrivate ? '内部包' : '外部包'}</Tag><span style={{ marginLeft: '5px' }}>{item.pkgName}</span></Typography.Text>
+                        <Typography.Text>
+                          <span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span>
+                          <span style={{ marginLeft: '5px', fontSize: '10px'}}>次</span>
+                        </Typography.Text>
                       </List.Item>
                     }
                   />
@@ -299,7 +311,7 @@ const Dependency: FC = () => {
               </Col>
               <Col md={17} sm={24} xs={24}>
                 <div style={{ paddingLeft: '20px' }}>
-                  <div style={{ fontSize: '14px', fontWeight: 'bold', textAlign: 'center', marginBottom: '10px' }}>antd5 导出 api 被引用次数及分布</div>
+                <div style={{width:'100%', position:'absolute', top: '10px', textAlign:'center', color:'grey'}}>antd 导出 api 被引用次数及分布</div>
                   <Column {...Columnconfig} />
                 </div>
               </Col>
@@ -314,12 +326,15 @@ const Dependency: FC = () => {
               <Col md={7} sm={24} xs={24}>
                 <div style={{ height: 280, overflow: 'auto', border: '1px solid #e8e8e8', padding: '0px 10px', borderRadius: '4px' }}>
                   <List
-                    dataSource={pkgData}
+                    dataSource={versionData}
                     renderItem={
-                      (item, index) => <List.Item>
-                        <Typography.Text><span style={{ fontWeight: 'bold' }}>{index + 1}</span>
-                        <span style={{ marginLeft: '20px' }}>{item.pkgName}<Tag color="red" style={{ marginLeft: '10px' }}>{'内部包'}</Tag></span></Typography.Text>
-                        <Typography.Text><span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span></Typography.Text>
+                      (item) => <List.Item>
+                        <Typography.Text>
+                        <Tag color={item.isPrivate ? "red" : "blue"} style={{ marginLeft: '5px' }}>{item.isPrivate ? '内部包' : '外部包'}</Tag><span style={{ marginLeft: '5px' }}>{item.pkgName}</span></Typography.Text>
+                        <Typography.Text>
+                          <span style={{fontSize:'11px'}}>依赖度：</span>
+                          <span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span>
+                        </Typography.Text>
                       </List.Item>
                     }
                   />

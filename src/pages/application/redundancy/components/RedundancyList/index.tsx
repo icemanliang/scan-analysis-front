@@ -8,76 +8,71 @@ const fakeData = [
     {
         "files": [
             {
-                "endLine": 110,
+                "endLine": 412,
                 "startLine": 1,
                 "name": "src/pages/config/rtx/jsx/handle.jsx"
             },
             {
-                "endLine": 110,
+                "endLine": 412,
                 "startLine": 1,
                 "name": "src/pages/config/cost/jsx/handle.jsx"
             },
             {
-                "endLine": 110,
+                "endLine": 412,
                 "startLine": 1,
                 "name": "src/pages/config/sla/jsx/handle.jsx"
-            },
-            {
-                "endLine": 110,
-                "startLine": 1,
-                "name": "src/pages/config/sqlr/jsx/handle.jsx"
             }
         ],
         "tokens": 2,
-        "lines": 109
+        "lines": 412
     },
     {
         "files": [
             {
-                "endLine": 235,
-                "startLine": 18,
-                "name": "src/pages/config/sqld/jsx/header.jsx"
+                "endLine": 432,
+                "startLine": 24,
+                "name": "src/component/service/check/part/business.jsx"
             },
             {
-                "endLine": 235,
-                "startLine": 18,
-                "name": "src/pages/config/pagePerformance/jsx/header.jsx"
+                "endLine": 431,
+                "startLine": 23,
+                "name": "src/component/group/check/part/change.jsx"
             }
         ],
         "tokens": 2,
-        "lines": 217
+        "lines": 409
     },
     {
         "files": [
             {
-                "endLine": 183,
-                "startLine": 1,
-                "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+                "endLine": 423,
+                "startLine": 26,
+                "name": "src/component/lmds/declare-rule/rule-test/left-side.jsx"
             },
             {
-                "endLine": 183,
-                "startLine": 1,
-                "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+                "endLine": 423,
+                "startLine": 26,
+                "name": "src/pages/board/stab/components/fourt/side.jsx"
             }
         ],
         "tokens": 2,
-        "lines": 182
+        "lines": 398
     },
     {
       "files": [
           {
-              "endLine": 183,
-              "startLine": 1,
-              "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+              "endLine": 73,
+              "startLine": 16,
+              "name": "src/components/main/api/detail/jsx/index.jsx"
           },
           {
-              "endLine": 183,
-              "startLine": 1,
-              "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+              "endLine": 74,
+              "startLine": 17,
+              "name": "src/components/home/detail/apiParsing.jsx"
           }
       ],
       "tokens": 2,
-      "lines": 182
+      "lines": 58
   },
   {
     "files": [
@@ -93,39 +88,23 @@ const fakeData = [
         }
     ],
     "tokens": 2,
-    "lines": 182
+    "lines": 183
 },
 {
   "files": [
       {
-          "endLine": 183,
+          "endLine": 75,
           "startLine": 1,
-          "name": "src/pages/excep/check/components/fourt/echarts.jsx"
+          "name": "src/layout/components/market.jsx"
       },
       {
-          "endLine": 183,
+          "endLine": 75,
           "startLine": 1,
-          "name": "src/pages/board/stab/components/fourt/echarts.jsx"
+          "name": "src/layout/components/info.jsx"
       }
   ],
   "tokens": 2,
-  "lines": 182
-},
-{
-  "files": [
-      {
-          "endLine": 183,
-          "startLine": 1,
-          "name": "src/pages/excep/check/components/fourt/echarts.jsx"
-      },
-      {
-          "endLine": 183,
-          "startLine": 1,
-          "name": "src/pages/board/stab/components/fourt/echarts.jsx"
-      }
-  ],
-  "tokens": 2,
-  "lines": 182
+  "lines": 75
 }
 ];
 
@@ -151,7 +130,7 @@ export default function RedundancyFileList(props: IProps) {
         dataSource={fakeData}
         loading={loading}
         style={{
-          height: 400, // 设置高度为 300px
+          height: 350, // 设置高度为 300px
           overflowY: 'auto', // 开启垂直滚动
         }}
         renderItem={(item, index) => {

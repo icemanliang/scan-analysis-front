@@ -1,25 +1,21 @@
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Area } from '@ant-design/plots';
 import { Card, Col, Row, Tooltip } from 'antd';
 import numeral from 'numeral';
 import type { DataItem } from '../data.d';
 import useStyles from '../style.style';
 import NumberInfo from '@/components/NumberInfo';
-import dayjs from 'dayjs';
-import type { Dayjs } from 'dayjs';
-import { DatePicker } from 'antd';
 
 const rankingListData: {
   title: string;
   value: string;
-}[] = [];
-
-for (let i = 0; i < 7; i += 1) {
-  rankingListData.push({
-    title: `管理系统 ${i} 号`,
-    value: '21.2%',
-  });
-}
+}[] = [
+  { title: '生产管理系统', value: '28.01%' },
+  { title: '分发管理系统', value: '25.52%' },
+  { title: '搜索管理系统', value: '23.13%' },
+  { title: '研发管理系统', value: '18.73%' },
+  { title: '商品管理系统', value: '15.54%' },
+];
 
 const TopSearch = ({
   loading,
@@ -29,7 +25,6 @@ const TopSearch = ({
   visitData2: DataItem[];
 }) => {
   const { styles } = useStyles();
-  const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
 
   return (
     <Card
@@ -54,11 +49,7 @@ const TopSearch = ({
                   />
                 </Tooltip>
               </span>
-              <DatePicker.RangePicker
-                defaultValue={defaultRangeValue}
-                bordered={false}
-                size="small"
-              />
+              {<CalendarOutlined />}
               </div>
             }
             gap={8}

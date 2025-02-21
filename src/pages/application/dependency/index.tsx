@@ -1,5 +1,5 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Col, Row, Progress, List, Typography } from 'antd';
+import { Card, Col, Row, Progress, List, Typography, Tag } from 'antd';
 import { Column } from '@ant-design/plots';
 import type { FC } from 'react';
 import useStyles from './style.style';
@@ -7,20 +7,19 @@ import RiskPackageList from './components/RiskPackageList';
 import ApplicationHeader from '@/components/ApplicationHeader';
 
 const pkgData = [
-  { pkgName: 'antd', count: 102 },
-  { pkgName: 'lodash', count: 90 },
-  { pkgName: 'react', count: 80 },
-  { pkgName: 'vue', count: 70 },
-  { pkgName: 'angular', count: 60 },
-  { pkgName: 'jquery', count: 50 },
-  { pkgName: 'bootstrap', count: 40 },
-  { pkgName: 'nodejs', count: 30 },
-  { pkgName: 'express', count: 20 },
-  { pkgName: 'koa', count: 10 },
+  { pkgName: 'antd', count: 779, isPrivate: false },
+  { pkgName: 'lodash', count: 191, isPrivate: false },
+  { pkgName: 'react', count: 80, isPrivate: false },
+  { pkgName: '@iceman/hooks', count: 32, isPrivate: true },
+  { pkgName: 'echarts', count: 18, isPrivate: false },
+  { pkgName: 'object-assign', count: 13, isPrivate: false },
+  { pkgName: 'jsoneditor', count: 3, isPrivate: false },
+  { pkgName: 'js-cookie', count: 2, isPrivate: false },
+  { pkgName: 'copy-list', count: 1, isPrivate: false },
 ];
 
 const RoseData = {
-  "Message": {
+  "Button": {
       "count": 125,
       "files": [
           "src/utils/threshold.js",
@@ -30,7 +29,7 @@ const RoseData = {
           "src/public-component/form/form.jsx"
       ]
   },
-  "Spin": {
+  "List": {
       "count": 113,
       "files": [
           "src/pages/exception-sql/rule/view.jsx",
@@ -47,7 +46,7 @@ const RoseData = {
       ]
   },
   "Grid": {
-      "count": 104,
+      "count": 92,
       "files": [
           "src/pages/system-manage/patrol-config/jsx/handle.jsx",
           "src/pages/system-manage/release-detail/jsx/handle.jsx",
@@ -73,7 +72,7 @@ const RoseData = {
           "src/pages/config/indicator-data-pool/jsx/handle.jsx"
       ]
   },
-  "Button": {
+  "Message": {
       "count": 66,
       "files": [
           "src/public-component/dialog/dialog.jsx",
@@ -94,7 +93,7 @@ const RoseData = {
       ]
   },
   "Table": {
-      "count": 40,
+      "count": 23,
       "files": [
           "src/public-component/table/table.jsx",
           "src/pages/board/comprehensive/jsx/content.jsx",
@@ -105,13 +104,13 @@ const RoseData = {
       ]
   },
   "Breadcrumb": {
-      "count": 20,
+      "count": 9,
       "files": [
           "src/pages/nav/jsx/header.jsx"
       ]
   },
   "Radio": {
-      "count": 10,
+      "count": 7,
       "files": [
           "src/pages/capacity-data/push-remind-config/components/columns-cmp.jsx",
           "src/pages/system-manage/job-config/jsx/handle.jsx",
@@ -120,13 +119,13 @@ const RoseData = {
       ]
   },
   "CardGroup": {
-      "count": 10,
+      "count": 4,
       "files": [
           "src/pages/architecture-governace/home/view.jsx"
       ]
   },
   "Card": {
-      "count": 9,
+      "count": 3,
       "files": [
           "src/pages/exception-sql/rule/view.jsx",
           "src/pages/exception-sql/overview/components/content.jsx",
@@ -134,7 +133,7 @@ const RoseData = {
       ]
   },
   "Switch": {
-      "count": 7,
+      "count": 2,
       "files": [
           "src/pages/system-manage/json-data-config/page.jsx",
           "src/pages/system-manage/indicator-info-config/jsx/list.jsx",
@@ -144,7 +143,7 @@ const RoseData = {
       ]
   },
   "Select": {
-      "count": 6,
+      "count": 2,
       "files": [
           "src/public-component/dialog/dialog.jsx",
           "src/public-component/form/form.jsx",
@@ -160,7 +159,7 @@ const RoseData = {
       ]
   },
   "Tabs": {
-      "count": 3,
+      "count": 1,
       "files": [
           "src/pages/board/comprehensive/jsx/content.jsx",
           "src/pages/board/cost/jsx/content.jsx",
@@ -181,7 +180,7 @@ const RoseData = {
 };
 
 const Columnconfig = {
-  height: 280,
+  height: 295,
   data: Object.entries(RoseData).map(([key, value]) => ({
     api: key,
     callNum: value.count
@@ -196,7 +195,7 @@ const Columnconfig = {
   },
   scrollbar: {
     x: {
-      ratio: 0.5,
+      ratio: 0.6,
     },
   },
   style: {
@@ -259,12 +258,15 @@ const Dependency: FC = () => {
                   <List
                     dataSource={pkgData}
                     renderItem={
-                      (item, index) => <List.Item>
+                      (item) => <List.Item>
                         <Typography.Text>
-                          <span style={{ marginRight: '10px', fontWeight: 'bold' }}>{index + 1}</span>
-                          <span style={{ color: index === 0 ? 'red' : '#000', marginLeft: '10px' }}>{item.pkgName}</span>
+                          <Tag color={item.isPrivate ? "red" : "blue"} style={{ marginLeft: '5px' }}>{item.isPrivate ? '内部包' : '外部包'}</Tag>
+                          <span>{item.pkgName}</span>
                         </Typography.Text>
-                        <Typography.Text><span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span></Typography.Text>
+                        <Typography.Text>
+                          <span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span>
+                          <span style={{ fontSize: '10px', marginLeft: '5px'}}>次</span>
+                        </Typography.Text>
                       </List.Item>
                     }
                   />
@@ -272,6 +274,7 @@ const Dependency: FC = () => {
               </Col>
               <Col md={17} sm={24} xs={24}>
                 <div style={{ paddingLeft: '20px' }}>
+                  <div style={{width:'100%', position:'absolute', top: '10px', textAlign:'center', color:'grey'}}>antd 导出 api 被引用次数及分布</div>
                   <Column {...Columnconfig} />
                 </div>
               </Col>

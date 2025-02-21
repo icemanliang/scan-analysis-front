@@ -20,7 +20,7 @@ const topColResponsiveProps = {
   },
 };
 
-const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: DataItem[] }) => {
+const IntroduceRow = ({ loading, visitData, classData }: { loading: boolean; visitData: DataItem[]; classData: DataItem[] }) => {
   const { styles } = useStyles();
   const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
 
@@ -30,25 +30,26 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         <ChartCard
           bordered={false}
           loading={loading}
-          title="CSS单文件平均缺陷数"
+          title="CSS单文件平均缺陷数及走势"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />
             </Tooltip>
           }
-          total={4.21}
+          total={1.9}
           footer={<div style={{display: 'flex'}}><Trend
-            flag="up"
+            flag="down"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 10,
+              minWidth: 105,
             }}
           >
             周同比
-            <span className={styles.trendText}>12%</span>
+            <span className={styles.trendText}>9.52%</span>
             </Trend><DatePicker.RangePicker
               defaultValue={defaultRangeValue}
               bordered={false}
+              format={'M/DD'}
               size="small"
             /></div>}
           contentHeight={46}
@@ -73,25 +74,26 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         <ChartCard
           bordered={false}
           loading={loading}
-          title="CSS规范缺陷总数"
+          title="CSS规范缺陷总数及走势"
           action={
             <Tooltip title="指标说明">
               <InfoCircleOutlined />
             </Tooltip>
           }
-          total={numeral(6560).format('0,0')}
+          total={numeral(171).format('0,0')}
           footer={<div style={{display: 'flex'}}><Trend
-            flag="up"
+            flag="down"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 10,
+              minWidth: 105,
             }}
           >
             周同比
-            <span className={styles.trendText}>12%</span>
+            <span className={styles.trendText}>8.71%</span>
           </Trend><DatePicker.RangePicker
               defaultValue={defaultRangeValue}
               bordered={false}
+              format={'M/DD'}
               size="small"
             /></div>}
           contentHeight={46}
@@ -117,27 +119,19 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               <InfoCircleOutlined />
             </Tooltip>
           }
-          total="56%"
+          total="73%"
           footer={
             <div
               style={{
                 display: 'flex',
               }}
             >
-              <Trend flag="down" style={{minWidth: 100, marginRight: 16}}>
-                周同比
-                <span className={styles.trendText}>11%</span>
-              </Trend>
-              <DatePicker.RangePicker
-                defaultValue={defaultRangeValue}
-                bordered={false}
-                size="small"
-              />
+              <span>{'周进度 71% -> 73%'}</span>
             </div>
           }
           contentHeight={46}
         >
-          <Progress percent={56} strokeColor={{ from: '#108ee9', to: '#87d068' }} status="active" />
+          <Progress percent={73} strokeColor={{ from: '#108ee9', to: '#87d068' }} status="active" />
         </ChartCard>
       </Col>
       <Col {...topColResponsiveProps}>
@@ -150,19 +144,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
             </Tooltip>
           }
           loading={loading}
-          total={() => 23 }
+          total={() => 32 }
           footer={<div style={{display: 'flex'}}><Trend
             flag="up"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 10,
+              minWidth: 105,
             }}
           >
             周同比
-            <span className={styles.trendText}>12%</span>
+            <span className={styles.trendText}>6.67%</span>
           </Trend><DatePicker.RangePicker
               defaultValue={defaultRangeValue}
               bordered={false}
+              format={'M/DD'}
               size="small"
             /></div>}
           contentHeight={46}
@@ -173,7 +168,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
             padding={-20}
             axis={false}
             height={46}
-            data={visitData}
+            data={classData}
             scale={{ x: { paddingInner: 0.4 } }}
           />
         </ChartCard>

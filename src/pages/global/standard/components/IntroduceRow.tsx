@@ -25,7 +25,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               <InfoCircleOutlined />
             </Tooltip>
           }
-          total={'11.5%'}
+          total={'6.5%'}
           contentHeight={46}
           footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
             flag="up"

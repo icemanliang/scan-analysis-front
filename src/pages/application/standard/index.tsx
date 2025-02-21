@@ -5,7 +5,6 @@ import type { FC } from 'react';
 import { Suspense } from 'react';
 import IntroduceRow from './components/IntroduceRow';
 import IntroduceCssRow from './components/IntroduceCssRow';
-import PageLoading from './components/PageLoading';
 import ProportionSales from './components/ProportionSales';
 import TopSearch from './components/TopSearch';
 import type { AnalysisData } from './data.d';
@@ -31,7 +30,11 @@ const Standard: FC<AnalysisProps> = () => {
     >
     <GridContent>
       <>
-        <IntroduceRow loading={loading} visitData={data?.esIntroduceData || []} />
+        <IntroduceRow
+          loading={loading}
+          visitData={data?.esIntroduceData || []}
+          complexData={data?.jsComplexData || []}
+        />
         <Row
           gutter={24}
           style={{
@@ -57,7 +60,11 @@ const Standard: FC<AnalysisProps> = () => {
           </Col>
         </Row>
         <Divider orientation="center">CSS规范检查</Divider>
-        <IntroduceCssRow loading={loading} visitData={data?.cssIntroduceData || []} />
+        <IntroduceCssRow
+          loading={loading}
+          visitData={data?.cssIntroduceData || []}
+          classData={data?.cssClassData || []}
+        />
         <Row
           gutter={24}
           style={{

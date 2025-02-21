@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, CalendarOutlined } from '@ant-design/icons';
 import { Pie, Area } from '@ant-design/plots';
 import numeral from 'numeral';
 import NumberInfo from '@/components/NumberInfo';
@@ -43,19 +43,27 @@ const Pieconfig = {
 };
 
 const rankingListData = [
-  { title: '工专路 1 号店', total: 120000 },
-  { title: '工专路 2 号店', total: 100000 },
-  { title: '工专路 3 号店', total: 80000 },
-  { title: '工专路 4 号店', total: 60000 },
-  { title: '工专路 5 号店', total: 40000 },
+  { title: '审核管理系统', total: 12.87 },
+  { title: '统计管理系统', total: 11.32 },
+  { title: '审计管理系统', total: 9.88 },
+  { title: '财务管理系统', total: 8.73 },
+  { title: '商品管理系统', total: 8.54 },
 ];
 
-const visitData2 = [
-  { x: '1', y: 1.12 },
-  { x: '2', y: 3.32 },
-  { x: '3', y: 2.42 },
-  { x: '4', y: 1.22 },
-  { x: '5', y: 4.02 },
+const esTotalData = [
+  { x: '1', y: 6732 },
+  { x: '2', y: 6430 },
+  { x: '3', y: 4821 },
+  { x: '4', y: 4200 },
+  { x: '5', y: 3589 },
+];
+
+const esSingleData = [
+  { x: '1', y: 7.12 },
+  { x: '2', y: 6.32 },
+  { x: '3', y: 5.42 },
+  { x: '4', y: 4.22 },
+  { x: '5', y: 3.02 },
 ];
 
 const CodeArea: React.FC = () => {
@@ -66,16 +74,19 @@ const CodeArea: React.FC = () => {
           <div style={{ margin: '30px' }}>
             <NumberInfo
               subTitle={
-                <span>
-                  全应用缺陷总数走势
-                  <Tooltip title="指标说明">
-                    <InfoCircleOutlined
-                      style={{
-                        marginLeft: 8,
-                      }}
-                    />
-                  </Tooltip>
-                </span>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <span>
+                    全应用缺陷总数走势
+                    <Tooltip title="指标说明">
+                      <InfoCircleOutlined
+                        style={{
+                          marginLeft: 8,
+                        }}
+                      />
+                    </Tooltip>
+                  </span>
+                  {<CalendarOutlined />}
+                </div>
               }
               gap={8}
               total={numeral(12321).format('0,0')}
@@ -90,22 +101,25 @@ const CodeArea: React.FC = () => {
               axis={false}
               padding={-12}
               style={{ fill: 'linear-gradient(-90deg, white 0%, #6294FA 100%)', fillOpacity: 0.4 }}
-              data={visitData2}
+              data={esTotalData}
             />
           </div>
           <div style={{ margin: '30px' }}>
             <NumberInfo
               subTitle={
-                <span>
-                  单文件平均缺陷数走势
-                  <Tooltip title="指标说明">
-                    <InfoCircleOutlined
-                      style={{
-                        marginLeft: 8,
-                      }}
-                    />
-                  </Tooltip>
-                </span>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <span>
+                    单文件平均缺陷数走势
+                    <Tooltip title="指标说明">
+                      <InfoCircleOutlined
+                        style={{
+                          marginLeft: 8,
+                        }}
+                      />
+                    </Tooltip>
+                  </span>
+                  {<CalendarOutlined />}
+                </div>
               }
               gap={8}
               total={numeral(12321).format('0,0')}
@@ -120,7 +134,7 @@ const CodeArea: React.FC = () => {
               axis={false}
               padding={-12}
               style={{ fill: 'linear-gradient(-90deg, white 0%, #6294FA 100%)', fillOpacity: 0.4 }}
-              data={visitData2}
+              data={esSingleData}
             />
           </div>
       </Col>
@@ -143,7 +157,7 @@ const CodeArea: React.FC = () => {
                 <span className={styles.rankingItemTitle} title={item.title}>
                   {item.title}
                 </span>
-                <span>{numeral(item.total).format('0,0')}</span>
+                <span>{item.total}</span>
               </li>
             ))}
           </ul>

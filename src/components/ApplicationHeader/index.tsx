@@ -5,10 +5,11 @@ import useStyles from './style.style';
 const ApplicationHeader: React.FC = () => {
   const { styles } = useStyles();
   const appList =[
-    { value: '1', label: '信息开放平台' },
-    { value: '2', label: '创新运维管理平台' },
-    { value: '3', label: '配置管理平台' },
-    { value: '4', label: '云原生部署平台' },
+    { value: '1', label: '基础管理系统' },
+    { value: '2', label: '采购协调系统' },
+    { value: '3', label: '财务管理平台' },
+    { value: '4', label: '配置管理平台' },
+    { value: '4', label: '营销管理系统' },
   ];
   const taskList =[
     { value: 1, label: '2025-03-28' },
@@ -36,7 +37,7 @@ const ApplicationHeader: React.FC = () => {
         </div>
         <div className={styles.contentTitle}>
           <Select
-            defaultValue="创新运维管理平台"
+            defaultValue="营销管理系统"
             style={{ width: 200 }}
             // onChange={handleChange}
             options={appList}

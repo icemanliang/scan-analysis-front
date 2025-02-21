@@ -5,11 +5,11 @@ import useStyles from './index.style';
 
 const Pieconfig = {
   data: [
-    { type: '全局变量使用', value: 27 },
+    { type: '全局调用', value: 27 },
     { type: 'DOM操作', value: 35 },
     { type: 'History操作', value: 18 },
     { type: 'Location操作', value: 15 },
-    { type: '全局事件监听', value: 10 },
+    { type: '事件监听', value: 10 },
     { type: 'Navigator操作', value: 10 },
   ],
   height: 228,
@@ -28,7 +28,7 @@ const Pieconfig = {
     {
       type: 'text',
       style: {
-        text: '全局调用分布',
+        text: '调用分布',
         x: '50%',
         y: '50%',
         textAlign: 'center',
@@ -78,7 +78,6 @@ const CodeArea: React.FC = () => {
   const { styles } = useStyles();
   return (
     <Row gutter={24}>
-       {/* <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '30px' }}>Browser API 调用</div> */}
       <Col md={13}>
         <div className={styles.popArea}>
           <span>TOP5占比</span>
@@ -87,7 +86,6 @@ const CodeArea: React.FC = () => {
         <Column {...columnConfig} />
       </Col>
       <Col md={11}>
-        {/* <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '30px' }}>Browser API调用分布</div> */}
         <Pie {...Pieconfig} />
       </Col>
     </Row>

@@ -8,60 +8,59 @@ import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 
 const pkgData = [
-  { pkgName: 'Generator函数占比', count: '+1.01' },
-  { pkgName: 'CSS缺陷波及检测', count: '-0.99' },
-  { pkgName: 'react', count: '-0.98' },
-  { pkgName: 'vue', count: '-0.97' },
-  { pkgName: 'angular', count: '+0.96' },
-  { pkgName: 'jquery', count: '-0.95' },
-  { pkgName: 'bootstrap', count: '+0.12' },
-  { pkgName: 'nodejs', count: '-0.93' },
-  { pkgName: 'express', count: '-0.92' },
-  { pkgName: 'koa', count: '-0.91' },
+  { pkgName: 'CSS缺陷波及检测', count: '+0.99' },
+  { pkgName: 'commit提交合规', count: '+1' },
+  { pkgName: 'ES缺陷波及检测', count: '+0.97' },
+  { pkgName: '冗余代码影响检测', count: '+0.96' },
+  { pkgName: '文件命名缺陷检测', count: '-0.95' },
+  { pkgName: '包管理器配置合规', count: '+1' },
+  { pkgName: '类组件占比', count: '-0.93' },
+  { pkgName: 'Dom API调用收敛', count: '-0.92' },
+  { pkgName: 'Generator函数占比', count: '+1.01' }
 ];
 
 const RoseData = {
-  "管理系统": {
-    "count": 78,
+  "基础管理系统": {
+    "count": 78.21,
   },
-  "运营系统": {
-    "count": 73,
+  "运营管理系统": {
+    "count": 73.45,
   },
-  "生产系统": {
-    "count": 68,
+  "生产管理系统": {
+    "count": 68.12,
   },
-  "分发系统": {
-    "count": 64,
+  "分发管理系统": {
+    "count": 64.98,
   },
-  "安全系统": {
-    "count": 62,
+  "安全管理系统": {
+    "count": 62.29,
   },
-  "审核系统": {
-    "count": 58,
+  "审核管理系统": {
+    "count": 58.34,
   },
-  "推荐系统": {
-    "count": 56,
+  "推荐管理系统": {
+    "count": 56.21,
   },
-  "搜索系统": {
-    "count": 54,
+  "搜索管理系统": {
+    "count": 54.84,
   },
-  "统计系统": {
-    "count": 40,
+  "统计管理系统": {
+    "count": 40.12,
   },
-  "分析系统": {
-    "count": 38,
+  "分析管理系统": {
+    "count": 38.32,
   },
-  "审计系统": {
-    "count": 36,
+  "审计管理系统": {
+    "count": 36.45,
   },
-  "研发系统": {
-    "count": 34,
+  "研发管理系统": {
+    "count": 34.23,
   },
-  "财务系统": {
-    "count": 32,
+  "财务管理系统": {
+    "count": 32.01,
   },
-  "商品系统": {
-    "count": 30,
+  "商品管理系统": {
+    "count": 30.23,
   },
 };
 
@@ -222,14 +221,14 @@ const Main: FC = () => {
                 </div>
               </Col>
               <Col md={7} sm={24} xs={24}>
-                <div style={{ fontSize: '14px', marginBottom: '15px', color: 'grey' }}>变化明细 : <span style={{ color: '#000', fontWeight: 'bold' }}>内容运营系统</span></div>
+                <div style={{ fontSize: '14px', marginBottom: '15px', color: 'grey' }}><span style={{ color: '#000', fontWeight: 'bold' }}>基础管理系统</span> 变化明细 :</div>
                 <List
                   style={{ height: 250, overflow: 'auto', border: '1px solid #e8e8e8', padding: '0px 10px', borderRadius: '4px' }}
                   dataSource={pkgData}
                   renderItem={
-                    (item, index) => <List.Item>
+                    (item) => <List.Item>
                       <Typography.Text><span style={{ color: '#000', marginRight: '10px' }}></span>{item.pkgName}</Typography.Text>
-                      <Typography.Text>{item.count}</Typography.Text>
+                      <Typography.Text style={{color: item.count.includes('+') ? 'green' : 'red'}}>{item.count}</Typography.Text>
                     </List.Item>
                   }
                 />

@@ -9,7 +9,14 @@ import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
 import Trend from '@/components/Trend';
 
-const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: DataItem[] }) => {
+const IntroduceRow = ({ loading, visitData, tsFileData, tsTypeData, classData, GeneratorData}: {
+  loading: boolean;
+  visitData: DataItem[];
+  tsFileData: DataItem[];
+  tsTypeData: DataItem[];
+  classData: DataItem[];
+  GeneratorData: DataItem[];
+}) => {
   const { styles } = useStyles();
   const defaultRangeValue: [Dayjs, Dayjs] = [dayjs('2025-01-01', 'YYYY/M/DD'), dayjs('2025-03-31', 'YYYY/M/DD')];
 
@@ -30,8 +37,8 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
             flag="up"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 5,
+              minWidth: 105,
             }}
           >
             周同比
@@ -54,7 +61,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               width: '100%',
             }}
             padding={-20}
-            data={visitData}
+            data={tsFileData}
           />
         </ChartCard>
       </Col>
@@ -71,14 +78,14 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           total={numeral(846).format('0,0')}
           contentHeight={46}
           footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
-            flag="up"
+            flag="down"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 5,
+              minWidth: 105,
             }}
           >
             周同比
-            <span className={styles.trendText}>12%</span>
+            <span className={styles.trendText}>8.1%</span>
           </Trend><DatePicker.RangePicker
               defaultValue={defaultRangeValue}
               bordered={false}
@@ -97,7 +104,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               width: '100%',
             }}
             padding={-20}
-            data={visitData}
+            data={tsTypeData}
           />
         </ChartCard>
       </Col>
@@ -114,14 +121,14 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           total={numeral(146).format('0,0')}
           contentHeight={46}
           footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
-            flag="up"
+            flag="down"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 5,
+              minWidth: 105,
             }}
           >
             周同比
-            <span className={styles.trendText}>12%</span>
+            <span className={styles.trendText}>6.43%</span>
           </Trend><DatePicker.RangePicker
               defaultValue={defaultRangeValue}
               bordered={false}
@@ -140,7 +147,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               width: '100%',
             }}
             padding={-20}
-            data={visitData}
+            data={classData}
           />
         </ChartCard>
       </Col>
@@ -157,14 +164,14 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
           total={numeral(242).format('0,0')}
           contentHeight={46}
           footer={<div style={{display: 'flex', justifyContent: 'space-between'}}><Trend
-            flag="up"
+            flag="down"
             style={{
-              marginRight: 16,
-              minWidth: 100,
+              marginRight: 5,
+              minWidth: 105,
             }}
           >
             周同比
-            <span className={styles.trendText}>12%</span>
+            <span className={styles.trendText}>5.12%</span>
           </Trend><DatePicker.RangePicker
               defaultValue={defaultRangeValue}
               bordered={false}
@@ -183,7 +190,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               width: '100%',
             }}
             padding={-20}
-            data={visitData}
+            data={GeneratorData}
           />
         </ChartCard>
       </Col>

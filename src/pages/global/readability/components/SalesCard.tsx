@@ -22,7 +22,7 @@ const SalesCard = ({
   const { styles } = useStyles();
   return (
     <Card
-      title="Browser API调用"
+      title="全应用 BrowserAPI 调用"
       loading={loading}
       bordered={false}
       bodyStyle={{

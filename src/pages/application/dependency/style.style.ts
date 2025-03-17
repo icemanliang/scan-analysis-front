@@ -15,6 +15,26 @@ const useStyles = createStyles(({ token }) => {
       textAlign: 'center',
       marginTop: '20px'
     },
+    popArea: {
+      position: 'absolute',
+      top: '10px',
+      right: '30px',
+      padding: '20px 20px',
+      width: '150px',
+      height: '90px',
+      borderRadius: '4px',
+      textAlign: 'center',
+      boxShadow: '0 0 20px 0 rgb(0 0 0 / 15%)',
+    },
+    top5Rate: {
+      marginTop: '15px',
+      fontSize: '16px',
+      color: 'red',
+    },
+    top5Time: {
+      marginTop: '15px',
+      fontSize: '12px',
+    }
   };
 });
 

@@ -6,6 +6,7 @@ import useStyles from './style.style';
 import DepartmentHeader from '@/components/DepartmentHeader';
 import dayjs from 'dayjs';
 import type { Dayjs } from 'dayjs';
+import { forEach, groupBy } from 'lodash';
 
 const pkgData = [
   { pkgName: 'CSS缺陷波及检测', count: '+0.99' },
@@ -19,72 +20,164 @@ const pkgData = [
   { pkgName: 'Generator函数占比', count: '+1.01' }
 ];
 
-const RoseData = {
-  "基础管理系统": {
-    "count": 78.21,
+const appScoreData = [
+  {
+    appName: "基础管理系统",
+    score: 4.21,
+    type: "Lon"
   },
-  "运营管理系统": {
-    "count": 73.45,
+  {
+    appName: "运营管理系统",
+    score: 6.45,
+    type: "Lon"
   },
-  "生产管理系统": {
-    "count": 68.12,
+  {
+    appName: "生产管理系统",
+    score: 16.12,
+    type: "Lon"
   },
-  "分发管理系统": {
-    "count": 64.98,
+  {
+    appName: "分发管理系统",
+    score: 4.98,
+    type: "Lon"
   },
-  "安全管理系统": {
-    "count": 62.29,
+  {
+    appName: "安全管理系统",
+    score: 2.29,
+    type: "Lon"
   },
-  "审核管理系统": {
-    "count": 58.34,
+  {
+    appName: "审核管理系统",
+    score: 8.34,
+    type: "Lon"
   },
-  "推荐管理系统": {
-    "count": 56.21,
+  {
+    appName: "推荐管理系统",
+    score: 6.21,
+    type: "Lon"
   },
-  "搜索管理系统": {
-    "count": 54.84,
+  {
+    appName: "搜索管理系统",
+    score: 4.84,
+    type: "Lon"
   },
-  "统计管理系统": {
-    "count": 40.12,
+  {
+    appName: "统计管理系统",
+    score: 0.12,
+    type: "Lon"
   },
-  "分析管理系统": {
-    "count": 38.32,
+  {
+    appName: "分析管理系统",
+    score: 4.32,
+    type: "Lon"
   },
-  "审计管理系统": {
-    "count": 36.45,
+  {
+    appName: "审计管理系统",
+    score: 6.45,
+    type: "Lon"
   },
-  "研发管理系统": {
-    "count": 34.23,
+  {
+    appName: "研发管理系统",
+    score: 4.24,
+    type: "Lon"
   },
-  "财务管理系统": {
-    "count": 32.01,
+  {
+    appName: "基础管理系统",
+    score: 74,
+    type: "Bor"
   },
-  "商品管理系统": {
-    "count": 30.23,
+  {
+    appName: "运营管理系统",
+    score: 67,
+    type: "Bor"
   },
-};
+  {
+    appName: "生产管理系统",
+    score: 52,
+    type: "Bor"
+  },
+  {
+    appName: "分发管理系统",
+    score: 60,
+    type: "Bor"
+  },
+  {
+    appName: "安全管理系统",
+    score: 60,
+    type: "Bor"
+  },
+  {
+    appName: "审核管理系统",
+    score: 50,
+    type: "Bor"
+  },
+  {
+    appName: "推荐管理系统",
+    score: 50,
+    type: "Bor"
+  },
+  {
+    appName: "搜索管理系统",
+    score: 50,
+    type: "Bor"
+  },
+  {
+    appName: "统计管理系统",
+    score: 40,
+    type: "Bor"
+  },
+  {
+    appName: "分析管理系统",
+    score: 34,
+    type: "Bor"
+  },
+  {
+    appName: "审计管理系统",
+    score: 30,
+    type: "Bor"
+  },
+  {
+    appName: "研发管理系统",
+    score: 30,
+    type: "Bor"
+  }
+]
+
+const annotations: any[] = [];
+  forEach(groupBy(appScoreData, 'appName'), (values, k) => {
+    const value = values.reduce((a, b) => a + b.score, 0);
+    annotations.push({
+      type: 'text',
+      data: [k, value],
+      xField: 'appName',
+      yField: 'score',
+      style: {
+        text: `${value}`,
+        textBaseline: 'bottom',
+        position: 'top',
+        textAlign: 'center',
+        fontSize: 13
+      },
+      tooltip: false,
+    });
+});
+// console.log(annotations)
 
 const Columnconfig = {
   height: 280,
-  data: Object.entries(RoseData).map(([key, value]) => ({
-    api: key,
-    callNum: value.count
-  })),
-  xField: 'api',
-  yField: 'callNum',
-  label: {
-    text: (originData: any) => {
-      return originData.callNum;
-    },
-    textBaseline: 'bottom',
-  },
+  data: appScoreData,
+  xField: 'appName',
+  yField: 'score',
+  stack: true,
+  legend: false,
+  colorField: 'type',
   scrollbar: {
     x: {
       ratio: 0.5,
     },
   },
   style: {
-    maxWidth: 30,
+    maxWidth: 40,
   },
   scale: {
     y: {
@@ -92,7 +185,8 @@ const Columnconfig = {
       tickCount: 10,
       domain: [0, 90],
     }
-  }
+  },
+  annotations: annotations
 };
 
 const sizePieconfig = {

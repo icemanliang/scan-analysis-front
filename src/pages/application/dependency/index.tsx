@@ -1,10 +1,12 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Col, Row, Progress, List, Typography, Tag } from 'antd';
+import { Dendrogram, G6 } from '@ant-design/graphs';
+import { Card, Col, Row, Progress, List, Typography, Tag, Radio } from 'antd';
 import { Column } from '@ant-design/plots';
 import type { FC } from 'react';
 import useStyles from './style.style';
 import RiskPackageList from './components/RiskPackageList';
 import ApplicationHeader from '@/components/ApplicationHeader';
+const { treeToGraphData } = G6;
 
 const pkgData = [
   { pkgName: 'antd', count: 779, isPrivate: false },
@@ -17,6 +19,74 @@ const pkgData = [
   { pkgName: 'js-cookie', count: 2, isPrivate: false },
   { pkgName: 'copy-list', count: 1, isPrivate: false },
 ];
+
+const internalData = [
+  { pkgName: 'src/common/common.less', count: 79, isPrivate: false },
+  { pkgName: 'src/components/nav/view.jsx', count: 36, isPrivate: false },
+  { pkgName: 'src/components/nav/store.js', count: 21, isPrivate: false },
+  { pkgName: 'src/utils/date-helper.js', count: 17, isPrivate: true },
+  { pkgName: 'src/utils/form-helper.js', count: 15, isPrivate: false },
+  { pkgName: 'src/pages/board/style.less', count: 11, isPrivate: false },
+  { pkgName: 'src/pages/manage/store.js', count: 8, isPrivate: false },
+  { pkgName: 'src/utils/modal.js', count: 4, isPrivate: false },
+  { pkgName: 'src/common/server.js', count: 3, isPrivate: false },
+  { pkgName: 'src/common/dictionary.js', count: 2, isPrivate: false },
+];
+const internalOptions = {
+  autoFit: {type: 'view'},
+  data: treeToGraphData({
+    id: "src",
+    children: [
+      {
+        id: "common",
+        children: [
+          { id: "common.less (79)" },
+          { id: "server.js (2)" },
+          { id: "dictionary.js (2)" }
+        ]
+      },
+      {
+        id: "components",
+        children: [
+          {
+            id: "nav",
+            children: [
+              { id: "view.jsx (36)" },
+              { id: "store.js (21)" }
+            ]
+          }
+        ]
+      },
+      {
+        id: "pages",
+        children: [
+          {
+            id: "board",
+            children: [
+              { id: "style.less (11)" },
+            ]
+          },
+          {
+            id: "manage",
+            children: [
+              { id: "store.js (8)" },
+            ]
+          }
+        ]
+      },
+      {
+        id: "utils",
+        children: [
+          { id: "date-helper.js (17)" },
+          { id: "form-helper.js (15)" },
+          { id: "modal.js (4)" },
+        ]
+      }
+    ]
+  }),
+  direction: 'radial',
+  compact: true
+};
 
 const RoseData = {
   "Button": {
@@ -81,7 +151,7 @@ const RoseData = {
       ]
   },
   "Checkbox": {
-      "count": 60,
+      "count": 50,
       "files": [
           "src/pages/board/comprehensive/jsx/content.jsx",
           "src/pages/board/quality/components/accidentTrendECharts.jsx",
@@ -275,7 +345,49 @@ const Dependency: FC = () => {
               <Col md={17} sm={24} xs={24}>
                 <div style={{ paddingLeft: '20px' }}>
                   <div style={{width:'100%', position:'absolute', top: '10px', textAlign:'center', color:'grey'}}>antd 导出 api 被引用次数及分布</div>
+                  <div className={styles.popArea}>
+                    <div style={{marginBottom:'10px'}}><span style={{fontWeight: 'bold'}}>违规API调用</span></div>
+                    <span className={styles.top5Rate}>{'Table : '}</span>
+                    <span className={styles.top5Rate} style={{color: '#000'}}>{'23'}</span>
+                    <span className={styles.top5Time}>次</span>
+                  </div>
                   <Column {...Columnconfig} />
+                </div>
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
+      <Row>
+        <Col md={24} sm={24} xs={24}>
+          <Card title={'内部高频依赖度文件分布'} style={{ marginTop: '24px' }} extra={
+            <Radio.Group value={'10'}>
+              <Radio.Button value="10">Top 10</Radio.Button>
+              <Radio.Button value="50">Top 50</Radio.Button>
+              <Radio.Button value="100">Top 100</Radio.Button>
+            </Radio.Group>}>
+            <Row>
+              <Col md={7} sm={24} xs={24}>
+                <div style={{ height: 480, overflow: 'auto', border: '1px solid #e8e8e8', padding: '0px 10px', borderRadius: '4px' }}>
+                  <List
+                    dataSource={internalData}
+                    renderItem={
+                      (item) => <List.Item>
+                        <Typography.Text>
+                          <span>{item.pkgName}</span>
+                        </Typography.Text>
+                        <Typography.Text>
+                          <span style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.45)' }}>{item.count}</span>
+                          <span style={{ fontSize: '10px', marginLeft: '5px'}}>次</span>
+                        </Typography.Text>
+                      </List.Item>
+                    }
+                  />
+                </div>
+              </Col>
+              <Col md={17} sm={24} xs={24}>
+                <div style={{ paddingLeft: '20px' }}>
+                  <Dendrogram {...internalOptions} />
                 </div>
               </Col>
             </Row>

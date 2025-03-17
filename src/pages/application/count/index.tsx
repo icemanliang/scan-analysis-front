@@ -198,23 +198,23 @@ const Count: React.FC = () => {
               <Card>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>缺失TS类型定义函数总数</div>
-                  <div className={styles.analysisNumber}>5</div>
+                  <div className={styles.analysisNumber}>53</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>Class类组件声明总数</div>
-                  <div className={styles.analysisNumber}>6</div>
+                  <div className={styles.analysisNumber}>61</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>GENERATOR函数总数</div>
-                  <div className={styles.analysisNumber}>6</div>
+                  <div className={styles.analysisNumber}>13</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>Dom Api调用总数</div>
-                  <div className={styles.analysisNumber}>16</div>
+                  <div className={styles.analysisNumber}>64</div>
                 </Card.Grid>
                 <Card.Grid style={gridStyle}>
                   <div className={styles.analysisDesc}>Bom Api调用总数</div>
-                  <div className={styles.analysisNumber}>3</div>
+                  <div className={styles.analysisNumber}>23</div>
                 </Card.Grid>
               </Card>
             </Col>

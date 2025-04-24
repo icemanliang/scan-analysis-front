@@ -268,37 +268,6 @@ const Main: FC = () => {
       content={<DepartmentHeader/>}
     >
       <Row gutter={24}>
-        <Col md={4} sm={12} xs={24}>
-          <Card>
-            <div className={styles.analysisDesc}>桌面应用</div>
-            <div className={styles.analysisNumber}>63</div>
-          </Card>
-          <Card style={{ marginTop: '24px' }}>
-            <div className={styles.analysisDesc}>移动应用</div>
-            <div className={styles.analysisNumber}>22</div>
-          </Card>
-        </Col>
-        <Col md={10}>
-          <Card>
-            <Row>
-              <Col md={24} sm={24} xs={24}>
-                <Pie {...sizePieconfig} />
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-        <Col md={10} sm={24} xs={24}>
-          <Card>
-            <Row>
-              <Col md={24} sm={24} xs={24}>
-                <Pie {...nodePieconfig} />
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row gutter={24} style={{ marginTop: '24px' }}>
         <Col xl={24} lg={24} md={24} sm={24} xs={24}>
           <Card
             title={'全应用质量分排名 & 变化明细'}
@@ -326,6 +295,37 @@ const Main: FC = () => {
                     </List.Item>
                   }
                 />
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row gutter={24} style={{ marginTop: '24px' }}>
+        <Col md={4} sm={12} xs={24}>
+          <Card>
+            <div className={styles.analysisDesc}>桌面应用</div>
+            <div className={styles.analysisNumber}>63</div>
+          </Card>
+          <Card style={{ marginTop: '24px' }}>
+            <div className={styles.analysisDesc}>移动应用</div>
+            <div className={styles.analysisNumber}>22</div>
+          </Card>
+        </Col>
+        <Col md={10}>
+          <Card>
+            <Row>
+              <Col md={24} sm={24} xs={24}>
+                <Pie {...sizePieconfig} />
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col md={10} sm={24} xs={24}>
+          <Card>
+            <Row>
+              <Col md={24} sm={24} xs={24}>
+                <Pie {...nodePieconfig} />
               </Col>
             </Row>
           </Card>
